@@ -1,23 +1,32 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
-  </div>
+	<div id="app">
+		<el-container >
+			<!--在 Markdown 编辑界面不显示导航栏-->
+			<el-header v-show="$route.name !== 'Editor'">
+				<Header></Header>
+			</el-header>
+			<el-container>
+				<el-main>
+					<router-view></router-view>
+				</el-main>
+			</el-container>
+		</el-container>
+	</div>
 </template>
 
 <script>
-export default {
-  name: 'App'
-}
+	import Header from './components/Generic/Header'
+
+    export default{
+        components: {
+            Header,
+        }
+    }
+
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+	.el-main {
+		padding: 0;
+	}
 </style>

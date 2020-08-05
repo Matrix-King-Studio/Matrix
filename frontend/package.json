@@ -10,8 +10,12 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "element-ui": "^2.13.2",
+    "loadsh": "0.0.4",
+    "marked": "^1.1.1",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuepress": "^1.5.2"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
