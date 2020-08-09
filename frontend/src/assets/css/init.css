@@ -12,15 +12,6 @@ table {
     border-spacing: 0;
 }
 
-fieldset, img {
-    border: 0;
-}
-
-address, caption, cite, code, dfn, em, strong, th, var {
-    font-style: normal;
-    font-weight: normal;
-}
-
 ol, ul {
     list-style: none;
 }
@@ -29,9 +20,8 @@ caption, th {
     text-align: left;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-size: 100%;
-    font-weight: normal;
+p {
+    line-height: 35px;
 }
 
 q:before, q:after {
@@ -40,4 +30,24 @@ q:before, q:after {
 
 abbr, acronym {
     border: 0;
+}
+
+h1{
+    font-size: 30px;
+}
+
+h2{
+    font-size: 25px;
+}
+
+h3{
+    font-size: 20px;
+}
+
+h4{
+    font-size: 15px;
+}
+
+h5{
+    font-size: 10px;
 }

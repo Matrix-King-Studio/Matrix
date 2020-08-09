@@ -10,12 +10,16 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.19.2",
+    "buttercms": "^1.2.3",
     "element-ui": "^2.13.2",
+    "es6-promise": "^4.2.8",
     "loadsh": "0.0.4",
     "marked": "^1.1.1",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
-    "vuepress": "^1.5.2"
+    "vuepress": "^1.5.2",
+    "vuex": "^3.5.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

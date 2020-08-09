@@ -1,0 +1,14 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+    <h1 id="site-name">
+{# 更改顶部栏标题 #}
+        <a href="{% url 'admin:index' %}">
+            Matrix 工作室后台管理系统
+        </a>
+    </h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
