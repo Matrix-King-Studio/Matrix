@@ -20,7 +20,7 @@
 					在线学习
 				</router-link>
 			</el-menu-item>
-			<el-menu-item index="4">
+			<el-menu-item index="Blog">
 				<router-link :to="{ name:'Blog' }">
 					博客社区
 				</router-link>
