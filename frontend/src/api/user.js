@@ -18,11 +18,10 @@ export default {
      * @param data
      * @returns {AxiosPromise}
      */
-    user(data) {
+    user() {
         return request({
             url: '/auth/rest-auth/user',
-            method: 'post',
-            data
+            method: 'GET',
         })
     },
     /**
@@ -32,7 +31,7 @@ export default {
      */
     register(data) {
         return request({
-            url: '/auth/rest-auth/registration',
+            url: '/auth/rest-auth/registration/',
             method: 'post',
             data
         })
@@ -44,7 +43,7 @@ export default {
      */
     logout() {
         return request({
-            url: '/auth/rest-auth/logout',
+            url: '/auth/rest-auth/logout/',
             method: 'post',
         })
     },

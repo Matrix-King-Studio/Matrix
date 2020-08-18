@@ -45,13 +45,13 @@
 				</div>
 			</el-col>
 			<el-col :span="5">
-				<img src="/static/images/人工智能组.jpg" alt="人工智能组" style="height: 200px; width: 100%">
+				<img src="/static/images/AI_Group.jpg" alt="人工智能组" style="height: 200px; width: 100%">
 			</el-col>
 			<el-col :span="5">
-				<img src="/static/images/前端组.jpg" alt="前端组" style="height: 200px; width: 100%">
+				<img src="/static/images/FrontendGroup.jpg" alt="前端组" style="height: 200px; width: 100%">
 			</el-col>
 			<el-col :span="5">
-				<img src="/static/images/后端组.jpg" alt="后端组" style="height: 200px; width: 100%">
+				<img src="/static/images/BackendGroup.jpg" alt="后端组" style="height: 200px; width: 100%">
 			</el-col>
 		</el-row>
 		<div class="study-problem">

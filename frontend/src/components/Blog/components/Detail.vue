@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<el-container style="margin: 10px 100px">
-			<el-aside width="200px">Aside</el-aside>
+			<el-aside width="300px">Aside</el-aside>
 			<el-container>
 				<el-header height="100px">
 					<p style="font-size: 25px; margin-bottom: 10px">
