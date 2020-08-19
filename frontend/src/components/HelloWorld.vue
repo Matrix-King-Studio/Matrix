@@ -197,6 +197,11 @@
 		height: 10px;
 	}
 
+	.el-main {
+		margin: 0;
+		padding: 0;
+	}
+
 	ol, ul {
 		list-style: none;
 		margin: 0;

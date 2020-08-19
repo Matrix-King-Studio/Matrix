@@ -7,6 +7,7 @@ import Editor from '../components/Blog/components/Editor'
 import Learn from '../components/Learn/Learn'
 import Recruit from '../components/Recruit/Recruit'
 import Introduction from '../components/Generic/Introduction'
+import Shop from '../components/Shop/Shop'
 
 Vue.use(Router)
 
@@ -47,6 +48,11 @@ export default new Router({
             path: '/introduction/:id',
             name: 'Introduction',
             component: Introduction
+        },
+        {
+            path: '/shop',
+            name: 'Shop',
+            component: Shop
         },
     ]
 })

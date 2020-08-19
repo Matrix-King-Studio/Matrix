@@ -32,6 +32,11 @@
 					招贤纳士
 				</router-link>
 			</el-menu-item>
+			<el-menu-item index="Shop">
+				<router-link :to="{ name:'Shop' }">
+					Matrix小店
+				</router-link>
+			</el-menu-item>
 			<el-menu-item
 				index="Register"
 				style="float: right"
