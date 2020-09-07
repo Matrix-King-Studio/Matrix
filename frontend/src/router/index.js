@@ -8,6 +8,7 @@ import Learn from '../components/Learn/Learn'
 import Recruit from '../components/Recruit/Recruit'
 import Introduction from '../components/Generic/Introduction'
 import Shop from '../components/Shop/Shop'
+import Project from '../components/Project/Project'
 
 Vue.use(Router)
 
@@ -38,6 +39,11 @@ export default new Router({
             path: '/learn',
             name: 'Learn',
             component: Learn
+        },
+        {
+            path: '/project',
+            name: 'Project',
+            component: Project
         },
         {
             path: '/recruit',

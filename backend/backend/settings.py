@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 	'corsheaders',
 	'Authentication',
 	'Blog',
+	'Project'
 ]
 
 SITE_ID = 1
@@ -74,16 +75,8 @@ REST_FRAMEWORK = {
 	],
 }
 
-EMAIL_HOST = 'smtp.qq.com'
-EMAIL_PORT = 465
-EMAIL_HOST_USER = '2426671397@qq.com'
-EMAIL_HOST_PASSWORD = 'dguajxeilbmveaah'
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
-EMAIL_SSL_CERTFILE = None
-EMAIL_SSL_KEYFILE = None
-EMAIL_TIMEOUT = None
-DEFAULT_FROM_EMAIL = '2426671397@qq.com'
+# 禁用注册邮箱验证
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 ROOT_URLCONF = 'backend.urls'
 

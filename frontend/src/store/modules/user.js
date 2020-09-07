@@ -65,7 +65,6 @@ const actions = {
                     resolve()
                 }
             }).catch(err => {
-                console.log(err)
                 Message({
                     message: '注册出错：' + err.data,
                     type: 'error',

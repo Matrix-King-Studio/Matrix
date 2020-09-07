@@ -313,7 +313,8 @@
 								<el-link
 									type="primary"
 									href="http://alpha.luffycity.com:3000/free-course/124/detail"
-									target="_blank">视频：Python入门课程
+									target="_blank">
+									视频：Python入门课程
 								</el-link>
 								<hr>
 							</el-card>
@@ -329,7 +330,8 @@
 								<el-link
 									type="primary"
 									href="http://alpha.luffycity.com:3000/free-course/125/detail"
-									target="_blank">视频：Python常用模块
+									target="_blank">
+									视频：Python常用模块
 								</el-link>
 								<hr>
 							</el-card>
@@ -345,7 +347,8 @@
 								<el-link
 									type="primary"
 									href="http://alpha.luffycity.com:3000/free-course/126/detail"
-									target="_blank">视频：Python面向对象编程
+									target="_blank">
+									视频：Python面向对象编程
 								</el-link>
 								<hr>
 							</el-card>
@@ -361,12 +364,14 @@
 								<el-link
 									type="primary"
 									href="http://alpha.luffycity.com:3000/free-course/127/detail"
-									target="_blank">视频：Django Web开发入门
+									target="_blank">
+									视频：Django Web开发入门
 								</el-link>
 								<el-link
 									type="primary"
 									href="https://docs.djangoproject.com/zh-hans/3.0/contents/"
-									target="_blank">文档：Django 中文文档
+									target="_blank">
+									文档：Django 中文文档
 								</el-link>
 								<hr>
 							</el-card>
@@ -382,7 +387,8 @@
 								<el-link
 									type="primary"
 									href="https://q1mi.github.io/Django-REST-framework-documentation/"
-									target="_blank">文档：RestFramework 中文文档
+									target="_blank">
+									文档：RestFramework 中文文档
 								</el-link>
 								<hr>
 							</el-card>
@@ -398,7 +404,8 @@
 								<el-link
 									type="primary"
 									href="https://help.aliyun.com/product/25365.html"
-									target="_blank">文档：阿里云文档
+									target="_blank">
+									文档：阿里云文档
 								</el-link>
 								<hr>
 							</el-card>
@@ -414,7 +421,8 @@
 								<el-link
 									type="primary"
 									href="https://github.com/Matrix-King-Studio/Matrix/tree/master/backend"
-									target="_blank">代码：Matrix Backend
+									target="_blank">
+									代码：Matrix Backend
 								</el-link>
 								<hr>
 							</el-card>
@@ -440,8 +448,9 @@
 								<hr>
 								<el-link
 									type="primary"
-									href=""
-									target="_blank">书籍：《C Primer Plus》
+									href="https://detail.tmall.com/item.htm?spm=a230r.1.14.31.38683ba92N6Gd8&id=575784544813&ns=1&abbucket=16"
+									target="_blank">
+									书籍：《C Primer Plus》
 								</el-link>
 								<hr>
 							</el-card>
@@ -455,7 +464,7 @@
 								<hr>
 								<el-link
 									type="primary"
-									href=""
+									href="https://detail.tmall.com/item.htm?spm=a230r.1.14.16.7317507cMvRPbD&id=43529819152&ns=1&abbucket=16"
 									target="_blank">书籍：《信息学奥赛一本通》
 								</el-link>
 								<hr>
@@ -470,13 +479,13 @@
 								<hr>
 								<el-link
 									type="primary"
-									href=""
+									href="https://pan.baidu.com/s/16giRQbcge230UUdatFKehQ"
 									target="_blank">视频：左神算法初级班
 								</el-link>
 								<hr>
 								<el-link
 									type="primary"
-									href=""
+									href="https://pan.baidu.com/s/11-ySZ6_Zd0R8oEgqe9POqA"
 									target="_blank">视频：左神算法进阶班
 								</el-link>
 								<hr>
@@ -491,7 +500,7 @@
 								<hr>
 								<el-link
 									type="primary"
-									href=""
+									href="https://detail.tmall.com/item.htm?spm=a230r.1.14.14.46be2e04S0sA7U&id=535662059508&cm_id=140105335569ed55e27b&abbucket=16"
 									target="_blank">书籍：《算法竞赛入门经典》
 								</el-link>
 								<hr>

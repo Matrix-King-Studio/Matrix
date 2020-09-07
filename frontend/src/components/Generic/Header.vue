@@ -20,6 +20,11 @@
 					在线学习
 				</router-link>
 			</el-menu-item>
+			<el-menu-item index="Project">
+				<router-link :to="{ name:'Project' }">
+					项目广场
+				</router-link>
+			</el-menu-item>
 			<el-menu-item index="Blog">
 				<router-link :to="{ name:'Blog' }">
 					博客社区
@@ -32,11 +37,11 @@
 					招贤纳士
 				</router-link>
 			</el-menu-item>
-			<el-menu-item index="Shop">
-				<router-link :to="{ name:'Shop' }">
-					Matrix小店
-				</router-link>
-			</el-menu-item>
+<!--			<el-menu-item index="Shop">-->
+<!--				<router-link :to="{ name:'Shop' }">-->
+<!--					Matrix小店-->
+<!--				</router-link>-->
+<!--			</el-menu-item>-->
 			<el-menu-item
 				index="Register"
 				style="float: right"
@@ -72,6 +77,7 @@
 		</el-menu>
 		<el-dialog
 			title="登录"
+			:close-on-click-modal="false"
 			:visible.sync="dialogLoginVisible">
 			<el-form :model="formLogin"
 					 :rules="loginRules" ref="formLogin">
@@ -98,6 +104,7 @@
 		</el-dialog>
 		<el-dialog
 			title="注册"
+			:close-on-click-modal="false"
 			:visible.sync="dialogRegisterVisible">
 			<el-form :model="formRegister"
 					 :rules="registerRules"
@@ -203,10 +210,10 @@
                     password: [{ validator: checkPassword, trigger: 'change' }],
                 },
                 formRegister: {
-                    username: '',
-                    email: '',
-                    password: '',
-                    checkPassword: '',
+                    username: '123456',
+                    email: '2426671397@qq.com',
+                    password: '1234qwer.',
+                    checkPassword: '1234qwer.',
                 },
                 registerRules: {
                     username: [{ validator: checkUserName, trigger: 'blur' }],
