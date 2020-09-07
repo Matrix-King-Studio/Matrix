@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '../components/HelloWorld'
 import Blog from '../components/Blog/Blog'
-import Detail from '../components/Blog/components/Detail'
+import BlogDetail from '../components/Blog/components/Detail'
+import ProjectDetail from '../components/Project/components/Detail'
 import Editor from '../components/Blog/components/Editor'
 import Learn from '../components/Learn/Learn'
 import Recruit from '../components/Recruit/Recruit'
@@ -21,21 +22,6 @@ export default new Router({
             component: HelloWorld
         },
         {
-            path: '/blog',
-            name: 'Blog',
-            component: Blog
-        },
-        {
-            path: '/blog/detail/:id',
-            name: 'Detail',
-            component: Detail
-        },
-        {
-            path: '/blog/editor',
-            name: 'Editor',
-            component: Editor
-        },
-        {
             path: '/learn',
             name: 'Learn',
             component: Learn
@@ -44,6 +30,26 @@ export default new Router({
             path: '/project',
             name: 'Project',
             component: Project
+        },
+        {
+            path: '/project/detail/:id',
+            name: 'ProjectDetail',
+            component: ProjectDetail
+        },
+        {
+            path: '/blog',
+            name: 'Blog',
+            component: Blog
+        },
+        {
+            path: '/blog/detail/:id',
+            name: 'BlogDetail',
+            component: BlogDetail
+        },
+        {
+            path: '/blog/editor',
+            name: 'Editor',
+            component: Editor
         },
         {
             path: '/recruit',

@@ -38,7 +38,7 @@
 						v-for="article in articles"
 						:id="article.id">
 						<router-link
-							:to="{ name:'Detail', params: {id: article.id} }">
+							:to="{ name:'BlogDetail', params: {id: article.id} }">
 							<el-header
 								style="margin: 0; line-height: 40px">
 								<el-link
