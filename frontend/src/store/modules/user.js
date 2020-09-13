@@ -4,7 +4,7 @@ import store from '../index'
 
 const state = {
     token: null,
-    userInfo: null
+    userInfo: null,
 }
 
 const mutations = {

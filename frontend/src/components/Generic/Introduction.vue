@@ -20,7 +20,7 @@
 					<div class="Technology-Stack">
 						<p class="SectionTitle">标签</p>
 						<div>
-							<el-tag v-for="tag in information.tags" style="margin-top: 5px; margin-left: 5px;">
+							<el-tag v-for="(tag, i) in information.tags" style="margin-top: 5px; margin-left: 5px;" :key="i">
 								{{ tag }}
 							</el-tag>
 						</div>
@@ -45,7 +45,7 @@
 				<h3>成员</h3>
 				<el-divider></el-divider>
 				<div class="link-box">
-					<div v-for="person in information.members">
+					<div v-for="(person, i) in information.members" :key="i">
 						<a :href="person.blog">
 							<div class="thumb">
 								<img width="200"

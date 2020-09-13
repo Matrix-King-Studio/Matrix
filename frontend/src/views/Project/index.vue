@@ -4,7 +4,7 @@
 			<el-main>
 				<el-row>
 					<el-col
-						:span="6"
+						:span="screenWidth > 1400 ? 6 : screenWidth <= 1400 && screenWidth >= 900 ? 8 : screenWidth <= 900 && screenWidth >= 500 ? 12 : 24"
 						v-for="(o, index) in 10"
 						:key="o">
 						<el-card
@@ -31,17 +31,27 @@
 <script>
     export default {
         name: 'Project',
-		data() {
+		props: ['screenWidth'],
+        data() {
             return {
                 projectList: [
-					{
-					    title: 'AI New Knowledge 机器学习可视化平台',
-						url: 'http://39.107.250.76/flow/',
-						repositories: 'https://github.com/Matrix-King-Studio/MachineLearningAlgorithmPlatform',
-					}
-				]
-			}
-		}
+                    {
+                        title: 'AI New Knowledge 机器学习可视化平台',
+                        url: 'http://39.107.250.76/flow/',
+                        repositories: 'https://github.com/Matrix-King-Studio/MachineLearningAlgorithmPlatform',
+                    }
+                ],
+				width: 1500
+            }
+        },
+        watch: {
+            screenWidth: {
+                handler(val) {
+					// console.log(val);
+                },
+                immediate: true
+            }
+        },
     }
 </script>
 

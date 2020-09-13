@@ -9,9 +9,9 @@
 					tab-position="left"
 					style="text-align: center">
 					<el-tab-pane
-						v-for="tab in tabPanes"
+						v-for="(tab, i) in tabPanes"
 						:id="tab.id"
-						:label="tab.name"></el-tab-pane>
+						:label="tab.name" :key="i"></el-tab-pane>
 				</el-tabs>
 			</el-aside>
 			<el-container style="margin-left: 120px; margin-right: 300px">
@@ -35,8 +35,8 @@
 				</el-header>
 				<el-main class="out">
 					<el-container
-						v-for="article in articles"
-						:id="article.id">
+						v-for="(article, i) in articles"
+						:id="article.id" :key="i">
 						<router-link
 							:to="{ name:'BlogDetail', params: {id: article.id} }">
 							<el-header
@@ -78,8 +78,8 @@
 						</h3>
 					</div>
 					<div
-						v-for="activity in activities"
-						:key="articles.id"
+						v-for="(activity, i) in activities"
+						:key="i"
 						class="text item"
 						style="text-align: center">
 						<el-link
@@ -116,7 +116,7 @@
 </template>
 
 <script>
-    import Aside from '../Generic/Aside'
+    import Aside from '../../components/Generic/Aside'
     import blogApi from '../../api/blog'
     import { Message } from 'element-ui'
 
