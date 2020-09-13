@@ -1,15 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '../components/HelloWorld'
-import Blog from '../components/Blog/Blog'
+import HelloWorld from '../views/HomePage/index'
+import Blog from '../views/Blog/index'
 import BlogDetail from '../components/Blog/components/Detail'
 import ProjectDetail from '../components/Project/components/Detail'
 import Editor from '../components/Blog/components/Editor'
-import Learn from '../components/Learn/Learn'
-import Recruit from '../components/Recruit/Recruit'
+import Learn from '../views/Learn/index'
+import Recruit from '../views/Recruit/index'
 import Introduction from '../components/Generic/Introduction'
-import Shop from '../components/Shop/Shop'
-import Project from '../components/Project/Project'
+import Shop from '../views/Shop/index'
+import Project from '../views/Project/index'
 
 Vue.use(Router)
 
