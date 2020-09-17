@@ -151,41 +151,51 @@
 			<h1>登录</h1>
 			<div class="user-name" :style="{transition: loginAttrs[0].transition, transform: loginAttrs[0].transform}">
 				<p>用户名：</p>
-				<input v-model="formLogin.username" class="user-name-input " :class="{animation: errPlace === 0}" type="text" placeholder="请输入用户名"/>
+				<input v-model="formLogin.username" class="user-name-input" :class="{animation: errPlace === 0}"
+					   type="text" placeholder="请输入用户名"/>
 			</div>
-			<div class="warning-info a">{{ warningCont }}提示信息</div>
+			<div class="warning-info a">{{ warningCont[0] }}</div>
 			<div class="user-name" :style="{transition: loginAttrs[1].transition, transform: loginAttrs[1].transform}">
 				<p>密码：</p>
-				<input v-model="formLogin.password" class="user-name-input" type="password" placeholder="请输入密码"/>
+				<input v-model="formLogin.password" class="user-name-input" :class="{animation: errPlace === 1}"
+					   type="password" placeholder="请输入密码"/>
 			</div>
-			<div class="warning-info b">{{ warningCont }}提示信息</div>
+			<div class="warning-info b">{{ warningCont[1] }}</div>
 			<div class="login-footer">
 				<div class="check-btn" @click="loginMobile">登录</div>
 				<div class="check-btn" @click="dialogLoginVisible = false">取消</div>
 			</div>
-
 		</div>
 
 		<div class="login-mobile" v-if="screenWidth<700 && dialogRegisterVisible">
 			<h1>注册</h1>
-			<div class="user-name" :style="{transition: loginAttrs[2].transition, transform: loginAttrs[2].transform}">
+			<div class="user-name" :class="{animation: errPlace === 2}"
+				 :style="{transition: loginAttrs[2].transition, transform: loginAttrs[2].transform}">
 				<p>用户名：</p>
-				<input class="user-name-input" type="text" placeholder="请输入用户名"/>
+				<input class="user-name-input" type="text" placeholder="请输入用户名" v-model="formRegister.username"/>
 			</div>
-			<div class="user-name" :style="{transition: loginAttrs[3].transition, transform: loginAttrs[3].transform}">
+			<div class="warning-info b">{{ warningCont[2] }}</div>
+			<div class="user-name" :class="{animation: errPlace === 3}"
+				 :style="{transition: loginAttrs[3].transition, transform: loginAttrs[3].transform}">
 				<p>邮箱：</p>
-				<input class="user-name-input" type="email" placeholder="请输入邮箱"/>
+				<input class="user-name-input" type="email" placeholder="请输入邮箱" v-model="formRegister.email"/>
 			</div>
-			<div class="user-name" :style="{transition: loginAttrs[4].transition, transform: loginAttrs[4].transform}">
+			<div class="warning-info b">{{ warningCont[3] }}</div>
+			<div class="user-name" :class="{animation: errPlace === 4}"
+				 :style="{transition: loginAttrs[4].transition, transform: loginAttrs[4].transform}">
 				<p>密码：</p>
-				<input class="user-name-input" type="password" placeholder="请输入密码"/>
+				<input class="user-name-input" type="password" placeholder="请输入密码" v-model="formRegister.password"/>
 			</div>
-			<div class="user-name" :style="{transition: loginAttrs[5].transition, transform: loginAttrs[5].transform}">
+			<div class="warning-info b">{{ warningCont[4] }}</div>
+			<div class="user-name" :class="{animation: errPlace === 5}"
+				 :style="{transition: loginAttrs[5].transition, transform: loginAttrs[5].transform}">
 				<p>确认密码：</p>
-				<input class="user-name-input" type="password" placeholder="请确认密码"/>
+				<input class="user-name-input" type="password" placeholder="请确认密码"
+					   v-model="formRegister.checkPassword"/>
 			</div>
+			<div class="warning-info b">{{ warningCont[5] }}</div>
 			<div class="login-footer">
-				<div class="check-btn" @click="registerConfirm">注册</div>
+				<div class="check-btn" @click="registerMobile">注册</div>
 				<div class="check-btn" @click="dialogRegisterVisible = false">取消</div>
 			</div>
 		</div>
@@ -200,7 +210,7 @@
         name: 'Header',
         props: ['screenWidth'],
         computed: {
-            ...mapGetters(['userInfo', 'dialogIsOpen']),
+            ...mapGetters(['userInfo', 'dialogIsOpen', 'clickStatus']),
             activeIndex() {
                 return this.$route.name
             }
@@ -259,10 +269,10 @@
                     password: [{ validator: checkPassword, trigger: 'change' }],
                 },
                 formRegister: {
-                    username: '123456',
-                    email: '2426671397@qq.com',
-                    password: '1234qwer.',
-                    checkPassword: '1234qwer.',
+                    username: '',
+                    email: '',
+                    password: '',
+                    checkPassword: '',
                 },
                 registerRules: {
                     username: [{ validator: checkUserName, trigger: 'blur' }],
@@ -340,8 +350,8 @@
                         transform: 'rotate3d(1, 1, 0, 90deg)'
                     }
                 ],
-				warningCont: '',	// 输入信息非法的提示信息
-				errPlace: 0			// 定位到发生错误的地方
+                warningCont: ['', '', '', '', '', ''],	// 输入信息非法的提示信息
+                errPlace: null		// 定位到发生错误的地方
             }
         },
         created() {
@@ -480,6 +490,7 @@
              * 用户登录
              */
             login() {
+
                 this.$store.commit('app/SET_DIALOGISOPEN', true)
                 this.dialogLoginVisible = true
                 if (this.screenWidth < 700) {
@@ -530,7 +541,6 @@
                     if (this.timer3[i]) {
                         clearTimeout(this.timer3[i])
                     }
-
                 }
             },
 
@@ -559,20 +569,127 @@
                 })
             },
 
-			// 手机端的登录验证
+            // 手机端的登录验证
             loginMobile() {
-                if (!this.formLogin.username) {
+                if (this.clickStatus) {
+                    this.$store.commit('app/SET_CLICKSTATUS', false)
+                    if (!this.formLogin.username) {
+                        this.clearWarning()
+                        this.setWarning(0, '请输入用户名')
+                        setTimeout(() => {
+                            this.$store.commit('app/SET_CLICKSTATUS', true)
+                        }, 600)
+                        return false
+                    } else if (!this.formLogin.username.replace(/\s/g, '')) {
+                        this.clearWarning()
+                        this.setWarning(0, '请正确输入用户名')
+                        setTimeout(() => {
+                            this.$store.commit('app/SET_CLICKSTATUS', true)
+                        }, 600)
+                        return false
+                    } else if (!this.formLogin.password) {
+                        this.clearWarning()
+                        this.setWarning(1, '请输入密码')
+                        setTimeout(() => {
+                            this.$store.commit('app/SET_CLICKSTATUS', true)
+                        }, 600)
+                        return false
+                    } else {
+                        setTimeout(() => {
+                            this.$store.commit('app/SET_CLICKSTATUS', true)
+                        }, 600)
+                        return true
+                    }
+                }
+            },
 
-                    return false
-                } else if (!this.formLogin.username.replace(/\s/g, '')) {
+            registerMobile() {
+                if (this.clickStatus) {
+                    this.$store.commit('app/SET_CLICKSTATUS', false)
+                    if (!this.formRegister.username) {
+                        this.clearWarning()
+                        this.setWarning(2, '请输入用户名')
+                        setTimeout(() => {
+                            this.$store.commit('app/SET_CLICKSTATUS', true)
+                        }, 600)
+                        return false
+                    } else if (/\s/g.test(this.formRegister.username)) {
+                        this.clearWarning()
+                        this.setWarning(2, '请正确输入用户名（不准输入空格）')
+                        setTimeout(() => {
+                            this.$store.commit('app/SET_CLICKSTATUS', true)
+                        }, 600)
+                        return false
+                    } else if (this.formRegister.username.length >= 13) {
+                        this.clearWarning()
+                        this.setWarning(2, '用户名过长(不可超过10位)')
+                        setTimeout(() => {
+                            this.$store.commit('app/SET_CLICKSTATUS', true)
+                        }, 600)
+                        return false
+                    } else if (!this.formRegister.email) {
+                        this.clearWarning()
+                        this.setWarning(3, '请输入邮箱')
+                        setTimeout(() => {
+                            this.$store.commit('app/SET_CLICKSTATUS', true)
+                        }, 600)
+                        return false
+                    } else if (!/^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(this.formRegister.email)) {
+                        this.clearWarning()
+                        this.setWarning(3, '请正确输入邮箱')
+                        setTimeout(() => {
+                            this.$store.commit('app/SET_CLICKSTATUS', true)
+                        }, 600)
+                        return false
+                    } else if (!this.formRegister.password) {
+                        this.clearWarning()
+                        this.setWarning(4, '请输入密码')
+                        setTimeout(() => {
+                            this.$store.commit('app/SET_CLICKSTATUS', true)
+                        }, 600)
+                        return false
+                    } else if (this.formRegister.password.length > 20 || this.formRegister.password.length < 8) {
+                        this.clearWarning()
+                        this.setWarning(4, '密码位数不正确(应大于8位并小于20位)')
+                        setTimeout(() => {
+                            this.$store.commit('app/SET_CLICKSTATUS', true)
+                        }, 600)
+                        return false
+                    } else if (/^[0-9]+$/.test(this.formRegister.password)) {
+                        this.clearWarning()
+                        this.setWarning(4, '密码不能只包含数字。')
+                        setTimeout(() => {
+                            this.$store.commit('app/SET_CLICKSTATUS', true)
+                        }, 600)
+                        return false
+                    } else if (this.formRegister.password !== this.formRegister.checkPassword) {
+                        this.clearWarning()
+                        this.setWarning(5, '密码确认未通过！')
+                        setTimeout(() => {
+                            this.$store.commit('app/SET_CLICKSTATUS', true)
+                        }, 600)
+                        return false
+					} else {
+                        setTimeout(() => {
+                            this.$store.commit('app/SET_CLICKSTATUS', true)
+                        }, 600)
+                        return true
+                    }
+                }
+            },
 
-                    return false
-                } else if (!this.formLogin.password) {
+            clearWarning() {
+                for (let i = 0; i < this.warningCont.length; i++) {
+                    this.warningCont[i] = ''
+                }
+            },
 
-                    return false
-				} else {
-                    return true
-				}
+            setWarning(i, cont) {
+                this.errPlace = i
+                this.warningCont[i] = cont
+                setTimeout(() => {
+                    this.errPlace = null
+                }, 600)
             },
 
             /**
@@ -608,15 +725,10 @@
             logout() {
                 this.$store.dispatch('user/Logout')
             },
-
-			doErrAnimation() {
-
-			}
         },
 
         // 关闭监控事件
         beforeDestroy() {
-
             window.onresize = null
         }
     }
