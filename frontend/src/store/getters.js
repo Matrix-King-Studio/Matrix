@@ -6,6 +6,7 @@ const getters = {
 
     welcomePage: state => state.app.welcomePage,
     status: state => state.app.status,
+    dialogIsOpen: state => state.app.dialogIsOpen,
 }
 
 export default getters

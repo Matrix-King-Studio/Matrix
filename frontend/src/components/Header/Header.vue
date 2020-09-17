@@ -19,10 +19,14 @@
 				</el-button>
 			</div>
 		</div>
-		<div class="head" v-else>
+		<div class="head" :class="{'blur-style': dialogIsOpen && screenWidth < 700}" v-else>
 			<div class="menu-ui" @mousedown="openMenu" ref="menuUi"
-				 :style="{border: `${menuIsOpen ? '3px solid #45CDC6' : 'none'}`}"></div>
-			<div class="menu-cont" :style="{transform: `translateX(${menuIsOpen ? 0 : -50}vw)`}" ref="menu">
+				 :style="{border: `${menuIsOpen ? '3px solid #45CDC6' : '3px solid white'}`}"></div>
+			<div class="login-ui">
+				<div class="login" @mousedown="login">登录</div>
+				<div class="login" @mousedown="register">注册</div>
+			</div>
+			<div class="menu-cont" ref="menu" :style="{transform: `translateX(${menuIsOpen ? 0 : -50}vw)`}">
 				<router-link :to="item.url" tag="div" v-for="(item, i) in headList" :key="i"
 							 class="menu-leap"
 							 @mousedown.native="routerChange(i, true)"
@@ -68,7 +72,10 @@
 		<el-dialog
 			title="登录"
 			:close-on-click-modal="false"
-			:visible.sync="dialogLoginVisible">
+			:visible.sync="dialogLoginVisible"
+			:modal-append-to-body="false"
+			v-if="screenWidth>=700"
+		>
 			<el-form :model="formLogin"
 					 :rules="loginRules" ref="formLogin">
 				<!-- username -->
@@ -95,7 +102,9 @@
 		<el-dialog
 			title="注册"
 			:close-on-click-modal="false"
-			:visible.sync="dialogRegisterVisible">
+			:visible.sync="dialogRegisterVisible "
+			:modal-append-to-body="false"
+			v-if="screenWidth>=700">
 			<el-form :model="formRegister"
 					 :rules="registerRules"
 					 ref="formRegister">
@@ -137,6 +146,49 @@
 				<el-button type="primary" @click="registerConfirm">确 定</el-button>
 			  </span>
 		</el-dialog>
+		<!--		移动端登录 -->
+		<div class="login-mobile" v-if="screenWidth<700 && dialogLoginVisible">
+			<h1>登录</h1>
+			<div class="user-name" :style="{transition: loginAttrs[0].transition, transform: loginAttrs[0].transform}">
+				<p>用户名：</p>
+				<input v-model="formLogin.username" class="user-name-input " :class="{animation: errPlace === 0}" type="text" placeholder="请输入用户名"/>
+			</div>
+			<div class="warning-info a">{{ warningCont }}提示信息</div>
+			<div class="user-name" :style="{transition: loginAttrs[1].transition, transform: loginAttrs[1].transform}">
+				<p>密码：</p>
+				<input v-model="formLogin.password" class="user-name-input" type="password" placeholder="请输入密码"/>
+			</div>
+			<div class="warning-info b">{{ warningCont }}提示信息</div>
+			<div class="login-footer">
+				<div class="check-btn" @click="loginMobile">登录</div>
+				<div class="check-btn" @click="dialogLoginVisible = false">取消</div>
+			</div>
+
+		</div>
+
+		<div class="login-mobile" v-if="screenWidth<700 && dialogRegisterVisible">
+			<h1>注册</h1>
+			<div class="user-name" :style="{transition: loginAttrs[2].transition, transform: loginAttrs[2].transform}">
+				<p>用户名：</p>
+				<input class="user-name-input" type="text" placeholder="请输入用户名"/>
+			</div>
+			<div class="user-name" :style="{transition: loginAttrs[3].transition, transform: loginAttrs[3].transform}">
+				<p>邮箱：</p>
+				<input class="user-name-input" type="email" placeholder="请输入邮箱"/>
+			</div>
+			<div class="user-name" :style="{transition: loginAttrs[4].transition, transform: loginAttrs[4].transform}">
+				<p>密码：</p>
+				<input class="user-name-input" type="password" placeholder="请输入密码"/>
+			</div>
+			<div class="user-name" :style="{transition: loginAttrs[5].transition, transform: loginAttrs[5].transform}">
+				<p>确认密码：</p>
+				<input class="user-name-input" type="password" placeholder="请确认密码"/>
+			</div>
+			<div class="login-footer">
+				<div class="check-btn" @click="registerConfirm">注册</div>
+				<div class="check-btn" @click="dialogRegisterVisible = false">取消</div>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -147,6 +199,12 @@
     export default {
         name: 'Header',
         props: ['screenWidth'],
+        computed: {
+            ...mapGetters(['userInfo', 'dialogIsOpen']),
+            activeIndex() {
+                return this.$route.name
+            }
+        },
         data() {
             let checkUserName = (rule, value, cb) => {
                 if (!value) {
@@ -249,12 +307,41 @@
                 },
                 timer: null,
                 timer2: null,
+                timer3: [null, null, null, null],	// 给手机端登录特效添加的计时器
                 location: null,
                 nowLocation: null,
                 wordColor: '',
                 colorList: ['#60AEF4', '#F45A35', '#a69d26', '#F4A642', '#DD8CFF'],
                 width: 1500, // 监控屏幕宽度
                 menuIsOpen: false,	// 检测是否打开菜单
+                loginAttrs: [
+                    {
+                        transition: '0s',
+                        transform: 'rotate3d(1, 1, 0, 90deg)'
+                    },
+                    {
+                        transition: '0s',
+                        transform: 'rotate3d(1, 1, 0, 90deg)'
+                    },
+                    {
+                        transition: '0s',
+                        transform: 'rotate3d(1, 1, 0, 90deg)'
+                    },
+                    {
+                        transition: '0s',
+                        transform: 'rotate3d(1, 1, 0, 90deg)'
+                    },
+                    {
+                        transition: '0s',
+                        transform: 'rotate3d(1, 1, 0, 90deg)'
+                    },
+                    {
+                        transition: '0s',
+                        transform: 'rotate3d(1, 1, 0, 90deg)'
+                    }
+                ],
+				warningCont: '',	// 输入信息非法的提示信息
+				errPlace: 0			// 定位到发生错误的地方
             }
         },
         created() {
@@ -270,16 +357,10 @@
         mounted() {
             this.width = document.body.clientWidth
             window.onresize = () => {
-                console.log(document.body.clientWidth)
                 this.width = document.body.clientWidth
             }
         },
-        computed: {
-            ...mapGetters(['userInfo']),
-            activeIndex() {
-                return this.$route.name
-            }
-        },
+
         watch: {
             menuIsOpen(val) {
                 if (val === true) {
@@ -287,13 +368,40 @@
                 } else {
                     document.body.removeEventListener('mousedown', this.outClickEvent, true)
                 }
+                if (this.timer2) {
+                    clearTimeout(this.timer2)
+                }
+                this.$refs.menu.style.transition = '0.4s'
+                this.timer2 = setTimeout(() => {
+                    this.$refs.menu.style.transition = '0s'
+                }, 400)
             },
-            'document.body.clientWidth': {
+            dialogLoginVisible(val) {
+                this.$store.commit('app/SET_DIALOGISOPEN', val)
+                if (!val) {
+                    this.loginAttrs[0].transform = 'rotate3d(1, 1, 0, 90deg)'
+                    this.loginAttrs[1].transform = 'rotate3d(1, 1, 0, 90deg)'
+                    this.recover(0, 1)
+                }
+
+            },
+
+            dialogRegisterVisible(val) {
+                this.$store.commit('app/SET_DIALOGISOPEN', val)
+                if (!val) {
+                    for (let i = 0; i < 4; i++) {
+                        this.loginAttrs[i + 2].transform = 'rotate3d(1, 1, 0, 90deg)'
+                    }
+                    this.recover(2, 5)
+                }
+            },
+
+            dialogIsOpen: {
                 handler(val) {
-                    console.log(val)
+                    // console.log(val)
                 },
                 immediate: true
-            },
+            }
         },
         methods: {
             getColor(i) {
@@ -310,7 +418,6 @@
 
             openMenu() {
                 this.menuIsOpen = !this.menuIsOpen
-
             },
 
             routerChange(i, flag) {
@@ -373,14 +480,58 @@
              * 用户登录
              */
             login() {
+                this.$store.commit('app/SET_DIALOGISOPEN', true)
                 this.dialogLoginVisible = true
+                if (this.screenWidth < 700) {
+                    this.startAnimation(0, 1)
+                } else {
+                    this.loginAttrs[0].transform = 'rotate3d(0, 0, 0, 90deg)'
+                    this.loginAttrs[1].transform = 'rotate3d(0, 0, 0, 90deg)'
+                }
             },
 
             /**
              * 用户注册
              */
             register() {
+                this.$store.commit('app/SET_DIALOGISOPEN', true)
                 this.dialogRegisterVisible = true
+                if (this.screenWidth < 700) {
+                    this.startAnimation(2, 5)
+                } else {
+                    for (let i = 0; i < 4; i++) {
+                        this.loginAttrs[i + 2].transform = 'rotate3d(0, 0, 0, 90deg)'
+                    }
+                }
+            },
+
+            startAnimation(start, end) {
+                for (let i = start; i <= end; i++) {
+                    this.loginAttrs[i].transition = '0.5s'
+                    setTimeout(() => {
+                        this.timer3[i - start] = setTimeout(() => {
+                            this.loginAttrs[i].transform = 'rotate3d(0, 0, 0, 90deg)'
+                            setTimeout(() => {
+                                this.loginAttrs[i].transition = '0s'
+                            }, 500)
+                        }, 500 * (i - start + 1))
+                    }, 0)
+
+                }
+            },
+
+            // 针对移动端的在登录注册动画未结束的时候的提前退出
+            recover(start, end) {
+                for (let i = start; i < end; i++) {
+                    this.loginAttrs[i].transition = '0s'
+                }
+
+                for (let i = 0; i < this.timer3.length; i++) {
+                    if (this.timer3[i]) {
+                        clearTimeout(this.timer3[i])
+                    }
+
+                }
             },
 
             /**
@@ -406,6 +557,22 @@
                         return false
                     }
                 })
+            },
+
+			// 手机端的登录验证
+            loginMobile() {
+                if (!this.formLogin.username) {
+
+                    return false
+                } else if (!this.formLogin.username.replace(/\s/g, '')) {
+
+                    return false
+                } else if (!this.formLogin.password) {
+
+                    return false
+				} else {
+                    return true
+				}
             },
 
             /**
@@ -440,12 +607,16 @@
              */
             logout() {
                 this.$store.dispatch('user/Logout')
-            }
+            },
+
+			doErrAnimation() {
+
+			}
         },
 
         // 关闭监控事件
-        destroyed() {
-            console.log('ok')
+        beforeDestroy() {
+
             window.onresize = null
         }
     }
@@ -454,6 +625,7 @@
 <style lang="less" scoped>
 	.main {
 		width: 100vw;
+
 	}
 
 	.block {
@@ -482,7 +654,36 @@
 		display: flex;
 		justify-content: space-between;
 
+		.login-ui {
+			display: flex;
+			justify-content: right;
+
+			.login {
+				font-size: 14px;
+				border-radius: 10px;
+				box-sizing: border-box;
+				padding: 7px 21px;
+				border: 2px solid #1a1a1a;
+				margin: auto 10px;
+				width: 75px;
+				height: 37px;
+				cursor: pointer;
+				transition: 0.4s;
+			}
+
+			.login:nth-child(2) {
+				margin-right: 25px;
+			}
+
+			.login:hover {
+				color: #eeeeee;
+				background-color: #386fea;
+			}
+		}
+
 		.menu-ui {
+			cursor: pointer;
+			transition: 0.4s;
 			box-sizing: border-box;
 			width: 40px;
 			height: 40px;
@@ -496,7 +697,7 @@
 
 		.menu-cont {
 			z-index: 90;
-			transition: 0.4s;
+			transition: 0s;
 			position: absolute;
 			top: 60px;
 			left: 0;
@@ -507,9 +708,11 @@
 			box-sizing: border-box;
 			padding: 20px 20px 0 10px;
 			transform: translateX(-50vw);
-			min-width: 150px;
+			/*min-width: 150px;*/
 
 			.menu-leap {
+				margin: 3px 0;
+				cursor: pointer;
 				border-radius: 15px;
 				width: 100%;
 				box-sizing: border-box;
@@ -560,6 +763,110 @@
 			width: auto;
 			height: auto;
 			margin: auto 30px auto 10px;
+		}
+	}
+
+	.login-mobile {
+		overflow-y: auto;
+		box-sizing: border-box;
+		padding: 20vw 8vw 10vw 8vw;
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100vw;
+		height: 100vh;
+		background-color: rgba(0, 0, 0, 0.6);
+		z-index: 20;
+		text-align: center;
+
+		.warning-info {
+			margin-left: 26vw;
+			text-align: left;
+			height: 4vw;
+			font-size: 3vw;
+			color: #ff8582;
+		}
+
+		.login-footer {
+			width: 70vw;
+			box-sizing: border-box;
+			padding: 0;
+			margin: 5vw auto;
+			display: flex;
+			justify-content: space-between;
+
+			.check-btn {
+				font-size: 2.8vw;
+				cursor: pointer;
+				width: 25vw;
+				padding: 2.5vw 0;
+				background-color: white;
+				border-radius: 3vw;
+			}
+		}
+
+		h1 {
+			margin-bottom: 9vw;
+			font-size: 5vw;
+			color: white;
+		}
+
+		.user-name {
+			transform: rotate3d(1, 1, 0, 90deg);
+			/*transition: 0.5s;*/
+			width: 75vw;
+			margin: 3vw auto;
+			display: flex;
+			justify-content: right;
+
+			.user-name-input {
+				height: auto;
+				font-size: 3vw;
+				box-sizing: border-box;
+				/*border: 3px solid #6b95ea;*/
+				padding: 2vw 3vw;
+				border-radius: 2.5vw;
+				width: 50vw;
+				outline: none;
+				background: #fff;
+				border: none;
+			}
+
+			p {
+				text-align: right;
+				width: 20vw;
+				font-size: 4vw;
+				margin: auto 0;
+				color: white;
+			}
+		}
+
+
+	}
+
+	.blur-style {
+		-webkit-filter: blur(3px); /* Chrome, Opera */
+		-moz-filter: blur(3px);
+		-ms-filter: blur(3px);
+		filter: blur(3px);
+	}
+
+	.animation {
+		animation: errAnime 0.5s infinite;
+	}
+
+	@keyframes errAnime {
+		0% {
+			transform: rotate3d(0, 0, 1, -2.5deg);
+		}
+		25% {
+			transform: rotate3d(0, 0, 1, 2.5deg);
+		}
+		50% {
+			transform: rotate3d(0, 0, 1, -2.5deg);
+		}
+		75% {
+			transform: rotate3d(0, 0, 1, 2.5deg);
 		}
 	}
 </style>
