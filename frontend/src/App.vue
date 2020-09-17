@@ -25,7 +25,10 @@
         data() {
             return {
                 screenWidth: 1500
-			}
+            }
+        },
+        beforeCreate() {
+            this.$store.commit('app/SET_DIALOGISOPEN', false)
         },
         created() {
             //在页面加载时读取sessionStorage里的状态信息
@@ -49,9 +52,9 @@
                 },
                 immediate: true
             },
-			screenWidth(val) {
+            screenWidth(val) {
                 // console.log(val);
-			}
+            }
         },
 
         mounted() {
@@ -59,10 +62,17 @@
             window.onresize = () => {
                 this.screenWidth = document.body.clientWidth
             }
+            let top = Math.floor(this.$refs.app.scrollTop)
+            eventBus.$emit('scrollChange', top)
         },
 
         destroyed() {
+
             window.onresize = null
+        },
+
+        beforeMount() {
+            this.$store.commit('app/SET_DIALOGISOPEN', false)
         },
 
         methods: {
@@ -91,15 +101,15 @@
 		width: 100vw;
 	}
 
-	@media screen and (max-width: 1000px) {
-		#app {
-			position: fixed;
-			left: 0;
-			top: 0;
-			z-index: 15;
-			overflow: auto;
-			width: 100vw;
-			height: 100vh;
-		}
-	}
+	/*@media screen and (max-width: 1000px) {*/
+	/*	#app {*/
+	/*		position: fixed;*/
+	/*		left: 0;*/
+	/*		top: 0;*/
+	/*		z-index: 15;*/
+	/*		overflow: auto;*/
+	/*		width: 100vw;*/
+	/*		height: 100vh;*/
+	/*	}*/
+	/*}*/
 </style>

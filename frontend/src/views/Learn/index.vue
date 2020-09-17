@@ -556,14 +556,6 @@
                 width: 1500
             }
         },
-        watch: {
-            screenWidth: {
-                handler(val) {
-                    console.log(val)
-                },
-                immediate: true
-            }
-        }
     }
 </script>
 

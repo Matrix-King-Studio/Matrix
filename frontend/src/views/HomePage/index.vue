@@ -1,5 +1,5 @@
 <template>
-	<div class="a">
+	<div class="a" :class="{'blur-style': dialogIsOpen && screenWidth < 700}">
 		<div class="top" @click="enterMainPage" v-if="!isEnter" ref="home">
 			<div class="logo"></div>
 			<div class="top-cont" ref="cont">
@@ -9,7 +9,7 @@
 		</div>
 		<!--轮播图-->
 		<div class="main" v-if="isEnter" ref="pageCont">
-			<el-carousel height="30vw">
+			<el-carousel height="35vw" style="border-radius: 15px">
 				<el-carousel-item v-for="item in sliderImages" :key="item.id">
 					<img :src="item.imgSrc" alt="item.id" style="width: 100%;height: 100%;">
 				</el-carousel-item>
@@ -30,40 +30,10 @@
 						</ul>
 					</div>
 				</div>
-				<div class="struct-img">
-					<img src="/static/images/AI_Group.jpg" alt="人工智能组">
-				</div>
-				<div class="struct-img">
-					<img src="/static/images/FrontendGroup.jpg" alt="前端组">
-				</div>
-				<div class="struct-img">
-					<img src="/static/images/BackendGroup.jpg" alt="后端组">
-				</div>
-
+				<!--				<div class="struct-img" >-->
+				<img v-for="(item, i) in structImg" :key="i" :src="item.url" :alt="item.cont">
+				<!--				</div>-->
 			</div>
-<!--			<el-row :gutter="20" style="margin: 0">-->
-<!--				<el-col :span="5" :offset="2">-->
-<!--					<div class="departmental-structure">-->
-<!--						<div class="department">-->
-<!--							<ul>-->
-<!--								<li @click="introductionHandler(1)" v-for="(item, i) in departmentList" :key="i">-->
-<!--									<i :class="item.className"></i>-->
-<!--									<strong>{{ item.cont }}</strong>-->
-<!--								</li>-->
-<!--							</ul>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--				</el-col>-->
-<!--				<el-col :span="5">-->
-<!--					<img src="/static/images/AI_Group.jpg" alt="人工智能组" style="height:80%; width:100%">-->
-<!--				</el-col>-->
-<!--				<el-col :span="5">-->
-<!--					<img src="/static/images/FrontendGroup.jpg" alt="前端组" style="height:80%; width:100%">-->
-<!--				</el-col>-->
-<!--				<el-col :span="5">-->
-<!--					<img src="/static/images/BackendGroup.jpg" alt="后端组" style="height:80%; width:100%">-->
-<!--				</el-col>-->
-<!--			</el-row>-->
 			<div class="study-problem">
 				<h1 ref="problem-title">在自学的路上，你是否也遇到了这些问题？</h1>
 				<ul>
@@ -74,7 +44,7 @@
 					</li>
 				</ul>
 			</div>
-			<div class="solve-problem">
+			<div class="solve-problem" v-if="screenWidth > 1000">
 				<h1 class="problem-title">Matrix工作室帮你解决所有问题！</h1>
 				<div class="content">
 					<div class="title">
@@ -92,6 +62,23 @@
 					</div>
 				</div>
 			</div>
+			<!--移动端-->
+			<div class="solve-problem-mobile" v-if="screenWidth <= 1000">
+				<h1>Matrix工作室帮你解决所有问题！</h1>
+				<div class="cont">
+					<div class="title">
+						<h2>更符合企业需求的“学、练、改、管、测”教学模式</h2>
+						<p>基于“输入、输出、纠正、练习”的科学方法论，<br v-if="screenWidth <=600"/>自学失败者的救星，学好IT的正确途径</p>
+					</div>
+					<div class="cont-solve" v-for="(item, i) in solveProblemsList" :key="i">
+						<img :src="item.url" alt="">
+						<div class="inner-title">
+							{{ item.title }}
+						</div>
+						<div class="inner-cont" v-html="item.cont"></div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -99,12 +86,12 @@
 <script>
     import eventBus from '../../utils/eventBus'
     import { mapGetters } from 'vuex'
-    import store from '../../store'
 
     export default {
         name: 'HelloWorld',
+        props: ['screenWidth'],
         computed: {
-            ...mapGetters(['welcomePage', 'status'])
+            ...mapGetters(['welcomePage', 'status', 'dialogIsOpen'])
         },
         data() {
             return {
@@ -223,7 +210,21 @@
                         className: 'el-icon-bank-card',
                         cont: '成员管理部'
                     },
-                ]
+                ],
+                structImg: [
+                    {
+                        url: '/static/images/AI_Group.jpg',
+                        cont: '人工智能组'
+                    },
+                    {
+                        url: '/static/images/FrontendGroup.jpg',
+                        cont: '前端组'
+                    },
+                    {
+                        url: '/static/images/BackendGroup.jpg',
+                        cont: '后端组'
+                    },
+                ],
             }
         },
         watch: {
@@ -249,13 +250,13 @@
                     eventBus.$on('scrollChange', top => {
                         if (top >= 790 && top <= 1190) {
                             this.$refs['pageCont'].style.backgroundColor = `rgb(${249 - (top - 790) / 2},${249 - (top - 790) / 2},${249 - (top - 790) / 2})`
-                            this.$refs['problem-title'].style.color = `rgb(${55 + (top - 790) / 2},${55 + (top - 790) / 2},${55 + (top - 790) / 2})`
+                            this.$refs['problem-title'].style.color = `rgb(${(top - 790) / 2},${(top - 790) / 2},${(top - 790) / 2})`
                         } else if (top < 790) {
                             this.$refs['pageCont'].style.backgroundColor = 'rgb(249, 249, 249)'
                             this.$refs['problem-title'].style.color = 'rgb(0, 0, 0)'
                         } else if (top > 1190) {
                             this.$refs['pageCont'].style.backgroundColor = 'rgb(49, 49, 49)'
-                            this.$refs['problem-title'].style.color = 'rgb(55, 55, 55)'
+                            this.$refs['problem-title'].style.color = 'rgb(206, 206, 206)'
                         }
                     })
                 }
@@ -271,7 +272,6 @@
             },
 
             enterMainPage() {
-                console.log('dd', store.state)
                 this.$refs.home.style.transition = `1s`
                 this.$refs.home.style.opacity = 0
                 setTimeout(() => {
@@ -297,24 +297,42 @@
 
         },
         beforeDestroy() {
+            eventBus.$off('scrollChange')
         }
     }
 </script>
 
 <style lang="less" scoped>
 	.a {
-		/*overflow: hidden;*/
-		/*min-width: 1000px;*/
+		overflow-x: hidden;
 	}
 
 	.main {
+		padding: 4vw;
 		transition: 0s;
 		background-color: #f9f9f9;
+		box-sizing: border-box;
 	}
 
 	.el-main {
 		margin: 0;
 		padding: 0;
+	}
+
+	.el-carousel__item h3 {
+		color: #475669;
+		font-size: 1vh;
+		opacity: 0.75;
+		line-height: 200px;
+		margin: 0;
+	}
+
+	.el-carousel__item:nth-child(2n) {
+		background-color: #99a9bf;
+	}
+
+	.el-carousel__item:nth-child(2n+1) {
+		background-color: #d3dce6;
 	}
 
 	ol, ul {
@@ -371,27 +389,30 @@
 	}
 
 	.struct {
+		/*box-sizing: border-box;*/
 		display: flex;
 		flex-wrap: wrap;
-		margin: 20px auto;
-		width: 1760px;
+		justify-content: center;
+		width: 98vw;
 		height: auto;
+		margin: 30px 0 30px -5px;
 
 		.departmental-structure {
 			margin: 10px 20px;
-			display: inline-block;
-			overflow: hidden;
+			/*overflow: hidden;*/
 			width: auto;
 			height: auto;
+			border-radius: 5px;
 
 			.department {
+				border-radius: 5px;
 				float: left;
 				font-size: 13px;
 				background-color: #5f5750;
 				height: 300px;
 				width: 400px;
 				box-sizing: border-box;
-				padding-top: 20px;
+				padding-top: 30px;
 
 				ul {
 					li {
@@ -406,6 +427,7 @@
 						cursor: pointer;
 
 						strong {
+							user-select: none;
 							font-size: 15px;
 						}
 
@@ -425,229 +447,348 @@
 			}
 		}
 
-		.struct-img {
-			display: inline-block;
+		img {
+			border-radius: 5px;
 			margin: 10px 20px;
 			width: 400px;
 			height: 300px;
+		}
+
+		@media screen and (max-width: 500px) {
+			.departmental-structure {
+				width: 80vw;
+				height: 60vw;
+
+				.department {
+					font-size: 13px;
+					height: inherit;
+					width: inherit;
+					padding-top: 2vw;
+
+					ul {
+						li {
+							width: 26vw;
+							height: 22vw;
+							/*border: #5e5e5e 1px solid;*/
+							margin-bottom: 3vw;
+
+							strong {
+								font-size: 3vw;
+							}
+						}
+					}
+				}
+			}
 
 			img {
-				width: inherit;
-				height: inherit;
+				width: 80vw;
+				height: 60vw;
 			}
 		}
 	}
 
 
-
 	.section-title {
+		user-select: none;
 		margin-top: 50px;
 		text-align: center;
-	}
 
-	.section-title h3 {
-		font-size: 30px;
-		color: #002;
-		font-weight: 400;
-	}
+		h3 {
+			font-size: 30px;
+			color: #002;
+			font-weight: 400;
+		}
 
-	.section-title h5 {
-		font-size: 20px;
-		color: #cacace;
-		text-transform: uppercase;
-		font-weight: 400;
-		margin-bottom: 10px;
-	}
+		h5 {
+			font-size: 20px;
+			color: #cacace;
+			text-transform: uppercase;
+			font-weight: 400;
+			margin-bottom: 10px;
+		}
 
-	.section-title h5 span {
-		color: #e4392a;
-	}
-
-	.el-carousel__item h3 {
-		color: #475669;
-		font-size: 1vh;
-		opacity: 0.75;
-		line-height: 200px;
-		margin: 0;
-	}
-
-	.el-carousel__item:nth-child(2n) {
-		background-color: #99a9bf;
-	}
-
-	.el-carousel__item:nth-child(2n+1) {
-		background-color: #d3dce6;
+		span {
+			color: #e4392a;
+		}
 	}
 
 	.study-problem {
 		width: 100%;
 		height: auto;
-		/*background: #f9f9f9;*/
 		display: -ms-flexbox;
 		display: flex;
 		-ms-flex-direction: column;
 		flex-direction: column;
 		-ms-flex-align: center;
 		align-items: center;
-		padding-bottom: 70px;
-	}
+		padding-bottom: 5vh;
 
-	.study-problem h1 {
-		color: #333;
-		font-weight: 400;
-		font-size: 36px;
-		margin-top: 110px;
-		margin-bottom: 60px;
-	}
+		h1 {
+			width: 100vw;
+			text-align: center;
+			color: #333;
+			font-weight: 400;
+			font-size: 36px;
+			margin-top: 110px;
+			margin-bottom: 60px;
+		}
 
-	.study-problem ul {
-		width: 1200px;
-		display: -ms-flexbox;
-		display: flex;
-		-ms-flex-wrap: wrap;
-		flex-wrap: wrap;
-	}
+		@media screen and (max-width: 800px) {
+			h1 {
+				font-size: 4vw;
+			}
+		}
 
-	.study-problem ul li {
-		text-align: center;
-		width: 279px;
-		background: #fff;
-		margin-right: 21px;
-		margin-bottom: 34px;
-		padding-bottom: 30px;
-	}
+		ul {
+			margin: 0 25px 0 40px;
+			width: 100vw;
+			display: -ms-flexbox;
+			display: flex;
+			-ms-flex-wrap: wrap;
+			flex-wrap: wrap;
+			justify-content: center;
 
-	.study-problem ul li:hover {
-		box-shadow: 0 8px 16px 0 #e8e8e8;
-	}
+			li {
+				text-align: center;
+				width: 279px;
+				background: #fff;
+				margin-right: 21px;
+				margin-bottom: 34px;
+				padding-bottom: 30px;
 
-	.study-problem ul li img {
-		width: 100px;
-		height: 73px;
-		margin-top: 30px;
-	}
+				img {
+					width: 100px;
+					height: 73px;
+					margin-top: 30px;
+				}
 
-	.study-problem ul li p {
-		font-size: 18px;
-		color: #5e5e5e;
-		margin-top: 12px;
-		margin-bottom: 6px;
-	}
+				p {
+					font-size: 18px;
+					color: #5e5e5e;
+					margin-top: 12px;
+					margin-bottom: 6px;
+				}
 
-	.study-problem ul li span {
-		color: #5e5e5e;
-		font-size: 18px;
+				span {
+					color: #5e5e5e;
+					font-size: 18px;
+				}
+			}
+
+			li:hover {
+				box-shadow: 0 8px 16px 0 #e8e8e8;
+			}
+		}
 	}
 
 	.solve-problem {
 		width: 100%;
 		height: auto;
-		/*background: #f9f9f9;*/
 		display: -ms-flexbox;
 		display: flex;
 		-ms-flex-direction: column;
 		flex-direction: column;
 		-ms-flex-align: center;
 		align-items: center;
-		padding-bottom: 60px;
+		user-select: none;
+		/*padding-bottom: 5vh;*/
+
+		.item1 {
+			left: 80px;
+			top: 0;
+		}
+
+		.item2 {
+			right: 50px;
+			top: 110px;
+		}
+
+		.item3 {
+			left: 80px;
+			top: 207px;
+		}
+
+		.item4 {
+			right: 50px;
+			bottom: 115px;
+		}
+
+		.item5 {
+			left: 80px;
+			bottom: 50px;
+		}
+
+		.content-item {
+			width: 800px;
+			margin-top: 52px;
+			display: -ms-flexbox;
+			display: flex;
+			-ms-flex-direction: column;
+			flex-direction: column;
+			-ms-flex-align: center;
+			align-items: center;
+			position: relative;
+			padding-bottom: 117px;
+
+			img {
+				width: 498px;
+				height: auto;
+				margin-top: 14px;
+			}
+
+			section {
+				position: absolute;
+
+				img {
+					width: 81px;
+					height: auto;
+					margin-top: 0;
+				}
+
+				article {
+					font-size: 14px;
+					font-weight: 300;
+					color: #9d9d9d;
+					margin-top: 3px;
+				}
+			}
+		}
+
+
+		.content {
+			box-shadow: 0 0 20px 0 #fafafa;
+			margin-top: -42px;
+			width: 800px;
+			height: 818px;
+			background: #fff;
+			padding-top: 73px;
+
+			.title {
+				width: 100%;
+				text-align: center;
+
+				p {
+					margin-top: 14px;
+					font-size: 14px;
+					font-weight: 300;
+					color: #5e5e5e;
+				}
+
+				h1 {
+					font-size: 24px;
+				}
+			}
+		}
 	}
 
-	.solve-problem .problem-title {
+	.solve-problem-mobile {
+		margin: 52px auto 0 auto;
+		width: 80vw;
+		height: auto;
+		background-color: white;
+		box-shadow: 0 0 20px 0 #fafafa;
+		text-align: center;
+		padding: 3vw 3vw 6vw 3vw;
+		/*box-sizing: border-box;*/
+		/*transform: translateX(-6vw);*/
+
+		.cont {
+			margin-top: -8vw;
+			width: inherit;
+
+			.cont-solve {
+				margin-top: 5vw;
+				width: inherit;
+				height: inherit;
+
+				img {
+					width: 20vw;
+					height: 9vw;
+				}
+
+				.inner-title {
+					margin-top: 5px;
+					font-size: 2.8vw;
+					font-weight: 600;
+				}
+
+				.inner-cont {
+					margin-top: 10px;
+					font-size: 2.6vw;
+				}
+			}
+
+			.title {
+				width: 100%;
+				text-align: center;
+
+				p {
+					margin-top: 14px;
+					font-size: 14px;
+					font-weight: 300;
+					color: #5e5e5e;
+				}
+
+				h2 {
+					font-weight: 600;
+					font-size: 24px;
+				}
+
+				@media screen and (max-width: 1000px) {
+					h2 {
+						font-weight: 600;
+						font-size: 2.8vw;
+						text-align: center;
+					}
+
+					p {
+						line-height: 4.8vw;
+						margin-top: 2vw;
+						font-size: 2vw;
+						color: #5e5e5e;
+					}
+				}
+			}
+		}
+
+		h1 {
+			background-color: white;
+			box-shadow: 0 0 20px 0 #fafafa;
+			transform: translateY(-10vw);
+			margin: 0 auto;
+			width: 60vw;
+			height: auto;
+			padding: 3vw 4vw;
+			box-sizing: border-box;
+			font-weight: 400;
+		}
+
+		@media screen and (max-width: 1100px) {
+			h1 {
+				font-size: 3vw;
+			}
+		}
+
+
+	}
+
+	.problem-title {
 		font-weight: 400;
 		text-align: center;
 		line-height: 117px;
-		width: 652px;
+		width: 552px;
 		height: 117px;
 		color: #333;
 		background: #fff;
-		font-size: 36px;
-		box-shadow: 0 10px 20px 0 #fafafa;
+		font-size: 30px;
+		box-shadow: 0 10px 20px 0 #fff;
 		z-index: 1;
 	}
 
-	.solve-problem .content {
-		box-shadow: 0 0 20px 0 #fafafa;
-		margin-top: -42px;
-		width: 1200px;
-		height: 818px;
-		background: #fff;
-		padding-top: 73px;
-	}
-
-	.title {
-		width: 100%;
-		text-align: center;
-	}
-
-	.solve-problem .content .title h1 {
-		font-size: 24px;
-	}
-
-	.title p {
-		margin-top: 14px;
-		font-size: 14px;
-		font-weight: 300;
-		color: #5e5e5e;
-	}
-
-	.solve-problem .content-item {
-		width: 1200px;
-		margin-top: 52px;
-		display: -ms-flexbox;
-		display: flex;
-		-ms-flex-direction: column;
-		flex-direction: column;
-		-ms-flex-align: center;
-		align-items: center;
-		position: relative;
-		padding-bottom: 117px;
-	}
-
-	.solve-problem .content-item img {
-		width: 498px;
-		height: auto;
-		margin-top: 14px;
-	}
-
-	.solve-problem .content-item section {
-		position: absolute;
-	}
-
-	.solve-problem .content-item section img {
-		width: 81px;
-		height: auto;
-		margin-top: 0;
-	}
-
-	.solve-problem .item1 {
-		left: 240px;
-		top: 0;
-	}
-
-	.solve-problem .item2 {
-		right: 200px;
-		top: 110px;
-	}
-
-	.solve-problem .item3 {
-		left: 240px;
-		top: 207px;
-	}
-
-	.solve-problem .item4 {
-		right: 150px;
-		bottom: 115px;
-	}
-
-	.solve-problem .item5 {
-		left: 240px;
-		bottom: 50px;
-	}
-
-	.solve-problem .content-item section article {
-		font-size: 14px;
-		font-weight: 300;
-		color: #9d9d9d;
-		margin-top: 3px;
+	.blur-style {
+		-webkit-filter: blur(5px); /* Chrome, Opera */
+		-moz-filter: blur(5px);
+		-ms-filter: blur(5px);
+		filter: blur(5px);
 	}
 </style>
