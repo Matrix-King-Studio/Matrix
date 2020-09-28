@@ -1,0 +1,22 @@
+server
+{
+		listen 8000;
+    server_name alexking.site;
+    index index.php index.html index.htm default.php default.htm default.html;
+    root /www/wwwroot/MatrixBackend/Backend;
+
+    include enable-php-56.conf;
+    include /www/server/panel/vhost/rewrite/47.96.237.42.conf;
+
+    location /static {
+        alias /opt/static;
+    }
+
+    location / {
+        include uwsgi_params;
+        uwsgi_pass 127.0.0.1:6789;
+    }
+
+    access_log  /www/wwwlogs/47.96.237.42.log;
+    error_log  /www/wwwlogs/47.96.237.42.error.log;
+}
