@@ -27,9 +27,11 @@
                 screenWidth: 1500
             }
         },
+
         beforeCreate() {
             this.$store.commit('app/SET_DIALOGISOPEN', false)
         },
+
         created() {
             //在页面加载时读取sessionStorage里的状态信息
             if (sessionStorage.getItem('store')) {
@@ -67,7 +69,6 @@
         },
 
         destroyed() {
-
             window.onresize = null
         },
 
@@ -81,7 +82,6 @@
                 eventBus.$emit('scrollChange', top)
             }
         }
-
     }
 
 </script>

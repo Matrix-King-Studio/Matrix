@@ -303,7 +303,7 @@
 										href="https://www.bilibili.com/read/cv5702420"
 										target="_blank">Java路线戳这里
 									</el-link>
-									<p>以下为Python后端路线</p>
+									<p>以下为Java后端路线</p>
 								</el-card>
 							</el-timeline-item>
 							<el-timeline-item
@@ -318,7 +318,7 @@
 										type="primary"
 										href="http://alpha.luffycity.com:3000/free-course/124/detail"
 										target="_blank">
-										视频：Python入门课程
+										视频：Java入门课程
 									</el-link>
 									<hr>
 								</el-card>

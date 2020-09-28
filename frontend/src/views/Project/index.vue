@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<el-container style="margin: 20px 70px">
+		<el-container style="margin: 20px 5vw">
 			<el-main>
 				<el-row>
 					<el-col

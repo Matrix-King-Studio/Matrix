@@ -1,45 +1,57 @@
 <template>
 	<div>
-		<aside>
-			<div class="aside-con">
-				<router-link class="aside-edit a" :to="{ name:'Editor' }">
-					<el-tooltip class="item" effect="dark" content="写博客" placement="top">
-						<i class="el-icon-edit"></i>
-					</el-tooltip>
-				</router-link>
-			</div>
-
-		</aside>
-
-		<aside class="aside-cont-mobile" v-if="screenWidth <1000" >
-			<div class="aside-con">
-				<div class="aside-edit b" v-if="screenWidth < 1000" @mousedown="openAsideMobile" :style="{transform: `translateX(${asideIsOpen ? -300 : 0}px)`}">
-					<el-tooltip class="item" effect="dark" content="详情" placement="top">
-						<i class="el-icon-caret-left"></i>
-					</el-tooltip>
+		<el-aside
+			width="300px" style="position: fixed; right: 70px">
+			<el-card class="box-card" style="min-height: 200px">
+				<div slot="header">
+					<h3 class="feed_new_tit">
+						<span class="line"></span>
+						<span class="txt">活动日历</span>
+					</h3>
 				</div>
-			</div>
-			<div class="aside-cont" :style="{transform: `translateX(${asideIsOpen ? 70 : 370}px)`}">
-				<BlogAside></BlogAside>
-			</div>
-
-		</aside>
+				<div
+					v-for="(activity, i) in activities"
+					:key="i"
+					class="text item"
+					style="text-align: center">
+					<el-link
+						:underline="false">
+						{{ activity.title }}
+					</el-link>
+				</div>
+			</el-card>
+			<el-card class="box-card">
+				<div slot="header">
+					<h3 class="feed_new_tit">
+						<span class="line"></span>
+						<span class="txt">排行榜</span>
+					</h3>
+				</div>
+				<el-table
+					:data="rankingList"
+					:show-header="false"
+					style="width: 100%;">
+					<el-table-column
+						prop="name"
+						label="姓名">
+					</el-table-column>
+					<el-table-column
+						prop="integral"
+						label="积分">
+					</el-table-column>
+				</el-table>
+			</el-card>
+		</el-aside>
 	</div>
-
 </template>
 
 <script>
-	import BlogAside from '../../components/Blog/BlogAside/index'
+
 
     export default {
-        name: 'Aside',
-        props: ['screenWidth'],
-		components: {
-            BlogAside
-		},
+        name: 'BlogAside',
         data() {
             return {
-                asideIsOpen: false,
                 activities: [
                     { id: 0, title: '全体大会' },
                     { id: 1, title: '欢乐谷团建' },
@@ -92,60 +104,11 @@
                     },
                 ],
             }
-        },
-        methods: {
-            openAsideMobile() {
-				this.asideIsOpen = !this.asideIsOpen
-            }
         }
     }
 </script>
 
 <style lang="less" scoped>
-	aside {
-		width: 50px;
-		position: fixed;
-		top: 0;
-		right: 0;
-		z-index: 10;
-	}
-
-	.aside-con {
-		width: 100%;
-		height: 100%;
-		position: relative;
-	}
-
-	.aside-edit {
-		cursor: pointer;
-		display: block;
-		width: 50px;
-		height: 50px;
-		line-height: 50px;
-		margin-bottom: 2px;
-		background-color: rgb(90, 150, 200);
-		border-radius: 5px 0 0 5px;
-		position: absolute;
-		right: 0;
-		color: #fff;
-		text-indent: 10px;
-		transition: 0.3s;
-		overflow: hidden;
-	}
-
-	.a {
-		margin-top: 400px;
-	}
-
-	.b {
-		transition: 0.4s;
-		margin-top: 100px;
-	}
-
-	.aside-edit {
-		top: 0;
-	}
-
 	.box-card {
 		margin-top: 10px;
 	}
@@ -178,18 +141,5 @@
 		display: block;
 		font-size: 16px;
 		color: #2c3033;
-	}
-
-	.aside-cont-mobile {
-		margin-top: 70px;
-		transition: 0.4s;
-
-		.c {
-			position: fixed;
-		}
-
-		.aside-cont {
-			transition: 0.4s;
-		}
 	}
 </style>

@@ -1,4 +1,4 @@
-import request from './request'
+import request from '../utils/request'
 
 export default {
     /**
@@ -8,7 +8,7 @@ export default {
      */
     login(data) {
         return request({
-            url: '/auth/rest-auth/login/',
+            url: '/User/login',
             method: 'post',
             data
         })
@@ -31,7 +31,7 @@ export default {
      */
     register(data) {
         return request({
-            url: '/auth/rest-auth/registration/',
+            url: '/User/register',
             method: 'post',
             data
         })
@@ -82,5 +82,5 @@ export default {
             method: 'post',
             data
         })
-    }
+    },
 }
