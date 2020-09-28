@@ -5,17 +5,15 @@ import App from './App'
 import store from './store'
 import router from './router'
 import './assets/css/init.css'
-
-Vue.config.productionTip = false
-
+import axios from 'axios'
 import Vuex from 'vuex'
-
-Vue.use(Vuex)
-
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
+Vue.use(Vuex)
 Vue.use(ElementUI)
+Vue.prototype.axios = axios
+Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({

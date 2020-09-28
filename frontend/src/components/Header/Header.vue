@@ -36,11 +36,11 @@
 			</div>
 		</div>
 		<div class="block" v-if="menuIsOpen && screenWidth<700"></div>
-		<!--				<el-menu-->
-		<!--					:default-active="activeIndex"-->
-		<!--					class="el-menu-demo main"-->
-		<!--					mode="horizontal"-->
-		<!--					style="position: fixed; z-index: 10">-->
+<!--						<el-menu-->
+<!--							:default-active="activeIndex"-->
+<!--							class="el-menu-demo main"-->
+<!--							mode="horizontal"-->
+<!--							style="position: fixed; z-index: 10">-->
 
 
 		<!--					&lt;!&ndash;		<el-menu-item index="5">资源项目</el-menu-item>&ndash;&gt;-->
@@ -205,6 +205,7 @@
 <script>
     import { Message } from 'element-ui'
     import { mapGetters } from 'vuex'
+	import userApi from '../../api/user'
 
     export default {
         name: 'Header',
@@ -595,9 +596,15 @@
                         }, 600)
                         return false
                     } else {
+                        userApi.login({ username: this.formLogin.username, password: this.formLogin.password }).then(res => {
+                            console.log('ok');
+						}).then(err => {
+						    console.log(err);
+						})
                         setTimeout(() => {
                             this.$store.commit('app/SET_CLICKSTATUS', true)
                         }, 600)
+
                         return true
                     }
                 }
@@ -670,6 +677,12 @@
                         }, 600)
                         return false
 					} else {
+						userApi.register({ username: this.formRegister.username, password: this.formRegister.password }).then(res => {
+						    console.log('ok');
+						}).catch(err => {
+						    console.log(err);
+						})
+                        console.log('ok');
                         setTimeout(() => {
                             this.$store.commit('app/SET_CLICKSTATUS', true)
                         }, 600)
