@@ -1,6 +1,6 @@
 from django.urls import path
-from Blog.views import ArticleList, ArticleDetail
+from Project.views import ProjectList
 
 urlpatterns = [
-    path('project/', ArticleList.as_view()),
+    path('projectList/', ProjectList.as_view()),
 ]
