@@ -11,7 +11,8 @@
 			</el-header>
 			<el-container class="cont">
 				<div class="group"
-					 :style="{width: screenWidth > 1400 ? '20vw' : screenWidth <= 1400 && screenWidth >= 1000 ? '26vw' : screenWidth < 1000 && screenWidth > 700 ? '40vw' : '70vw'}" style="margin: 10px 15px">
+					 :style="{width: screenWidth > 1400 ? '20vw' : screenWidth <= 1400 && screenWidth >= 1000 ? '26vw' : screenWidth < 1000 && screenWidth > 700 ? '40vw' : '70vw'}"
+					 style="margin: 10px 15px">
 					<el-button
 						type="primary"
 						plain
@@ -168,51 +169,73 @@
 					<div class="block">
 						<el-timeline>
 							<el-timeline-item
-								timestamp="30天"
+								timestamp="7天"
 								placement="top">
 								<el-card>
-									<h4>Web 前端开发三剑客</h4>
+									<h3>前端第一课：HTML</h3>
 									<hr>
-									<p>目标：掌握网站开发三剑客HTML、CSS、JS的基本语法和应用。</p>
+									<p>目标：记住常用的head配置，理解HTML书写规范,记住主要常用标签 --- div img a p span i h1 h2 h3 h4 h5 h6 ui li table tr td input button body em</p>
 									<hr>
 									<el-link
 										type="primary"
 										href="http://alpha.luffycity.com:3000/free-course/143/detail"
-										target="_blank">视频：Web开发之HTML篇
+										target="_blank">视频：Web开发之HTML篇（路飞学城）
+									</el-link>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://www.bilibili.com/video/BV14J4114768"
+										target="_blank">视频：HTML教程
+									</el-link>
+									<hr>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="10天"
+								placement="top">
+								<el-card>
+									<h3>层叠样式表：CSS</h3>
+									<hr>
+									<p>目标：记住常用的属性（背单词），能够结合HTML做出简洁的的网页。</p>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://www.bilibili.com/video/BV14J4114768?p=62"
+										target="_blank">视频：CSS教程
 									</el-link>
 									<hr>
 									<el-link
 										type="primary"
 										href="http://alpha.luffycity.com:3000/free-course/133/detail"
-										target="_blank">视频：Web开发之CSS篇
+										target="_blank">视频：Web开发之CSS篇（路飞学城）
 									</el-link>
 									<hr>
 									<el-link
 										type="primary"
-										href="http://alpha.luffycity.com:3000/free-course/134/detail"
-										target="_blank">视频：JavaScript编程基础
+										href="https://www.sojson.com/web/panel.html"
+										target="_blank">辅助：配色网站
 									</el-link>
 									<hr>
 									<el-link
 										type="primary"
-										href="http://alpha.luffycity.com:3000/free-course/135/detail"
-										target="_blank">视频：BOM&DOM编程
+										href="https://www.iconfont.cn/"
+										target="_blank">辅助：阿里巴巴图标库
 									</el-link>
 									<hr>
 								</el-card>
 							</el-timeline-item>
 							<el-timeline-item
-								timestamp="14天"
+								timestamp="10天"
 								placement="top">
 								<el-card>
-									<h4>框架入门：BootStrap</h4>
+									<h3>CSS3 HTML5</h3>
 									<hr>
-									<p>目标：掌握强大的CV框架 BootStrap 的使用。</p>
+									<p>目标：需要掌握新的常用html标签 video audio canvas（canvas画布简单学习），掌握新的CSS样式包括CSS动画，3D技术，滤镜效果，模糊效果等新网页特效</p>
 									<hr>
 									<el-link
 										type="primary"
-										href="https://v3.bootcss.com/getting-started/"
-										target="_blank">文档：BootStrap中文文档
+										href="https://www.bilibili.com/video/BV14J4114768"
+										target="_blank">视频：CSS3 HTML5教程(同上)
 									</el-link>
 									<hr>
 								</el-card>
@@ -221,54 +244,242 @@
 								timestamp="30天"
 								placement="top">
 								<el-card>
-									<h4>ES6 入门</h4>
+									<h3>JavaScript</h3>
 									<hr>
-									<p>目标：掌握ECMA Script的基本语法。</p>
+									<p>目标：掌握JS基础语法,理解DOM树,使用DOM进行页面交互，了解BOM内的基本内容，理解JSON是什么，学会使用AJAX发请求，学有余力的可以看看JS原型链，JS函数式编程</p>
 									<hr>
+									<el-link
+										type="primary"
+										href="https://www.bilibili.com/video/BV1ux411d75J"
+										target="_blank">视频：JavaScript编程
+									</el-link>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://www.bilibili.com/video/BV1k4411w7sV"
+										target="_blank">视频：BOM&DOM编程
+									</el-link>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://www.bilibili.com/video/BV1k4411w7sV"
+										target="_blank">文档：MDN官网，全网最全JS知识网站
+									</el-link>
+									<hr>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="3天"
+								placement="top">
+								<el-card>
+									<h3>JS库Jquery</h3>
+									<hr/>
+									<p>目标：<strong>简单了解</strong>Jquery的基本语法</p>
+									<hr/>
+									<el-link
+										type="primary"
+										href="https://www.bilibili.com/video/BV1pt411H7D6/"
+										target="_blank">视频：Jquery教程
+									</el-link>
+									<hr/>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="3天"
+								placement="top">
+								<el-card>
+									<h3>框架入门：BootStrap</h3>
+									<hr/>
+									<p>目标：简单了解和使用CV框架 BootStrap 的使用。</p>
+									<hr/>
+									<el-link
+										type="primary"
+										href="https://v3.bootcss.com/getting-started/"
+										target="_blank">文档：BootStrap中文文档
+									</el-link>
+									<hr/>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="15天"
+								placement="top">
+								<el-card>
+									<h3>ES6</h3>
+									<hr/>
+									<p>目标：掌握ECMA Script的基本语法，包括理解异步函数与同步函数，掌握新变量名 let const 箭头函数，数组新方法，对象新方法，模板字符串，新数据类型Symbol Map Set ，Class语法......学有余力的可以看看ES7 ES8 ES9 ES10 ES2020</p>
+									<hr/>
 									<el-link
 										type="primary"
 										href="https://es6.ruanyifeng.com/"
 										target="_blank">文档：ES6 入门教程
 									</el-link>
 									<hr>
+									<el-link
+										type="primary"
+										href="https://www.bilibili.com/video/BV1xW411x7sw"
+										target="_blank">视频：ES6 教程
+									</el-link>
+									<hr>
 								</el-card>
 							</el-timeline-item>
 							<el-timeline-item
-								timestamp="30天"
+								timestamp="25天"
 								placement="top">
 								<el-card>
-									<h4>框架入门：Vue</h4>
+									<h3>框架入门：Vue</h3>
 									<hr>
-									<p>目标：掌握渐进式框架 Vue 的使用。</p>
+									<p>目标：掌握渐进式框架 Vue 的使用，包括条件渲染
+										,模板字符串，数据绑定，调取DOM，面向消息(添加事件)，过滤器，watch监听数据(简单监听和深度监听)，v-for循环批量渲染，发送请求，:style
+										:class 修改样式，Vue动画，Vue组件，Vue路由，Vue生命周期，Vuex。</p>
 									<hr>
 									<el-link
 										type="primary"
 										href="https://cn.vuejs.org/v2/guide/"
-										target="_blank">文档+视频：Vue 教程
+										target="_blank">官方文档：Vue 教程
 									</el-link>
-									<hr>
-								</el-card>
-							</el-timeline-item>
-							<el-timeline-item
-								timestamp="30天"
-								placement="top">
-								<el-card>
-									<h4>UI组件库Element</h4>
-									<hr>
-									<p>目标：掌握基于 Vue 2.0 的桌面端组件库Element UI。</p>
 									<hr>
 									<el-link
 										type="primary"
-										href="https://element.eleme.cn/#/zh-CN/component/installation"
-										target="_blank">文档：Element 组件
+										href="https://www.bilibili.com/video/BV1m741137Q5"
+										target="_blank">视频：Vue全家桶
 									</el-link>
 									<hr>
 								</el-card>
 							</el-timeline-item>
 							<el-timeline-item
-								timestamp="30天"
+								timestamp="3天"
 								placement="top">
 								<el-card>
+									<h3>Vue-cli</h3>
+									<hr>
+									<p>目标：学会使用Vue-cli来快速创建项目，对Vue项目有清晰的认识</p>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://cli.vuejs.org/zh/"
+										target="_blank">文档：Vue-cli
+									</el-link>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://element.eleme.cn/#/zh-CN"
+										target="_blank">文档：element-ui官网
+									</el-link>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://less.bootcss.com/"
+										target="_blank">文档：less中文官网
+									</el-link>
+									<hr>
+									<el-link
+										type="primary"
+										href="http://www.axios-js.com/"
+										target="_blank">文档：axios中文官网
+									</el-link>
+									<hr>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="15天"
+								placement="top">
+								<el-card>
+									<h3>学一点后端：Nodejs</h3>
+									<hr>
+									<p>目标：学会使用Nodejs进行i/o操作，书写后端服务器,连系数据库，使用Websocket，熟练使用框架express或Koa.</p>
+									<hr>
+									<el-link
+										type="primary"
+										href="http://nodejs.cn/"
+										target="_blank">文档：Nodejs官网
+									</el-link>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://www.bilibili.com/video/BV1Ns411N7HU"
+										target="_blank">视频：Nodejs教程
+									</el-link>
+									<hr>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="20天"
+								placement="top">
+								<el-card>
+									<h3>项目打包工具webpack</h3>
+									<hr>
+									<p>目标：理解前端打包的作用，掌握Entry Output Loader Plugin
+										Mode这5个模块的作用，学会使用devServer热部署，学会深化用户体验，学会提高性能，缓存，预处理，懒加载，PMA,多进程打包。</p>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://www.webpackjs.com/"
+										target="_blank">文档：webpack中文官网
+									</el-link>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://www.bilibili.com/video/BV1e7411j7T5"
+										target="_blank">教程：webpack教程
+									</el-link>
+									<hr>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="25天"
+								placement="top">
+								<el-card>
+									<h3>面向国际的框架：React</h3>
+									<hr>
+									<p>目标：理解React核心概念，虚拟DOM，理解树结构（建议学习数据结构）,理解ES6 class,对象继承，组件，组件传值，生命周期，路由，数据请求，学会使用jsx,学会使用React脚手架create-react-app next.js create-next-app</p>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://react.docschina.org/"
+										target="_blank">文档：React官网
+									</el-link>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://www.bilibili.com/video/BV11t411S7iG"
+										target="_blank">教程：React教程(黑马程序员)
+									</el-link>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://www.bilibili.com/video/BV1Et41137Sb"
+										target="_blank">教程：React教程（代码基基）
+									</el-link>
+									<hr>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="??天"
+								placement="top">
+								<el-card>
+									<h3>JS超集TypeScript</h3>
+									<hr>
+									<p>目标：掌握基本概念</p>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://www.tslang.cn/"
+										target="_blank">文档：TS官网
+									</el-link>
+									<hr>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="??天"
+								placement="top">
+								<el-card>
+									<h3>敬请期待</h3>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="??天"
+								placement="top">
+								<el-card style="background-color: #ffcfd4">
 									<h4>项目实战：工作室官网</h4>
 									<hr>
 									<p>目标：独立开发完成Matrix工作室官网前端页面。</p>
@@ -284,424 +495,428 @@
 						</el-timeline>
 					</div>
 				</div>
-                <div class="group"
-                     :style="{width: screenWidth > 1400 ? '20vw' : screenWidth <= 1400 && screenWidth >= 1000 ? '26vw' : screenWidth < 1000 && screenWidth > 700 ? '40vw' : '70vw'}">
-                    <el-button
-                        type="info"
-                        plain
-                        style="margin-bottom: 22px">
-                        后端组
-                    </el-button>
-                    <div class="block">
-                        <el-timeline>
-                            <el-timeline-item
-                                timestamp="30天"
-                                placement="top">
-                                <el-card>
-                                    <h4>语言基础</h4>
-                                    <hr>
-                                    <p>适合Java 0基础，Java初学入门。聊聊Java这条路该如何走，如何能够系统的学习这门编程语言!</p>
-                                    <hr>
-                                    <el-link
-                                        type="primary"
-                                        href="https://www.bilibili.com/video/BV12J41137hu"
-                                        target="_blank">
-                                        视频：Java零基础学习
-                                    </el-link>
-                                    <hr>
-                                </el-card>
-                            </el-timeline-item>
-                            <el-timeline-item
-                                timestamp="30天"
-                                placement="top">
-                                <el-card>
-                                    <h4>GUI编程</h4>
-                                    <hr>
-                                    <p>什么是GUI编程，AWT 和 Swing怎么学？什么是事件监听？什么是定时器？
-                                        如何使用Java编写游戏客户端？从入门到游戏实战，一步步带你走进Java世界</p>
-                                    <hr>
-                                    <el-link
-                                        type="primary"
-                                        href="https://www.bilibili.com/video/BV1DJ411B75F"
-                                        target="_blank">
-                                        视频：GUI编程入门到游戏实战
-                                    </el-link>
-                                    <hr>
-                                </el-card>
-                            </el-timeline-item>
-                            <el-timeline-item
-                                timestamp="30天"
-                                placement="top">
-                                <el-card>
-                                    <h4>《一小时开发贪吃蛇游戏》</h4>
-                                    <hr>
-                                    <p>很多人说Java入门很难，学了很久都做不出来东西，那么给大家带来一个快速上手的小项目《一小时开发贪吃蛇游戏》</p>
-                                    <hr>
-                                    <el-link
-                                        type="primary"
-                                        href="https://www.bilibili.com/video/BV1HE41127CV"
-                                        target="_blank">
-                                        视频：一小时开发贪吃蛇游戏
-                                    </el-link>
-                                    <hr>
-                                </el-card>
-                            </el-timeline-item>
-                            <el-timeline-item
-                                timestamp="60天"
-                                placement="top">
-                                <el-card>
-                                    <h4>网络编程</h4>
-                                    <hr>
-                                    <p>什么是网络？何为网络协议？IP和端口是干嘛的？TCP和UDP协议、URL能干嘛？
-                                        如何通过Java实现这一切，如何通过Java写聊天程序，如何下载网络资源</p>
-                                    <hr>
-                                    <el-link
-                                        type="primary"
-                                        href="https://www.bilibili.com/video/BV1LJ411z7vY"
-                                        target="_blank">
-                                        视频：网络编程实战讲解
-                                    </el-link>
-                                </el-card>
-                            </el-timeline-item>
-                            <el-timeline-item
-                                timestamp="60天"
-                                placement="top">
-                                <el-card>
-                                    <h4>多线程详解</h4>
-                                    <hr>
-                                    <p>课程主线：线程简介->线程创建->线程实现->并发问题->死锁,生产者消费者等高级问题</p>
-                                    <hr>
-                                    <el-link
-                                        type="primary"
-                                        href="https://www.bilibili.com/video/BV1V4411p7EF"
-                                        target="_blank">
-                                        视频：多线程详解
-                                    </el-link>
-                                </el-card>
-                            </el-timeline-item>
-                            <el-timeline-item
-                                timestamp="60天"
-                                placement="top">
-                                <el-card>
-                                    <h4>注解和反射</h4>
-                                    <hr>
-                                    <p>课程主线：注解->自定义注解->Class类->类加载机制->反射的实际应用</p>
-                                    <hr>
-                                    <el-link
-                                        type="primary"
-                                        href="https://www.bilibili.com/video/BV1p4411P7V3"
-                                        target="_blank">
-                                        视频：注解和反射
-                                    </el-link>
-                                </el-card>
-                            </el-timeline-item>
-                            <el-timeline-item
-                                timestamp="60天"
-                                placement="top">
-                                <el-card>
-                                    <h4>JVM快速入门篇</h4>
-                                    <hr>
-                                    <p>什么是jvm？类加载器？栈、堆区别、jdk1.8干了什么？新生代，老年代，干嘛的？
-                                        From 和 to 区什么东西？ 如何排错OOM。垃圾回收的算法是什么样子的？JMM等等问题都会在这里面解答</p>
-                                    <hr>
-                                    <el-link
-                                        type="primary"
-                                        href="https://www.bilibili.com/video/BV1iJ411d7jS"
-                                        target="_blank">
-                                        视频：JVM快速入门篇
-                                    </el-link>
-                                </el-card>
-                            </el-timeline-item>
-                            <el-timeline-item
-                                timestamp="60天"
-                                placement="top">
-                                <el-card>
-                                    <h4>MySQL最新教程通俗易懂</h4>
-                                    <hr>
-                                    <p>SQL基础语法、函数、索引、sql编程、事务、事务原则、备份恢复，权限
-                                        数据库设计、三大范式、JDBC、SQL注入、数据库连接池。等所有知识都在这里了</p>
-                                    <hr>
-                                    <el-link
-                                        type="primary"
-                                        href="https://www.bilibili.com/video/BV1NJ411J79W"
-                                        target="_blank">
-                                        视频：MySQL最新教程通俗易懂
-                                    </el-link>
-                                </el-card>
-                            </el-timeline-item>
-                            <el-timeline-item
-                                timestamp="60天"
-                                placement="top">
-                                <el-card>
-                                    <h4>JavaWeb入门到实战</h4>
-                                    <hr>
-                                    <p>从生活到代码，从简单到深入。
-                                        源码级别讲解，风趣幽默,通俗易懂。</p>
-                                    <hr>
-                                    <el-link
-                                        type="primary"
-                                        href="https://www.bilibili.com/video/BV12J411M7Sj"
-                                        target="_blank">
-                                        视频：JavaWeb入门到实战
-                                    </el-link>
-                                </el-card>
-                            </el-timeline-item>
-                            <el-timeline-item
-                                timestamp="60天"
-                                placement="top">
-                                <el-card>
-                                    <h4>Mybatis最新完整教程</h4>
-                                    <hr>
-                                    <p>从生活到代码，从简单到深入。
-                                        源码级别讲解，风趣幽默,通俗易懂。</p>
-                                    <hr>
-                                    <el-link
-                                        type="primary"
-                                        href="https://www.bilibili.com/video/BV1NE411Q7Nx"
-                                        target="_blank">
-                                        视频：Mybatis最新完整教程
-                                    </el-link>
-                                </el-card>
-                            </el-timeline-item>
-                            <el-timeline-item
-                                timestamp="60天"
-                                placement="top">
-                                <el-card>
-                                    <h4>Spring5最新完整教程</h4>
-                                    <hr>
-                                    <p>从生活到代码，从简单到深入。
-                                        源码级别讲解，风趣幽默,通俗易懂。</p>
-                                    <hr>
-                                    <el-link
-                                        type="primary"
-                                        href="https://www.bilibili.com/video/BV1WE411d7Dv"
-                                        target="_blank">
-                                        视频：Spring5最新完整教程
-                                    </el-link>
-                                </el-card>
-                            </el-timeline-item>
-                            <el-timeline-item
-                                timestamp="60天"
-                                placement="top">
-                                <el-card>
-                                    <h4>SpringMVC最新教程</h4>
-                                    <hr>
-                                    <p>从生活到代码，从简单到深入。源码级别讲解，风趣幽默,通俗易懂。</p>
-                                    <hr>
-                                    <el-link
-                                        type="primary"
-                                        href="https://www.bilibili.com/video/BV1aE41167Tu"
-                                        target="_blank">
-                                        视频：SpringMVC最新教程
-                                    </el-link>
-                                </el-card>
-                            </el-timeline-item>
-                            <el-timeline-item
-                                timestamp="60天"
-                                placement="top">
-                                <el-card>
-                                    <h4>SSM框架最新整合教学</h4>
-                                    <hr>
-                                    <p>从生活到代码，从简单到深入。
-                                        源码级别讲解，风趣幽默,通俗易懂。</p>
-                                    <hr>
-                                    <el-link
-                                        type="primary"
-                                        href="https://www.bilibili.com/video/BV1RE41127rv"
-                                        target="_blank">
-                                        视频：SSM框架最新整合教学
-                                    </el-link>
-                                </el-card>
-                            </el-timeline-item>
-                            <el-timeline-item
-                                timestamp="30天"
-                                placement="top">
-                                <el-card>
-                                    <h4>云服务器使用</h4>
-                                    <hr>
-                                    <p>目标：熟悉阿里云服务器的基本使用，为Web项目部署做铺垫。</p>
-                                    <hr>
-                                    <el-link
-                                        type="primary"
-                                        href="https://help.aliyun.com/product/25365.html"
-                                        target="_blank">
-                                        文档：阿里云文档
-                                    </el-link>
-                                    <hr>
-                                </el-card>
-                            </el-timeline-item>
-                            <el-timeline-item
-                                timestamp="30天"
-                                placement="top">
-                                <el-card>
-                                    <h4>项目实战：工作室官网</h4>
-                                    <hr>
-                                    <p>目标：独立开发完成Matrix工作室官网后端服务。</p>
-                                    <hr>
-                                    <el-link
-                                        type="primary"
-                                        href="https://github.com/Matrix-King-Studio/Matrix/tree/master/backend"
-                                        target="_blank">
-                                        代码：Matrix Backend
-                                    </el-link>
-                                    <hr>
-                                </el-card>
-                            </el-timeline-item>
-                        </el-timeline>
-                    </div>
-                </div>
-                <div class="group"
-                     :style="{width: screenWidth > 1400 ? '20vw' : screenWidth <= 1400 && screenWidth >= 1000 ? '26vw' : screenWidth < 1000 && screenWidth > 700 ? '40vw' : '70vw'}">
-                    <el-button
-                        type="warning"
-                        plain
-                        style="margin-bottom: 22px">
-                        算法组
-                    </el-button>
-                    <div class="block">
-                        <el-timeline>
-                            <el-timeline-item
-                                timestamp="90天"
-                                placement="top">
-                                <el-card>
-                                    <h4>C 语言入门</h4>
-                                    <p>目标：掌握 C 语言基本语法和变量类型。</p>
-                                    <hr>
-                                    <el-link
-                                        type="primary"
-                                        href="https://detail.tmall.com/item.htm?spm=a230r.1.14.31.38683ba92N6Gd8&id=575784544813&ns=1&abbucket=16"
-                                        target="_blank">
-                                        书籍：《C Primer Plus》
-                                    </el-link>
-                                    <hr>
-                                </el-card>
-                            </el-timeline-item>
-                            <el-timeline-item
-                                timestamp="60天"
-                                placement="top">
-                                <el-card>
-                                    <h4>C++ & 算法入门</h4>
-                                    <p>目标：掌握 C++ 基本语法、string 类型、STL以及基础算法思想。</p>
-                                    <hr>
-                                    <el-link
-                                        type="primary"
-                                        href="https://detail.tmall.com/item.htm?spm=a230r.1.14.16.7317507cMvRPbD&id=43529819152&ns=1&abbucket=16"
-                                        target="_blank">书籍：《信息学奥赛一本通》
-                                    </el-link>
-                                    <hr>
-                                </el-card>
-                            </el-timeline-item>
-                            <el-timeline-item
-                                timestamp="60天"
-                                placement="top">
-                                <el-card>
-                                    <h4>基础算法进阶</h4>
-                                    <p>目标：熟练掌握基础算法的思想和实现。</p>
-                                    <hr>
-                                    <el-link
-                                        type="primary"
-                                        href="https://pan.baidu.com/s/16giRQbcge230UUdatFKehQ"
-                                        target="_blank">视频：左神算法初级班（提取码：Alex）
-                                    </el-link>
-                                    <hr>
-                                    <el-link
-                                        type="primary"
-                                        href="https://pan.baidu.com/s/11-ySZ6_Zd0R8oEgqe9POqA"
-                                        target="_blank">视频：左神算法进阶班（提取码：Alex）
-                                    </el-link>
-                                    <hr>
-                                </el-card>
-                            </el-timeline-item>
-                            <el-timeline-item
-                                timestamp="120天"
-                                placement="top">
-                                <el-card>
-                                    <h4>算法竞赛入门经典</h4>
-                                    <p>目标：浏览《算法竞赛入门经典》，尽量掌握。</p>
-                                    <hr>
-                                    <el-link
-                                        type="primary"
-                                        href="https://detail.tmall.com/item.htm?spm=a230r.1.14.14.46be2e04S0sA7U&id=535662059508&cm_id=140105335569ed55e27b&abbucket=16"
-                                        target="_blank">书籍：《算法竞赛入门经典》
-                                    </el-link>
-                                    <hr>
-                                </el-card>
-                            </el-timeline-item>
-                            <el-timeline-item
-                                timestamp="∞"
-                                placement="top">
-                                <el-card>
-                                    <h4>刷题</h4>
-                                    <p>目标：各大 OJ 平台刷题练习。</p>
-                                    <hr>
-                                    <el-link
-                                        type="primary"
-                                        href="https://leetcode-cn.com/"
-                                        target="_blank">平台：LeetCode
-                                    </el-link>
-                                    <hr>
-                                    <el-link
-                                        type="primary"
-                                        href="https://vjudge.net/"
-                                        target="_blank">平台：Virtual Judge
-                                    </el-link>
-                                    <hr>
-                                    <el-link
-                                        type="primary"
-                                        href="https://codeforces.com/"
-                                        target="_blank">平台：CodeForce
-                                    </el-link>
-                                    <hr>
-                                </el-card>
-                            </el-timeline-item>
-                        </el-timeline>
-                    </div>
-                </div>
-            </el-container>
-        </el-container>
-    </div>
+				<div class="group"
+					 :style="{width: screenWidth > 1400 ? '20vw' : screenWidth <= 1400 && screenWidth >= 1000 ? '26vw' : screenWidth < 1000 && screenWidth > 700 ? '40vw' : '70vw'}">
+					<el-button
+						type="info"
+						plain
+						style="margin-bottom: 22px">
+						后端组
+					</el-button>
+					<div class="block">
+						<el-timeline>
+							<el-timeline-item
+								timestamp="30天"
+								placement="top">
+								<el-card>
+									<h4>语言基础</h4>
+									<hr>
+									<p>适合Java 0基础，Java初学入门。聊聊Java这条路该如何走，如何能够系统的学习这门编程语言!</p>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://www.bilibili.com/video/BV12J41137hu"
+										target="_blank">
+										视频：Java零基础学习
+									</el-link>
+									<hr>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="30天"
+								placement="top">
+								<el-card>
+									<h4>GUI编程</h4>
+									<hr>
+									<p>什么是GUI编程，AWT 和 Swing怎么学？什么是事件监听？什么是定时器？
+										如何使用Java编写游戏客户端？从入门到游戏实战，一步步带你走进Java世界</p>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://www.bilibili.com/video/BV1DJ411B75F"
+										target="_blank">
+										视频：GUI编程入门到游戏实战
+									</el-link>
+									<hr>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="30天"
+								placement="top">
+								<el-card>
+									<h4>《一小时开发贪吃蛇游戏》</h4>
+									<hr>
+									<p>很多人说Java入门很难，学了很久都做不出来东西，那么给大家带来一个快速上手的小项目《一小时开发贪吃蛇游戏》</p>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://www.bilibili.com/video/BV1HE41127CV"
+										target="_blank">
+										视频：一小时开发贪吃蛇游戏
+									</el-link>
+									<hr>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="60天"
+								placement="top">
+								<el-card>
+									<h4>网络编程</h4>
+									<hr>
+									<p>什么是网络？何为网络协议？IP和端口是干嘛的？TCP和UDP协议、URL能干嘛？
+										如何通过Java实现这一切，如何通过Java写聊天程序，如何下载网络资源</p>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://www.bilibili.com/video/BV1LJ411z7vY"
+										target="_blank">
+										视频：网络编程实战讲解
+									</el-link>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="60天"
+								placement="top">
+								<el-card>
+									<h4>多线程详解</h4>
+									<hr>
+									<p>课程主线：线程简介->线程创建->线程实现->并发问题->死锁,生产者消费者等高级问题</p>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://www.bilibili.com/video/BV1V4411p7EF"
+										target="_blank">
+										视频：多线程详解
+									</el-link>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="60天"
+								placement="top">
+								<el-card>
+									<h4>注解和反射</h4>
+									<hr>
+									<p>课程主线：注解->自定义注解->Class类->类加载机制->反射的实际应用</p>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://www.bilibili.com/video/BV1p4411P7V3"
+										target="_blank">
+										视频：注解和反射
+									</el-link>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="60天"
+								placement="top">
+								<el-card>
+									<h4>JVM快速入门篇</h4>
+									<hr>
+									<p>什么是jvm？类加载器？栈、堆区别、jdk1.8干了什么？新生代，老年代，干嘛的？
+										From 和 to 区什么东西？ 如何排错OOM。垃圾回收的算法是什么样子的？JMM等等问题都会在这里面解答</p>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://www.bilibili.com/video/BV1iJ411d7jS"
+										target="_blank">
+										视频：JVM快速入门篇
+									</el-link>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="60天"
+								placement="top">
+								<el-card>
+									<h4>MySQL最新教程通俗易懂</h4>
+									<hr>
+									<p>SQL基础语法、函数、索引、sql编程、事务、事务原则、备份恢复，权限
+										数据库设计、三大范式、JDBC、SQL注入、数据库连接池。等所有知识都在这里了</p>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://www.bilibili.com/video/BV1NJ411J79W"
+										target="_blank">
+										视频：MySQL最新教程通俗易懂
+									</el-link>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="60天"
+								placement="top">
+								<el-card>
+									<h4>JavaWeb入门到实战</h4>
+									<hr>
+									<p>从生活到代码，从简单到深入。
+										源码级别讲解，风趣幽默,通俗易懂。</p>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://www.bilibili.com/video/BV12J411M7Sj"
+										target="_blank">
+										视频：JavaWeb入门到实战
+									</el-link>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="60天"
+								placement="top">
+								<el-card>
+									<h4>Mybatis最新完整教程</h4>
+									<hr>
+									<p>从生活到代码，从简单到深入。
+										源码级别讲解，风趣幽默,通俗易懂。</p>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://www.bilibili.com/video/BV1NE411Q7Nx"
+										target="_blank">
+										视频：Mybatis最新完整教程
+									</el-link>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="60天"
+								placement="top">
+								<el-card>
+									<h4>Spring5最新完整教程</h4>
+									<hr>
+									<p>从生活到代码，从简单到深入。
+										源码级别讲解，风趣幽默,通俗易懂。</p>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://www.bilibili.com/video/BV1WE411d7Dv"
+										target="_blank">
+										视频：Spring5最新完整教程
+									</el-link>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="60天"
+								placement="top">
+								<el-card>
+									<h4>SpringMVC最新教程</h4>
+									<hr>
+									<p>从生活到代码，从简单到深入。源码级别讲解，风趣幽默,通俗易懂。</p>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://www.bilibili.com/video/BV1aE41167Tu"
+										target="_blank">
+										视频：SpringMVC最新教程
+									</el-link>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="60天"
+								placement="top">
+								<el-card>
+									<h4>SSM框架最新整合教学</h4>
+									<hr>
+									<p>从生活到代码，从简单到深入。
+										源码级别讲解，风趣幽默,通俗易懂。</p>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://www.bilibili.com/video/BV1RE41127rv"
+										target="_blank">
+										视频：SSM框架最新整合教学
+									</el-link>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="30天"
+								placement="top">
+								<el-card>
+									<h4>云服务器使用</h4>
+									<hr>
+									<p>目标：熟悉阿里云服务器的基本使用，为Web项目部署做铺垫。</p>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://help.aliyun.com/product/25365.html"
+										target="_blank">
+										文档：阿里云文档
+									</el-link>
+									<hr>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="30天"
+								placement="top">
+								<el-card>
+									<h4>项目实战：工作室官网</h4>
+									<hr>
+									<p>目标：独立开发完成Matrix工作室官网后端服务。</p>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://github.com/Matrix-King-Studio/Matrix/tree/master/backend"
+										target="_blank">
+										代码：Matrix Backend
+									</el-link>
+									<hr>
+								</el-card>
+							</el-timeline-item>
+						</el-timeline>
+					</div>
+				</div>
+				<div class="group"
+					 :style="{width: screenWidth > 1400 ? '20vw' : screenWidth <= 1400 && screenWidth >= 1000 ? '26vw' : screenWidth < 1000 && screenWidth > 700 ? '40vw' : '70vw'}">
+					<el-button
+						type="warning"
+						plain
+						style="margin-bottom: 22px">
+						算法组
+					</el-button>
+					<div class="block">
+						<el-timeline>
+							<el-timeline-item
+								timestamp="90天"
+								placement="top">
+								<el-card>
+									<h4>C 语言入门</h4>
+									<p>目标：掌握 C 语言基本语法和变量类型。</p>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://detail.tmall.com/item.htm?spm=a230r.1.14.31.38683ba92N6Gd8&id=575784544813&ns=1&abbucket=16"
+										target="_blank">
+										书籍：《C Primer Plus》
+									</el-link>
+									<hr>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="60天"
+								placement="top">
+								<el-card>
+									<h4>C++ & 算法入门</h4>
+									<p>目标：掌握 C++ 基本语法、string 类型、STL以及基础算法思想。</p>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://detail.tmall.com/item.htm?spm=a230r.1.14.16.7317507cMvRPbD&id=43529819152&ns=1&abbucket=16"
+										target="_blank">书籍：《信息学奥赛一本通》
+									</el-link>
+									<hr>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="60天"
+								placement="top">
+								<el-card>
+									<h4>基础算法进阶</h4>
+									<p>目标：熟练掌握基础算法的思想和实现。</p>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://pan.baidu.com/s/16giRQbcge230UUdatFKehQ"
+										target="_blank">视频：左神算法初级班（提取码：Alex）
+									</el-link>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://pan.baidu.com/s/11-ySZ6_Zd0R8oEgqe9POqA"
+										target="_blank">视频：左神算法进阶班（提取码：Alex）
+									</el-link>
+									<hr>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="120天"
+								placement="top">
+								<el-card>
+									<h4>算法竞赛入门经典</h4>
+									<p>目标：浏览《算法竞赛入门经典》，尽量掌握。</p>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://detail.tmall.com/item.htm?spm=a230r.1.14.14.46be2e04S0sA7U&id=535662059508&cm_id=140105335569ed55e27b&abbucket=16"
+										target="_blank">书籍：《算法竞赛入门经典》
+									</el-link>
+									<hr>
+								</el-card>
+							</el-timeline-item>
+							<el-timeline-item
+								timestamp="∞"
+								placement="top">
+								<el-card>
+									<h4>刷题</h4>
+									<p>目标：各大 OJ 平台刷题练习。</p>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://leetcode-cn.com/"
+										target="_blank">平台：LeetCode
+									</el-link>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://vjudge.net/"
+										target="_blank">平台：Virtual Judge
+									</el-link>
+									<hr>
+									<el-link
+										type="primary"
+										href="https://codeforces.com/"
+										target="_blank">平台：CodeForce
+									</el-link>
+									<hr>
+								</el-card>
+							</el-timeline-item>
+						</el-timeline>
+					</div>
+				</div>
+			</el-container>
+		</el-container>
+	</div>
 
 </template>
 
 <script>
-export default {
-    name: 'Learn',
-    props: ['screenWidth'],
-    data() {
-        return {
-            width: 1500
-        }
-    },
-}
+    export default {
+        name: 'Learn',
+        props: ['screenWidth'],
+        data() {
+            return {
+                width: 1500
+            }
+        },
+    }
 </script>
 
 <style lang="less" scoped>
-.el-header, .el-footer， .el-main {
-    color: #333;
-    text-align: center;
-}
+	p {
+		line-height: 22px;
+	}
 
-.el-aside {
-    margin-left: 60px;
-}
+	.el-header, .el-footer， .el-main {
+		color: #333;
+		text-align: center;
+	}
 
-.group {
-    display: inline-block;
-    height: auto;
-    margin: 0 auto;
+	.el-aside {
+		margin-left: 60px;
+	}
 
-    .block {
-        /*width: inherit;*/
-        height: inherit;
-    }
-}
+	.group {
+		display: inline-block;
+		height: auto;
+		margin: 0 auto;
 
-.cont {
-    display: flex;
-    flex-wrap: wrap;
-    width: 90vw;
-    margin: 0 auto;
-}
+		.block {
+			/*width: inherit;*/
+			height: inherit;
+		}
+	}
+
+	.cont {
+		display: flex;
+		flex-wrap: wrap;
+		width: 90vw;
+		margin: 0 auto;
+	}
 
 
 </style>
