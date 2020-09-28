@@ -12,7 +12,7 @@
       <paths name="root@47.96.237.42:22 password">
         <serverdata>
           <mappings>
-            <mapping deploy="/root/matrix/backend" local="$PROJECT_DIR$" />
+            <mapping deploy="/www/wwwroot/alexking.site/Backend" local="$PROJECT_DIR$" />
           </mappings>
         </serverdata>
       </paths>

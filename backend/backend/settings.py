@@ -47,8 +47,8 @@ INSTALLED_APPS = [
 	'allauth.socialaccount',
 	'corsheaders',
 	'Authentication',
+	'Project',
 	'Blog',
-	'Project'
 ]
 
 SITE_ID = 1
@@ -141,6 +141,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/opt/static'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'upload')
 
 STATICFILES_FINDERS = [
 	'django.contrib.staticfiles.finders.FileSystemFinder',
