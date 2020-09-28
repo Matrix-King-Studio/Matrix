@@ -327,7 +327,7 @@
 								timestamp="30天"
 								placement="top">
 								<el-card>
-									<h4>常用模块</h4>
+									<h4>常用模块2</h4>
 									<hr>
 									<p>目标：掌握开发语言的常用模块和常用方法。</p>
 									<hr>
