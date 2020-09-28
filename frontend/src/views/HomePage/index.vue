@@ -393,9 +393,9 @@
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
-		width: 98vw;
+		width: 90vw;
 		height: auto;
-		margin: 30px 0 30px -5px;
+		margin: 30px auto 30px auto;
 
 		.departmental-structure {
 			margin: 10px 20px;
