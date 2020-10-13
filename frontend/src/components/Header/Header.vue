@@ -36,11 +36,11 @@
 			</div>
 		</div>
 		<div class="block" v-if="menuIsOpen && screenWidth<700"></div>
-<!--						<el-menu-->
-<!--							:default-active="activeIndex"-->
-<!--							class="el-menu-demo main"-->
-<!--							mode="horizontal"-->
-<!--							style="position: fixed; z-index: 10">-->
+		<!--						<el-menu-->
+		<!--							:default-active="activeIndex"-->
+		<!--							class="el-menu-demo main"-->
+		<!--							mode="horizontal"-->
+		<!--							style="position: fixed; z-index: 10">-->
 
 
 		<!--					&lt;!&ndash;		<el-menu-item index="5">资源项目</el-menu-item>&ndash;&gt;-->
@@ -205,7 +205,8 @@
 <script>
     import { Message } from 'element-ui'
     import { mapGetters } from 'vuex'
-	import userApi from '../../api/user'
+    import userApi from '../../api/user'
+    // import axios from 'axios'
 
     export default {
         name: 'Header',
@@ -491,7 +492,6 @@
              * 用户登录
              */
             login() {
-
                 this.$store.commit('app/SET_DIALOGISOPEN', true)
                 this.dialogLoginVisible = true
                 if (this.screenWidth < 700) {
@@ -556,13 +556,10 @@
                 }
                 this.$refs['formLogin'].validate(valid => {
                     if (valid) {
-                        this.$store.dispatch('user/Login', formData).then(() => {
-                            this.dialogLoginVisible = false
-                            Message({
-                                message: '登录成功！',
-                                type: 'success',
-                                duration: 2000
-                            })
+                        userApi.login(formData).then(res => {
+                            console.log(res)
+                        }).catch(err => {
+                            console.log(err)
                         })
                     } else {
                         return false
@@ -596,11 +593,16 @@
                         }, 600)
                         return false
                     } else {
-                        userApi.login({ username: this.formLogin.username, password: this.formLogin.password }).then(res => {
-                            console.log('ok');
-						}).then(err => {
-						    console.log(err);
-						})
+                        let formData = {
+                            username: this.formLogin.username,
+                            password: this.formLogin.password
+                        }
+                        userApi.login(formData).then(res => {
+                            console.log(res)
+                        }).catch(err => {
+                            console.log(err)
+                        })
+
                         setTimeout(() => {
                             this.$store.commit('app/SET_CLICKSTATUS', true)
                         }, 600)
@@ -676,13 +678,16 @@
                             this.$store.commit('app/SET_CLICKSTATUS', true)
                         }, 600)
                         return false
-					} else {
-						userApi.register({ username: this.formRegister.username, password: this.formRegister.password }).then(res => {
-						    console.log('ok');
-						}).catch(err => {
-						    console.log(err);
-						})
-                        console.log('ok');
+                    } else {
+                        userApi.register({
+                            username: this.formRegister.username,
+                            password: this.formRegister.password
+                        }).then(res => {
+                            console.log('ok')
+                        }).catch(err => {
+                            console.log(err)
+                        })
+                        console.log('ok')
                         setTimeout(() => {
                             this.$store.commit('app/SET_CLICKSTATUS', true)
                         }, 600)
@@ -718,14 +723,20 @@
                 }
                 this.$refs['formRegister'].validate(valid => {
                     if (valid) {
-                        this.$store.dispatch('user/Register', formData).then(() => {
-                            this.dialogRegisterVisible = false
-                            Message({
-                                message: '注册成功！',
-                                type: 'success',
-                                duration: 2000
-                            })
+                        let formData = {
+                            username: this.formRegister.username,
+                            password: this.formRegister.password
+						}
+						console.log(formData);
+                        userApi.register({
+                            username: this.formRegister.username,
+                            password: this.formRegister.password
+                        }).then(res => {
+                            console.log(res)
+                        }).catch(err => {
+                            console.log(err)
                         })
+                        console.log('ok')
                     } else {
                         return false
                     }

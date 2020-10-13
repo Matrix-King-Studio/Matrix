@@ -30,11 +30,11 @@ const actions = {
                     reject(res.data.error)
                 } else {
                     commit('SetToken', res.data.key)
-                    store.dispatch('user/UserInfo')
+                    // store.dispatch('user/UserInfo', data)
                     resolve()
                 }
             }).catch(err => {
-                console.log(err)
+                // console.log(err)
                 Message({
                     message: '用户名或密码错误！',
                     type: 'error',

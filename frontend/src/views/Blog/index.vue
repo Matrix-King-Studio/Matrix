@@ -1,153 +1,106 @@
 <template>
-	<div>
-		<el-container style="margin: 20px 70px 20px 40px">
-			<el-aside
-				width="120px"
+	<div class="main">
+		<el-container style="margin: 20px 10px 20px 10px">
+			<!-- 轮播 -->
+			<el-header
 				class="out"
-				style="height: 570px; position: fixed">
-				<el-tabs
-					tab-position="left"
-					style="text-align: center">
-					<el-tab-pane
-						v-for="(tab, i) in tabPanes"
-						:id="tab.id"
-						:label="tab.name" :key="i"></el-tab-pane>
-				</el-tabs>
-			</el-aside>
-			<el-container style="margin-left: 120px" :style="{marginRight: screenWidth >= 1000 ? '300px' : '0px'}">
-				<el-header
+				height="18vw" style="padding: 1vw 0">
+				<el-carousel
+					:interval="4000"
+					type="card"
+					height="17vw"
+					indicator-position="none">
+					<el-carousel-item
+						v-for="topArticle in topArticles"
+						:key="topArticle.id">
+						<img
+							:src="topArticle.image"
+							alt="item.id"
+							style="width: 100%;height: 100%;">
+					</el-carousel-item>
+				</el-carousel>
+			</el-header>
+
+			<el-container
+				style="margin: 0 10px">
+				<!-- 左边的标签 -->
+				<el-aside
+					width="120px"
 					class="out"
-					height="220px" style="padding: 10px 0">
-					<el-carousel
-						:interval="4000"
-						type="card"
-						height="200px"
-						indicator-position="none">
-						<el-carousel-item
-							v-for="topArticle in topArticles"
-							:key="topArticle.id">
-							<img
-								:src="topArticle.image"
-								alt="item.id"
-								style="width: 100%;height: 100%;">
-						</el-carousel-item>
-					</el-carousel>
-				</el-header>
-				<el-main class="out">
-					<el-container
-						v-for="(article, i) in articles"
-						:id="article.id" :key="i">
-						<router-link
-							:to="{ name:'BlogDetail', params: {id: article.id} }">
-							<el-header
-								style="margin: 0; line-height: 40px">
-								<el-link
-									:underline="false"
-									style="font-size: larger">
-									{{ article.title }}
-								</el-link>
-								<i
-									class="el-icon-trophy"
-									style="font-size: smaller; float: right; margin-right: 10px">
-									{{ article.upCount }}
-								</i>
-								<i
-									class="el-icon-view"
-									style="font-size: smaller; float: right; margin-right: 10px">
-									{{ article.viewCount }}
-								</i>
-							</el-header>
-							<el-container>
-								<el-main
-									style="margin: 0; font-size: small; padding: 5px 20px; text-align: left">
-									{{ article.abstract }}
-								</el-main>
-							</el-container>
-							<el-divider></el-divider>
-						</router-link>
+					style="height: 570px; background-color: white"
+					:style="isScrolled ? styleListLeft : ''"
+					v-if="screenWidth >= 700">
+					<el-tabs
+						tab-position="left"
+						style="text-align: center">
+						<el-tab-pane
+							v-for="(tab, i) in tabPanes"
+							:id="i"
+							:label="tab.name" :key="i"></el-tab-pane>
+					</el-tabs>
+				</el-aside>
+
+				<el-aside width="120px" v-if="screenWidth >= 700 && isScrolled" style="margin-right: 20px">
+
+				</el-aside>
+
+				<!-- 写博客 -->
+				<el-main class="out" style="margin: 10px 40px 10px 10px"
+						 :style="{marginRight: screenWidth >= 700 ? '40px' : '10px'}">
+					<el-container style="width: inherit; display: flex; flex-direction: column;overflow-y: hidden">
+						<div v-for="(article, i) in articles"
+							 :id="article.id" :key="i" class="list">
+							<router-link target="_blank" :to="{ name:'BlogDetail', params: {id: article.id} }"
+										 class="blog-link">
+								<h1 class="article-title" :title="article.title">{{ article.title }}</h1>
+								<div class="article-info">
+									<div class="info-cont">
+										<div class="info-ui like"></div>
+										<span>{{ article.upCount ? article.upCount : 0}}</span>
+									</div>
+									<div class="info-cont">
+										<div class="info-ui view"></div>
+										<span>{{ article.viewCount ? article.viewCount : 0}}</span>
+									</div>
+								</div>
+								<div class="article-cont">
+									<p><b>作者：{{ article.author }}</b>{{ article.abstract }}</p>
+								</div>
+							</router-link>
+						</div>
 					</el-container>
 				</el-main>
+				<!-- 右边的标签 -->
+				<BlogAside v-if="screenWidth >=1000" :screenWidth="screenWidth"
+						   :style="isScrolled ? styleListRight : ''"></BlogAside>
+				<el-aside v-if="isScrolled && screenWidth >=1000">
+
+				</el-aside>
 			</el-container>
-<!--			<el-aside-->
-<!--				v-if="screenWidth >=1000"-->
-<!--				width="300px" style="position: fixed; right: 70px">-->
-<!--				<el-card class="box-card" style="min-height: 200px">-->
-<!--					<div slot="header">-->
-<!--						<h3 class="feed_new_tit">-->
-<!--							<span class="line"></span>-->
-<!--							<span class="txt">活动日历</span>-->
-<!--						</h3>-->
-<!--					</div>-->
-<!--					<div-->
-<!--						v-for="(activity, i) in activities"-->
-<!--						:key="i"-->
-<!--						class="text item"-->
-<!--						style="text-align: center">-->
-<!--						<el-link-->
-<!--							:underline="false">-->
-<!--							{{ activity.title }}-->
-<!--						</el-link>-->
-<!--					</div>-->
-<!--				</el-card>-->
-<!--				<el-card class="box-card">-->
-<!--					<div slot="header">-->
-<!--						<h3 class="feed_new_tit">-->
-<!--							<span class="line"></span>-->
-<!--							<span class="txt">排行榜</span>-->
-<!--						</h3>-->
-<!--					</div>-->
-<!--					<el-table-->
-<!--						:data="rankingList"-->
-<!--						:show-header="false"-->
-<!--						style="width: 100%;">-->
-<!--						<el-table-column-->
-<!--							prop="name"-->
-<!--							label="姓名">-->
-<!--						</el-table-column>-->
-<!--						<el-table-column-->
-<!--							prop="integral"-->
-<!--							label="积分">-->
-<!--						</el-table-column>-->
-<!--					</el-table>-->
-<!--				</el-card>-->
-<!--			</el-aside>-->
-			<BlogAside v-if="screenWidth >=1000"></BlogAside>
+
 		</el-container>
 		<Aside :screenWidth="screenWidth"></Aside>
 	</div>
 </template>
 
 <script>
+    import eventBus from '../../utils/eventBus'
     import Aside from '../../components/Generic/Aside'
-	import BlogAside from '../../components/Blog/BlogAside/index'
+    import BlogAside from '../../components/Blog/BlogAside/index'
     import blogApi from '../../api/blog'
     import { Message } from 'element-ui'
+	import staticData from '../../utils/staticData'
 
     export default {
         name: 'Blog',
-		props: ['screenWidth'],
+        props: ['screenWidth'],
         components: {
             Aside,
-			BlogAside
+            BlogAside
         },
         data() {
             return {
-                tabPanes: [
-                    { id: 0, name: '推荐' },
-                    { id: 1, name: '动态' },
-                    { id: 2, name: 'AI' },
-                    { id: 3, name: '前端' },
-                    { id: 4, name: '后端' },
-                    { id: 5, name: '算法' },
-                    { id: 6, name: 'Python' },
-                    { id: 7, name: 'Java' },
-                    { id: 8, name: 'Django' },
-                    { id: 9, name: 'Vue' },
-                    { id: 10, name: 'React' },
-                    { id: 11, name: '数据库' },
-                    { id: 12, name: '计算机基础' },
-                    { id: 13, name: '程序人生' },
-                ],
+                tabPanes: staticData.tabPanes,
                 topArticles: [
                     {
                         id: 0,
@@ -183,7 +136,21 @@
                         }
                     },
                 ],
-                articles: [],
+                articles: [{
+                    id: 1001,
+                    title: '测试标题'.repeat(100),
+                    upCount: 100,
+                    viewCount: 10000,
+                    author: 'Kaiqisan',
+                    abstract: '这是内容'.repeat(100)
+                }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {
+                    id: 1001,
+                    title: '测试标题'.repeat(100),
+                    upCount: 100,
+                    viewCount: 10000,
+                    author: 'Kaiqisan',
+                    abstract: '这是内容'.repeat(100)
+                }],
                 activities: [
                     { id: 0, title: '全体大会' },
                     { id: 1, title: '欢乐谷团建' },
@@ -235,10 +202,22 @@
                         blog: 'https://alex007.blog.csdn.net/'
                     },
                 ],
+                isScrolled: false,
+                styleListLeft: {
+                    position: 'fixed',
+                    left: '20px',
+                    top: '80px'
+                },
+                styleListRight: {
+                    position: 'fixed',
+                    right: '25px',
+                    top: '80px'
+                }
             }
         },
         created() {
             this.init()
+            this.bindEvent()
         },
         methods: {
             init() {
@@ -250,15 +229,21 @@
                     Message({
                         message: '获取博客文章列表出错！',
                         type: 'error',
-                        duration: 3000
+                        duration: 1500
                     })
+                })
+            },
+
+            bindEvent() {
+                eventBus.$on('scrollChange', top => {
+                    this.isScrolled = top >= 60 + document.body.clientWidth * 0.18
                 })
             }
         }
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 	.out {
 		color: #333;
 		text-align: center;
@@ -295,7 +280,96 @@
 		background-color: #d3dce6;
 	}
 
+	.list {
+		width: inherit;
+		padding: 20px 20px;
+		transition: 0.2s;border-bottom: 1px solid #ebebeb;
 
+
+		.blog-link {
+			width: 96%;
+			cursor: pointer;
+			height: 100px;
+			color: black;
+
+			.article-title {
+				text-align: left;
+				font-size: 24px;
+				width: 100%;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+
+			.article-title:hover {
+				color: rgb(30, 144, 255);
+			}
+
+			.article-info {
+				margin-top: 10px;
+				display: flex;
+				justify-content: left;
+
+				.info-cont {
+					display: flex;
+					justify-content: left;
+					margin: 0 6px;
+
+					.info-ui {
+						margin: 0 3px 0 0;
+						width: 20px;
+						height: 20px;
+						background-size: 20px 20px;
+					}
+
+					.like {
+						background-image: url("../../assets/images/like.png");
+					}
+
+					.view {
+						background-image: url("../../assets/images/view.png");
+					}
+
+					span {
+						height: 30px;
+						margin: auto 0;
+						font-size: 14px;
+						color: rgb(191, 191, 191);
+					}
+				}
+			}
+
+			.article-cont {
+				text-align: left;
+
+				p {
+					color: #474747;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+
+					b {
+						font-size: 18px;
+						color: black;
+						margin-right: 10px;
+					}
+				}
+			}
+		}
+	}
+
+	.list:hover {
+		animation: article 10s infinite;
+		background-color: #efefef;
+	}
+
+	@keyframes article {
+		0% {background-color: white;}
+		5% {background-color: rgba(239, 191, 167, 0.2);}
+		50% {background-color: rgba(174, 193, 255, 0.2);}
+		75% {background-color: rgba(164, 255, 156, 0.2);}
+		100% {background-color: white;}
+	}
 
 
 </style>

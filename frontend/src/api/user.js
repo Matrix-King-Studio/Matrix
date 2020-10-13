@@ -9,7 +9,7 @@ export default {
     login(data) {
         return request({
             url: '/User/login',
-            method: 'post',
+            method: 'POST',
             data
         })
     },
