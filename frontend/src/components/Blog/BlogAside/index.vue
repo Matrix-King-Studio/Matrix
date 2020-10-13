@@ -1,8 +1,10 @@
 <template>
 	<div>
 		<el-aside
-			width="300px" style="position: fixed; right: 70px">
-			<el-card class="box-card" style="min-height: 200px">
+			:width="screenWidth >= 700 ? '300px' : '50vw'"
+			style="position: fixed; right: -9.35vw;height: 80vh;overflow-y: auto;z-index: 10"
+			:style="{position: screenWidth >= 1000 ? 'static': 'fixed'}" class="aside">
+			<el-card class="box-card" style="height: 200px" :style="screenWidth >= 1000 ? '200px' : '100vh'">
 				<div slot="header">
 					<h3 class="feed_new_tit">
 						<span class="line"></span>
@@ -30,6 +32,7 @@
 				<el-table
 					:data="rankingList"
 					:show-header="false"
+					:row-style="{height: '1px'}"
 					style="width: 100%;">
 					<el-table-column
 						prop="name"
@@ -47,9 +50,12 @@
 
 <script>
 
-
     export default {
         name: 'BlogAside',
+        props: ['screenWidth'],
+        mounted() {
+            console.log(this.screenWidth)
+        },
         data() {
             return {
                 activities: [
@@ -142,4 +148,23 @@
 		font-size: 16px;
 		color: #2c3033;
 	}
+
+	.aside::-webkit-scrollbar {
+		width: 3px;
+	}
+
+	.aside::-webkit-scrollbar-track {
+		background-color: #fff8f8;
+		-webkit-border-radius: 2em;
+		-moz-border-radius: 2em;
+		border-radius: 2em;
+	}
+
+	.aside::-webkit-scrollbar-thumb {
+		background-color: #898989;
+		-webkit-border-radius: 2em;
+		-moz-border-radius: 2em;
+		border-radius: 2em;
+	}
+
 </style>

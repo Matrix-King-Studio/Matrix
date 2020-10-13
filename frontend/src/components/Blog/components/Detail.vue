@@ -72,7 +72,7 @@
                     Message({
                         message: '获取博客文章详情出错！',
                         type: 'error',
-                        duration: 3000
+                        duration: 1000
                     })
                 })
             }

@@ -46,7 +46,7 @@
         watch: {
             '$route.path': {
                 handler(val) {
-                    if (val === '/') {
+                    if (val === '/' || val === '/blog') {
                         window.addEventListener('scroll', this.handleScroll, true)
                     } else {
                         window.removeEventListener('scroll', this.handleScroll, true)
@@ -54,6 +54,7 @@
                 },
                 immediate: true
             },
+
             screenWidth(val) {
                 // console.log(val);
             }
@@ -64,6 +65,7 @@
             window.onresize = () => {
                 this.screenWidth = document.body.clientWidth
             }
+
             let top = Math.floor(this.$refs.app.scrollTop)
             eventBus.$emit('scrollChange', top)
         },
@@ -99,6 +101,24 @@
 		overflow: auto;
 		height: 100vh;
 		width: 100vw;
+	}
+
+	#app::-webkit-scrollbar {
+		width: 4px;
+	}
+
+	#app::-webkit-scrollbar-track {
+		background-color: #fff8f8;
+		-webkit-border-radius: 2em;
+		-moz-border-radius: 2em;
+		border-radius: 2em;
+	}
+
+	#app::-webkit-scrollbar-thumb {
+		background-color: #898989;
+		-webkit-border-radius: 2em;
+		-moz-border-radius: 2em;
+		border-radius: 2em;
 	}
 
 	/*@media screen and (max-width: 1000px) {*/
