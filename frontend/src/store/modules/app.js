@@ -4,7 +4,9 @@ const state = {
     clickStatus: true,      // 给点击按钮上一个锁，防滑。
     welcomePage: false,   // 是否打开欢迎页面
     status: 0,
-    dialogIsOpen: false     // 是否打开登录注册界面
+    dialogIsOpen: false,     // 是否打开登录注册界面
+
+    screenHeight: document.documentElement.clientHeight
 }
 
 const mutations = {
@@ -19,6 +21,9 @@ const mutations = {
     },
     SET_CLICKSTATUS: (state, clickStatus) => {
         state.clickStatus = clickStatus
+    },
+    SET_SCREENHEIGHT: (state, screenHeight) => {
+        state.screenHeight = screenHeight
     }
 }
 

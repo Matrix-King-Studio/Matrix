@@ -74,10 +74,8 @@
 				<BlogAside v-if="screenWidth >=1000" :screenWidth="screenWidth"
 						   :style="isScrolled ? styleListRight : ''"></BlogAside>
 				<el-aside v-if="isScrolled && screenWidth >=1000">
-
 				</el-aside>
 			</el-container>
-
 		</el-container>
 		<Aside :screenWidth="screenWidth"></Aside>
 	</div>
@@ -101,41 +99,7 @@
         data() {
             return {
                 tabPanes: staticData.tabPanes,
-                topArticles: [
-                    {
-                        id: 0,
-                        title: 'Matrix工作室人事管理规章',
-                        image: '/static/images/banner1.jpg',
-                        user: {
-                            id: 0,
-                            name: 'Alex',
-                            avatar: '/static/images/MatrixLogo_50.jpg',
-                            blog: 'https://alex007.blog.csdn.net/'
-                        }
-                    },
-                    {
-                        id: 1,
-                        title: 'Matrix工作室纳新管理规章',
-                        image: '/static/images/banner2.jpg',
-                        user: {
-                            id: 0,
-                            name: 'Alex',
-                            avatar: '/static/images/MatrixLogo_50.jpg',
-                            blog: 'https://alex007.blog.csdn.net/'
-                        }
-                    },
-                    {
-                        id: 2,
-                        title: 'Matrix工作室考核管理规章',
-                        image: '/static/images/banner3.jpg',
-                        user: {
-                            id: 0,
-                            name: 'Alex',
-                            avatar: '/static/images/MatrixLogo_50.jpg',
-                            blog: 'https://alex007.blog.csdn.net/'
-                        }
-                    },
-                ],
+                topArticles: staticData.blogTopArticles,
                 articles: [{
                     id: 1001,
                     title: '测试标题'.repeat(100),
@@ -151,57 +115,8 @@
                     author: 'Kaiqisan',
                     abstract: '这是内容'.repeat(100)
                 }],
-                activities: [
-                    { id: 0, title: '全体大会' },
-                    { id: 1, title: '欢乐谷团建' },
-                    { id: 2, title: '前端组会' },
-                    { id: 3, title: '周末团建' },
-                    { id: 4, title: 'AI组考核' },
-                ],
-                rankingList: [
-                    {
-                        id: 0,
-                        name: 'Alex',
-                        integral: 1000,
-                        avatar: '/static/images/MatrixLogo_50.jpg',
-                        blog: 'https://alex007.blog.csdn.net/'
-                    },
-                    {
-                        id: 0,
-                        name: 'Alex',
-                        integral: 453245,
-                        avatar: '/static/images/MatrixLogo_50.jpg',
-                        blog: 'https://alex007.blog.csdn.net/'
-                    },
-                    {
-                        id: 0,
-                        name: 'Alex',
-                        integral: 452,
-                        avatar: '/static/images/MatrixLogo_50.jpg',
-                        blog: 'https://alex007.blog.csdn.net/'
-                    },
-                    {
-                        id: 0,
-                        name: 'Alex',
-                        integral: 43,
-                        avatar: '/static/images/MatrixLogo_50.jpg',
-                        blog: 'https://alex007.blog.csdn.net/'
-                    },
-                    {
-                        id: 0,
-                        name: 'Alex',
-                        integral: 44546,
-                        avatar: '/static/images/MatrixLogo_50.jpg',
-                        blog: 'https://alex007.blog.csdn.net/'
-                    },
-                    {
-                        id: 0,
-                        name: 'Alex',
-                        integral: 453,
-                        avatar: '/static/images/MatrixLogo_50.jpg',
-                        blog: 'https://alex007.blog.csdn.net/'
-                    },
-                ],
+                activities: staticData.blogActivities,
+                rankingList: staticData.blogRankingList,
                 isScrolled: false,
                 styleListLeft: {
                     position: 'fixed',
@@ -238,12 +153,16 @@
                 eventBus.$on('scrollChange', top => {
                     this.isScrolled = top >= 60 + document.body.clientWidth * 0.18
                 })
-            }
+            },
         }
     }
 </script>
 
 <style lang="scss" scoped>
+	.main {
+		overflow-x: hidden;
+	}
+
 	.out {
 		color: #333;
 		text-align: center;

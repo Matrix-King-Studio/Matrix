@@ -1,5 +1,5 @@
 <template>
-	<div class="a" :class="{'blur-style': dialogIsOpen && screenWidth < 700}">
+	<div class="a">
 		<div class="top" @click="enterMainPage" v-if="!isEnter" ref="home">
 			<div class="logo"></div>
 			<div class="top-cont" ref="cont">
@@ -86,6 +86,7 @@
 <script>
     import eventBus from '../../utils/eventBus'
     import { mapGetters } from 'vuex'
+	import staticData from '../../utils/staticData'
 
     export default {
         name: 'HelloWorld',
@@ -95,136 +96,15 @@
         },
         data() {
             return {
-                sliderImages: [
-                    {
-                        id: 1,
-                        imgSrc: '/static/images/banner1.jpg'
-                    },
-                    {
-                        id: 2,
-                        imgSrc: '/static/images/banner2.jpg'
-                    },
-                    {
-                        id: 3,
-                        imgSrc: '/static/images/banner3.jpg'
-                    }
-                ],
                 timer: null,
                 visi: true,
                 isEnter: false,
-                studyProblems: [
-                    {
-                        url: '/static/images/1@2x_1567483299.734612.png',
-                        cont: '自学自制力差坚持不下去'
-                    },
-                    {
-                        url: '/static/images/2@2x_1567483299.815959.png',
-                        cont: '遇到问题不知道该问谁'
-                    },
-                    {
-                        url: '/static/images/3@2x_1567483299.9631536.png',
-                        cont: '没有学习方向'
-                    },
-                    {
-                        url: '/static/images/4@2x_1567483299.974014.png',
-                        cont: '浪费大量时间&amp;机会成本'
-                    },
-                    {
-                        url: '/static/images/5@2x_1567483300.1571927.png',
-                        cont: '能看懂代码但不会写'
-                    },
-                    {
-                        url: '/static/images/6@2x_1567483300.1598253.png',
-                        cont: '没有学习氛围 严重拖延症'
-                    },
-                    {
-                        url: '/static/images/7@2x_1567483300.3511646.png',
-                        cont: '不知道该怎么学、学什么'
-                    },
-                    {
-                        url: '/static/images/8@2x_1567483300.3661962.png',
-                        cont: '学习进度慢到窒息，慢到放弃'
-                    },
-                ],
-                solveProblemsList: [
-                    {
-                        url: '/static/images/study@2x_1567483310.8556564.png',
-                        className: 'item1',
-                        title: '在线视频学习',
-                        cont: `历届学长学姐的学习资源链接，<br>
-								包括自己制作的教学课程，<br>
-								重复观看，碎片化时间系统学习。`
-                    },
-                    {
-                        url: '/static/images/practice@2x_1567483309.9485178.png',
-                        className: 'item2',
-                        title: '章节作业 + 阶段测试',
-                        cont: `阶段性组长布置作业，<br />
-								组长指导实战演练，<br />
-								根据组员情况量身定制学习计划。`
-                    },
-                    {
-                        url: '/static/images/fix@2x_1567483306.8539662.png',
-                        className: 'item3',
-                        title: '学长学姐帮你纠正方向',
-                        cont: `7*24h学习群答疑，<br>
-								有事问一问，没事聊一聊`
-                    },
-                    {
-                        url: '/static/images/manage@2x_1567483309.7750795.png',
-                        className: 'item4',
-                        title: '组长 + 成员管理部督学',
-                        cont: `组长定期跟进学习进度，<br>
-								彻底治愈您的拖延症。`
-                    },
-                    {
-                        url: '/static/images/test@2x_1567483310.9115348.png',
-                        className: 'item5',
-                        title: '能力测验 + 就业推荐',
-                        cont: `智能题库精准测验，查漏补缺；<br>
-								就业学长1V1模拟面试。`
-                    }
-                ],
-                departmentList: [
-                    {
-                        className: 'el-icon-user',
-                        cont: '技术委员会'
-                    },
-                    {
-                        className: 'el-icon-document-checked',
-                        cont: '项目商谈部'
-                    },
-                    {
-                        className: 'el-icon-monitor',
-                        cont: '项目开发部'
-                    },
-                    {
-                        className: 'el-icon-mouse',
-                        cont: 'UI设计部'
-                    },
-                    {
-                        className: 'el-icon-headset',
-                        cont: '学院联系部'
-                    },
-                    {
-                        className: 'el-icon-bank-card',
-                        cont: '成员管理部'
-                    },
-                ],
-                structImg: [
-                    {
-                        url: '/static/images/AI_Group.jpg',
-                        cont: '人工智能组'
-                    },
-                    {
-                        url: '/static/images/FrontendGroup.jpg',
-                        cont: '前端组'
-                    },
-                    {
-                        url: '/static/images/BackendGroup.jpg',
-                        cont: '后端组'
-                    },
-                ],
+
+				sliderImages: staticData.homepageSliderImages,
+                studyProblems: staticData.homepageStudyProblems,
+                solveProblemsList: staticData.homepageSolveProblemsList,
+                departmentList: staticData.homepageDepartmentList,
+                structImg: staticData.homepageStructImg
             }
         },
         watch: {

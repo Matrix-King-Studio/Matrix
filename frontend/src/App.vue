@@ -2,12 +2,13 @@
 	<div id="app" ref="app">
 		<!--		<el-container style="">-->
 		<!--在 Markdown 编辑界面不显示导航栏-->
-		<el-header v-show="$route.name !== 'Editor'" style="padding: 0">
-			<Header :screenWidth="screenWidth"></Header>
+		<el-header v-show="$route.name !== 'Editor'" style="padding: 0" v-if="headerIsShow">
+			<Header :screenWidth="screenWidth" ></Header>
 		</el-header>
 		<!--			<el-container>-->
 		<!--				<el-main  style="overflow-x: auto;width: 100vw;">-->
-		<router-view :screenWidth="screenWidth"></router-view>
+		<router-view :screenWidth="screenWidth" :screenHeight="screenHeight"
+					 :class="{'blur-style': dialogIsOpen && screenWidth < 700}"></router-view>
 		<!--				</el-main>-->
 		<!--			</el-container>-->
 		<!--		</el-container>-->
@@ -17,14 +18,21 @@
 <script>
     import eventBus from './utils/eventBus'
     import Header from './components/Header/Header'
+    import { mapGetters } from 'vuex'
 
     export default {
         components: {
             Header,
         },
+        computed: {
+            ...mapGetters(['dialogIsOpen'])
+        },
+
         data() {
             return {
-                screenWidth: 1500
+                screenWidth: 1500,
+				screenHeight: 900,
+				headerIsShow: true
             }
         },
 
@@ -51,6 +59,8 @@
                     } else {
                         window.removeEventListener('scroll', this.handleScroll, true)
                     }
+
+                    this.headerIsShow = !val.includes('/introduction');
                 },
                 immediate: true
             },
@@ -62,8 +72,10 @@
 
         mounted() {
             this.screenWidth = document.body.clientWidth
+			this.screenHeight = document.documentElement.clientHeight
             window.onresize = () => {
                 this.screenWidth = document.body.clientWidth
+				this.screenHeight = document.documentElement.clientHeight
             }
 
             let top = Math.floor(this.$refs.app.scrollTop)
@@ -104,7 +116,8 @@
 	}
 
 	#app::-webkit-scrollbar {
-		width: 4px;
+		width: 6px;
+		height: 6px;
 	}
 
 	#app::-webkit-scrollbar-track {
@@ -121,15 +134,10 @@
 		border-radius: 2em;
 	}
 
-	/*@media screen and (max-width: 1000px) {*/
-	/*	#app {*/
-	/*		position: fixed;*/
-	/*		left: 0;*/
-	/*		top: 0;*/
-	/*		z-index: 15;*/
-	/*		overflow: auto;*/
-	/*		width: 100vw;*/
-	/*		height: 100vh;*/
-	/*	}*/
-	/*}*/
+	.blur-style {
+		-webkit-filter: blur(5px); /* Chrome, Opera */
+		-moz-filter: blur(5px);
+		-ms-filter: blur(5px);
+		filter: blur(5px);
+	}
 </style>

@@ -19,6 +19,7 @@
 				</el-button>
 			</div>
 		</div>
+
 		<div class="head" :class="{'blur-style': dialogIsOpen && screenWidth < 700}" v-else>
 			<div class="menu-ui" @mousedown="openMenu" ref="menuUi"
 				 :style="{border: `${menuIsOpen ? '3px solid #45CDC6' : '3px solid white'}`}"></div>
@@ -35,7 +36,8 @@
 				</router-link>
 			</div>
 		</div>
-		<div class="block" v-if="menuIsOpen && screenWidth<700"></div>
+
+
 		<!--						<el-menu-->
 		<!--							:default-active="activeIndex"-->
 		<!--							class="el-menu-demo main"-->
@@ -147,6 +149,8 @@
 			  </span>
 		</el-dialog>
 		<!--		移动端登录 -->
+<!--		<div class="block" v-if="dialogIsOpen && screenWidth<700"></div>-->
+
 		<div class="login-mobile" v-if="screenWidth<700 && dialogLoginVisible">
 			<h1>登录</h1>
 			<div class="user-name" :style="{transition: loginAttrs[0].transition, transform: loginAttrs[0].transform}">

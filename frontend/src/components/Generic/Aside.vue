@@ -28,7 +28,7 @@
 			<!--			:style="{transform: `translateX(${isOpenedMenu === 2 ? -9.35 : 40.65}vw)`}"-->
 			<div class="aside-cont" :style="{transform: `translateX(${isOpenedMenu === 2 ? 0 : 50}vw)`}">
 				<div class="menu-mobile" >
-					<div class="menu-list" v-for="(item, i) in tabPanes" :key="i">
+					<div class="menu-list" v-for="(item, i) in tabPanes" :key="i" @click="goTag(i)">
 						<div>{{item.name}}</div>
 					</div>
 				</div>
@@ -153,7 +153,11 @@
                         this.isOpenedMenu = 0
                     }
 				}
-            }
+            },
+
+			goTag(i) {
+                this.isOpenedMenu = 0
+			}
         }
     }
 </script>
