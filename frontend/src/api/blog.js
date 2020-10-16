@@ -22,4 +22,16 @@ export default {
             method: 'GET',
         })
     },
+
+    saveBlog(data) {
+        return request({
+            url: 'Blog/save',
+            method: 'post',
+            data: {
+                blogName: '标题',
+                blogMessage: '阿巴阿巴阿巴阿巴',
+                userId: "160265843132530"
+            }
+        })
+    }
 }

@@ -1,6 +1,5 @@
 <template>
 	<div class="home">
-
 		<div v-loading="loading" element-loading-text="加载中..." style="min-height: 35vw;" v-if="!error">
 			<div class="banner">
 				<div class="bg" ref="bg"

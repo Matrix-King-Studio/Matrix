@@ -9,26 +9,26 @@ const service = axios.create({
     // }
 })
 
-// service.interceptors.request.use(
-//     config => {
-//         if (token.getToken()) {
-//             // 验证token是否过期
-//             // if (Date.parse(new Date()) / 1000 > jwt.payload_decode(auth.getToken()).exp) {
-//             //     console.log('身份验证已过期！')
-//             //     return Promise.reject({
-//             //         response: { data: 'signature expire' }
-//             //     })
-//             // }
-//             // config.headers['Authorization'] = 'JWT ' + token.getToken()
-//         }
-//         return config
-//     },
-//     error => {
-//         // 当请求错误的时候报错
-//         console.log(error) // for debug
-//         return Promise.reject(error)
-//     }
-// )
+service.interceptors.request.use(
+    config => {
+        if (token.getToken()) {
+            // 验证token是否过期
+            // if (Date.parse(new Date()) / 1000 > jwt.payload_decode(auth.getToken()).exp) {
+            //     console.log('身份验证已过期！')
+            //     return Promise.reject({
+            //         response: { data: 'signature expire' }
+            //     })
+            // }
+            // config.headers['Authorization'] = 'JWT ' + token.getToken()
+        }
+        return config
+    },
+    error => {
+        // 当请求错误的时候报错
+        console.log(error) // for debug
+        return Promise.reject(error)
+    }
+)
 
 service.interceptors.response.use(
     res => {
