@@ -10,7 +10,7 @@
 					{{item.cont}}
 				</router-link>
 			</div>
-			<div class="head-right">
+			<div class="head-right" v-if="!isLogin">
 				<el-button size="mini" plain type="success" @click="register">
 					注册
 				</el-button>
@@ -18,7 +18,15 @@
 					登录
 				</el-button>
 			</div>
+			<div class="head-right-login" v-if="isLogin">
+				<el-progress style="position: relative;left: 59px; top: 5px; z-index: -2" :stroke-width="3"
+							 :width="65"
+							 :show-text="false" type="circle" :percentage="mouseOnAvatar" ref="progress"></el-progress>
+				<img class="img" src="../../assets/logo.png" width="57" height="57" alt="头像" @mouseover="onAvatar"
+					 @mouseleave="leaveAvatar" ref="avatar"/>
+			</div>
 		</div>
+
 
 		<div class="head" :class="{'blur-style': dialogIsOpen && screenWidth < 700}" v-else>
 			<div class="menu-ui" @mousedown="openMenu" ref="menuUi"
@@ -37,14 +45,27 @@
 			</div>
 		</div>
 
-
+		<div class="head-menu-admin" :class="[menuFlag ? '' : 'trans']" v-if="topMenuIsOpen && isLogin" ref="menu"
+			 @mouseleave="leaveAvatar" @mouseenter="onAvatar" >
+			<p>欢迎回来！<em>{{ username }}</em></p>
+			<router-link :to="{ name:'Space', params: {id: userId} }" class="menu-cont">
+				<i class="icon info"></i>
+				<p>个人资料</p>
+			</router-link>
+			<router-link to="/space" class="menu-cont">
+				<i class="icon blog"></i>
+				<p>我的文章</p>
+			</router-link>
+			<button class="menu-cont" @click="logout">
+				<i class="icon exit"></i>
+				<p>退出登录</p>
+			</button>
+		</div>
 		<!--						<el-menu-->
 		<!--							:default-active="activeIndex"-->
 		<!--							class="el-menu-demo main"-->
 		<!--							mode="horizontal"-->
 		<!--							style="position: fixed; z-index: 10">-->
-
-
 		<!--					&lt;!&ndash;		<el-menu-item index="5">资源项目</el-menu-item>&ndash;&gt;-->
 		<!--					&lt;!&ndash;		<el-menu-item index="6">智能题库</el-menu-item>&ndash;&gt;-->
 		<!--					<el-menu-item index="Recruit">-->
@@ -149,7 +170,7 @@
 			  </span>
 		</el-dialog>
 		<!--		移动端登录 -->
-<!--		<div class="block" v-if="dialogIsOpen && screenWidth<700"></div>-->
+		<!--		<div class="block" v-if="dialogIsOpen && screenWidth<700"></div>-->
 
 		<div class="login-mobile" v-if="screenWidth<700 && dialogLoginVisible">
 			<h1>登录</h1>
@@ -210,13 +231,12 @@
     import { Message } from 'element-ui'
     import { mapGetters } from 'vuex'
     import userApi from '../../api/user'
-    // import axios from 'axios'
 
     export default {
         name: 'Header',
         props: ['screenWidth'],
         computed: {
-            ...mapGetters(['userInfo', 'dialogIsOpen', 'clickStatus']),
+            ...mapGetters(['userInfo', 'dialogIsOpen', 'clickStatus', 'isLogin', 'username', 'userId']),
             activeIndex() {
                 return this.$route.name
             }
@@ -317,13 +337,14 @@
                     }
                 ],
                 bubblesAttr: {
-                    height: 40,
-                    width: 70,
-                    transformX: 0
+                    height: '40',
+                    width: '70',
+                    transformX: '0'
                 },
                 timer: null,
                 timer2: null,
                 timer3: [null, null, null, null],	// 给手机端登录特效添加的计时器
+                timer4: null, 						// 给头像进度条的
                 location: null,
                 nowLocation: null,
                 wordColor: '',
@@ -357,7 +378,10 @@
                     }
                 ],
                 warningCont: ['', '', '', '', '', ''],	// 输入信息非法的提示信息
-                errPlace: null		// 定位到发生错误的地方
+                errPlace: null,		// 定位到发生错误的地方
+                mouseOnAvatar: 0,		// 进度百分比
+                topMenuIsOpen: false,
+                menuFlag: false
             }
         },
         created() {
@@ -367,7 +391,11 @@
                     this.trans(i)
                 }
             }
-
+            if (localStorage.getItem('username') || localStorage.getItem('userId')) {
+                this.$store.commit('user/SET_USERNAME', localStorage.getItem('username'))
+                this.$store.commit('user/SET_USERID', localStorage.getItem('userId'))
+                this.$store.commit('user/SET_ISLOGIN', true)
+            }
         },
 
         mounted() {
@@ -375,6 +403,10 @@
             window.onresize = () => {
                 this.width = document.body.clientWidth
             }
+            // 贼麻烦
+			if (this.$refs.progress) {
+			    this.$refs.progress.$el.childNodes[0].childNodes[0].childNodes[1].style.transition = '0s'
+			}
         },
 
         watch: {
@@ -417,7 +449,13 @@
                     // console.log(val)
                 },
                 immediate: true
-            }
+            },
+            
+            'this.$refs.progress': {
+                handler(val) {
+                    console.log(val);
+				},
+			}
         },
         methods: {
             getColor(i) {
@@ -440,7 +478,7 @@
                 this.location = this.nowLocation = i
                 if (flag) {
                     this.menuIsOpen = false
-                    this.bubblesAttr.transformX = 90 * i
+                    this.bubblesAttr.transformX = String(90 * i)
                     for (let j = 0; j < this.headList.length; j++) {
                         this.headList[j].color = '#788187'
                     }
@@ -472,16 +510,16 @@
                 if (this.timer2) {
                     clearTimeout(this.timer2)
                 }
-                this.bubblesAttr.width = 20
-                this.bubblesAttr.transformX = 90 * (oldLocation + newLocation) / 2
-                this.bubblesAttr.height = 20
+                this.bubblesAttr.width = '20'
+                this.bubblesAttr.transformX = String(90 * (oldLocation + newLocation) / 2)
+                this.bubblesAttr.height = '20'
                 for (let j = 0; j < this.headList.length; j++) {
                     this.headList[j].color = '#788187'
                 }
                 this.timer = setTimeout(() => {
-                    this.bubblesAttr.width = 70
-                    this.bubblesAttr.transformX = 90 * newLocation
-                    this.bubblesAttr.height = 40
+                    this.bubblesAttr.width = '70'
+                    this.bubblesAttr.transformX = String(90 * newLocation)
+                    this.bubblesAttr.height = '40'
                     this.reFreshColor(newLocation)
                 }, 200)
             },
@@ -560,8 +598,8 @@
                 }
                 this.$refs['formLogin'].validate(valid => {
                     if (valid) {
-                        userApi.login(formData).then(res => {
-                            console.log(res)
+                        this.$store.dispatch('user/Login', formData).then(() => {
+							this.$refs.progress.$el.childNodes[0].childNodes[0].childNodes[1].style.transition = '0s'
                         }).catch(err => {
                             console.log(err)
                         })
@@ -601,11 +639,16 @@
                             username: this.formLogin.username,
                             password: this.formLogin.password
                         }
-                        userApi.login(formData).then(res => {
-                            console.log(res)
+                        this.$store.dispatch('user/Login', formData).then(() => {
+
                         }).catch(err => {
                             console.log(err)
                         })
+                        // userApi.login(formData).then(res => {
+                        //     console.log(res)
+                        // }).catch(err => {
+                        //     console.log(err)
+                        // })
 
                         setTimeout(() => {
                             this.$store.commit('app/SET_CLICKSTATUS', true)
@@ -687,6 +730,7 @@
                             username: this.formRegister.username,
                             password: this.formRegister.password
                         }).then(res => {
+
                             console.log('ok')
                         }).catch(err => {
                             console.log(err)
@@ -730,8 +774,8 @@
                         let formData = {
                             username: this.formRegister.username,
                             password: this.formRegister.password
-						}
-						console.log(formData);
+                        }
+                        console.log(formData)
                         userApi.register({
                             username: this.formRegister.username,
                             password: this.formRegister.password
@@ -745,6 +789,51 @@
                         return false
                     }
                 })
+            },
+
+            onAvatar() {
+                if (this.timer) {
+                    clearTimeout(this.timer)
+                }
+                if (this.timer2) {
+                    clearTimeout(this.timer2)
+                }
+                if (this.timer4) {
+                    clearInterval(this.timer4)
+                }
+                this.timer4 = setInterval(() => {
+                    if (this.mouseOnAvatar < 100) {
+                        this.mouseOnAvatar += 0.5
+                    } else {
+                        clearInterval(this.timer4)
+                    }
+                }, 4)
+
+                this.topMenuIsOpen = true
+                setTimeout(() => {
+                    this.menuFlag = true
+                }, 100)
+            },
+
+            leaveAvatar() {
+                this.timer = setTimeout(() => {
+                    if (this.timer4) {
+                        clearInterval(this.timer4)
+                    }
+
+                    this.timer4 = setInterval(() => {
+                        if (this.mouseOnAvatar > 0) {
+                            this.mouseOnAvatar -= 0.5
+                        } else {
+                            clearInterval(this.timer4)
+                        }
+                    }, 20)
+                    this.menuFlag = false
+                    this.timer2 = setTimeout(() => {
+                        this.topMenuIsOpen = false
+                    }, 600)
+                }, 500)
+
             },
 
             /**
@@ -762,7 +851,14 @@
     }
 </script>
 
+<style scoped>
+
+
+</style>
+
 <style lang="less" scoped>
+
+
 	.main {
 		width: 100vw;
 
@@ -904,6 +1000,25 @@
 			height: auto;
 			margin: auto 30px auto 10px;
 		}
+
+		.head-right-login {
+			user-select: none;
+			display: flex;
+			justify-content: left;
+			width: auto;
+			height: auto;
+			margin: auto 30px auto 10px;
+
+
+			img {
+				border-radius: 35px;
+				cursor: pointer;
+				margin-top: 9px;
+				margin-left: -2px;
+			}
+
+
+		}
 	}
 
 	.login-mobile {
@@ -1008,5 +1123,91 @@
 		75% {
 			transform: rotate3d(0, 0, 1, 2.5deg);
 		}
+	}
+
+	.head-menu-admin {
+		width: 200px;
+		height: auto;
+		background-color: white;
+		position: fixed;
+		right: 10px;
+		top: 60px;
+		z-index: 3;
+		border-radius: 0 0 6px 6px;
+		box-shadow: 0 0 8px #eeeeee;
+		padding: 5px 0;
+		transition: 0.5s;
+
+		button {
+			background: white;
+			outline: none;
+			border: none;
+		}
+
+		button:hover {
+			border: none;
+		}
+
+		button:focus {
+			outline: 2px solid #6b95ea;
+		}
+
+		.menu-cont {
+			transition: 0.2s;
+			box-sizing: border-box;
+			padding: 0 10px;
+			width: 100%;
+			display: flex;
+			justify-content: left;
+			margin: 2px 0;
+			cursor: pointer;
+
+			.icon {
+				margin: auto 0;
+				width: 20px;
+				height: 20px;
+				background-size: 20px 20px;
+			}
+
+			.info {
+				background-image: url("../../assets/images/info.png");
+			}
+
+			.blog {
+				background-image: url("../../assets/images/blog.png");
+			}
+
+			.exit {
+				background-image: url("../../assets/images/exit.png");
+			}
+
+			p {
+				line-height: 20px;
+				color: #64695b;
+			}
+
+		}
+
+		.menu-cont:hover {
+			color: white;
+			background-color: #e1e5ed;
+		}
+
+		p {
+			text-align: center;
+			margin: 10px 10px;
+			font-size: 15px;
+			font-weight: 900;
+			color: #8d9284;
+
+			em {
+				font-size: 19px;
+				font-family: Consolas, Monaco, Andale Mono, Ubuntu Mono, monospace;
+			}
+		}
+	}
+
+	.trans {
+		transform: rotate3d(1, 1, 0, 90deg);
 	}
 </style>
