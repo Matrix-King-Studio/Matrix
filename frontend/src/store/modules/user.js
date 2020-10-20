@@ -5,6 +5,9 @@ import store from '../index'
 const state = {
     token: null,
     userInfo: null,
+    userId: null,
+    username: null,
+    isLogin: false,
 }
 
 const mutations = {
@@ -14,6 +17,18 @@ const mutations = {
 
     SetUserInfo: (state, userInfo) => {
         state.userInfo = userInfo
+    },
+
+    SET_ISLOGIN: (state, isLogin) => {
+        state.isLogin = isLogin
+    },
+
+    SET_USERID: (state, userId) => {
+        state.userId = userId
+    },
+
+    SET_USERNAME: (state, username) => {
+        state.username = username
     }
 }
 
@@ -21,25 +36,44 @@ const actions = {
     Login({ commit }, data) {
         return new Promise((resolve, reject) => {
             userApi.login(data).then(res => {
-                if (res.data.error) {
+                if (res.data.msg === '用户不存在') {
                     Message({
-                        message: res.data.error,
+                        message: '用户名不存在，请重试！',
                         type: 'error',
                         duration: 3000
                     })
-                    reject(res.data.error)
+                    reject(res.data.msg)
+                } else if (!res.data.data.userid) {
+                    Message({
+                        message: '密码错误，请再次确认！',
+                        type: 'error',
+                        duration: 3000
+                    })
+                    reject('密码错误，请再次确认！')
                 } else {
-                    commit('SetToken', res.data.key)
-                    // store.dispatch('user/UserInfo', data)
+                    console.log(res.data.data)
+                    console.log('ok登陆成功')
+                    // 成功处理
+                    Message({
+                        type: 'success',
+                        duration: 2000,
+                        message: '登录成功'
+                    })
+                    commit('SET_USERNAME', res.data.data.username)
+                    commit('SET_USERID', res.data.data.userid)
+                    commit('SET_ISLOGIN', true)
+                    // 测试尝鲜版
+                    localStorage.setItem('username', res.data.data.username)
+                    localStorage.setItem('userId', res.data.data.userid)
                     resolve()
                 }
             }).catch(err => {
                 // console.log(err)
-                Message({
-                    message: '用户名或密码错误！',
-                    type: 'error',
-                    duration: 3000
-                })
+                // Message({
+                //     message: '用户名或密码错误！',
+                //     type: 'error',
+                //     duration: 3000
+                // })
                 reject(err)
             })
         })
@@ -94,24 +128,29 @@ const actions = {
 
     Logout({ commit }) {
         return new Promise((resolve, reject) => {
-            userApi.logout().then(res => {
-                commit('SetToken', null)
-                Message({
-                    message: '退出成功！',
-                    type: 'success',
-                    duration: 3000
-                })
-                resolve()
-            }).catch(err => {
-                console.log(err)
-                Message({
-                    message: '退出失败！',
-                    type: 'error',
-                    duration: 3000
-                })
-                reject(err)
-            })
+            localStorage.removeItem('username')
+            localStorage.removeItem('userId')
+            commit('SET_ISLOGIN', false)
         })
+        // return new Promise((resolve, reject) => {
+        //     userApi.logout().then(res => {
+        //         commit('SetToken', null)
+        //         Message({
+        //             message: '退出成功！',
+        //             type: 'success',
+        //             duration: 3000
+        //         })
+        //         resolve()
+        //     }).catch(err => {
+        //         console.log(err)
+        //         Message({
+        //             message: '退出失败！',
+        //             type: 'error',
+        //             duration: 3000
+        //         })
+        //         reject(err)
+        //     })
+        // })
     }
 }
 

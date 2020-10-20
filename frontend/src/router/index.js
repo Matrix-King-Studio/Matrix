@@ -10,6 +10,7 @@ import Recruit from '../views/Recruit/index'
 import Introduction from '../views/Introduction/index'
 import Shop from '../views/Shop/index'
 import Project from '../views/Project/index'
+import Space from '../views/Space/index'
 
 Vue.use(Router)
 
@@ -65,6 +66,11 @@ export default new Router({
             path: '/shop',
             name: 'Shop',
             component: Shop
+        },
+        {
+            path: '/space/:id',
+            name: 'Space',
+            component: Space
         },
     ]
 })

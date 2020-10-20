@@ -60,7 +60,7 @@
                         window.removeEventListener('scroll', this.handleScroll, true)
                     }
 
-                    this.headerIsShow = !val.includes('/introduction');
+                    this.headerIsShow = !val.includes('/introduction') && !val.includes('space');
                 },
                 immediate: true
             },
