@@ -376,6 +376,15 @@ export default {
             }]
           },
           {
+            day: 10,
+            title: 'Jupyter Notebook入门',
+            target: 'Jupyter Notebook 是一个 Web 应用程序，便于创建和共享文学化程序文档，支持实时代码、数学方程、可视化和 Markdown，其用途包括数据清理和转换、数值模拟、统计建模、机器学习等等。目前，数据挖掘领域中最热门的比赛 Kaggle 里的资料都是 Jupyter 格式。对于机器学习新手来说，学会使用 Jupyter Notebook 非常重要。',
+            link: [{
+              name: '博客：机器学习新手必看：Jupyter Notebook入门指南',
+              website: 'https://blog.csdn.net/guleileo/article/details/80490921'
+            }]
+          },
+          {
             day: 30,
             title: 'Numpy & Pandas 基础',
             target: '目标：掌握 Numpy & Pandas 的基本应用，能够处理数据和文件。',
@@ -419,15 +428,6 @@ export default {
           },
           {
             day: 30,
-            title: '机器学习进阶',
-            target: '目标：掌握基本的机器学习算法推导和实现。',
-            link: [{
-              name: '视频：吴恩达机器学习',
-              website: 'https://www.bilibili.com/video/BV1iK411W7p9'
-            }]
-          },
-          {
-            day: 30,
             title: 'Scikit-Learn 机器学习工具',
             target: '目标：Scikit Learn 也简称 sklearn, 是机器学习领域当中最知名的 python 模块之一。',
             link: [{
@@ -436,6 +436,24 @@ export default {
             }, {
               name: '文档：sklearn 中文文档',
               website: 'http://www.scikitlearn.com.cn/'
+            }]
+          },
+          {
+            day: 10,
+            title: 'Kaggle入门',
+            target: 'Kaggle是一个进行数据发掘和预测竞赛的在线平台。从公司的角度来讲，可以提供一些数据，进而提出一个实际需要解决的问题；从参赛者的角度来讲，他们将组队参与项目，针对其中一个问题提出解决方案，最终由公司选出的最佳方案可以获得5K-10K美金的奖金。',
+            link: [{
+              name: '博客：从0到1走进 Kaggle',
+              website: 'https://blog.csdn.net/jdbc/article/details/72353798'
+            }]
+          },
+          {
+            day: 30,
+            title: '机器学习进阶',
+            target: '目标：掌握基本的机器学习算法推导和实现。',
+            link: [{
+              name: '视频：吴恩达机器学习',
+              website: 'https://www.bilibili.com/video/BV1iK411W7p9'
             }]
           },
           {
@@ -448,18 +466,6 @@ export default {
             }]
           },
           {
-            day: 30,
-            title: 'Scikit-Learn 机器学习工具',
-            target: '目标：Kaggle 是一个流行的数据科学竞赛平台。',
-            link: [{
-              name: '视频：Scikit-Learn 轻松使用机器学习',
-              website: 'https://mofanpy.com/tutorials/machine-learning/sklearn/'
-            }, {
-              name: '文档：sklearn 中文文档',
-              website: 'http://www.scikitlearn.com.cn/'
-            }]
-          },
-          {
             day: 60,
             title: '深度学习基础',
             target: '目标：掌握基本的深度学习算法理念和实现。',
@@ -467,6 +473,23 @@ export default {
               name: '视频：吴恩达深度学习',
               website: 'https://www.bilibili.com/video/BV1FT4y1E74V'
             }]
+          },
+          {
+            day: 60,
+            title: 'PyTorch 基本使用',
+            target: 'PyTorch 是一个 Torch7 团队开源的 Python 优先的深度学习框架，强大的 GPU 加速 Tensor 计算，构建基于 tape 的自动升级系统上的深度神经网络。',
+            link: [{
+              name: '官网：PyTorch',
+              website: 'https://pytorch.org/'
+            },
+              {
+                name: '博客：PyTorch换源安装',
+                website: 'https://blog.csdn.net/weixin_43336281/article/details/108753980'
+              },
+              {
+                name: '文档：PyTorch 官网教程',
+                website: 'https://pytorch.org/tutorials/'
+              }]
           },
         ]
       },
