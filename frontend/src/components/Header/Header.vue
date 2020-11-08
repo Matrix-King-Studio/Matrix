@@ -1,14 +1,16 @@
 <template>
 	<div>
+		<!--	电脑端菜单	-->
 		<div class="head" v-if="screenWidth>=700">
 			<div class="selected-block"
-				 :style="{ width: `${bubblesAttr.width}px`, height: `${bubblesAttr.height}px`, transform: `translateX(${bubblesAttr.transformX}px)`, backgroundColor: colorList[nowLocation] }"></div>
+				 :style="{ width: `${bubblesAttr.width}px`, height: `${bubblesAttr.height}px`, transform: `translateX(${bubblesAttr.transformX}px)`, background: nowLocation >= 0 ? colorList[nowLocation] : 'none' }"></div>
 			<div class="head-left" @mouseleave="goBack">
 				<router-link to="/" class="head-logo" tag="div" @click.native="trans(0, true)"></router-link>
 				<router-link v-for="(item, i) in headList" :key="i" :to="item.url" class="head-left-menu" tag="a"
 							 @mousemove.native="trans(i)" @click.native="routerChange(i)" :style="{color: item.color}">
 					{{item.cont}}
 				</router-link>
+
 			</div>
 			<div class="head-right" v-if="!isLogin">
 				<el-button size="mini" plain type="success" @click="register">
@@ -18,7 +20,7 @@
 					登录
 				</el-button>
 			</div>
-			<div class="head-right-login" v-if="isLogin">
+			<div class="head-right-login" v-show="isLogin">
 				<el-progress style="position: relative;left: 59px; top: 5px; z-index: -2" :stroke-width="3"
 							 :width="65"
 							 :show-text="false" type="circle" :percentage="mouseOnAvatar" ref="progress"></el-progress>
@@ -27,71 +29,63 @@
 			</div>
 		</div>
 
-
-		<div class="head" :class="{'blur-style': dialogIsOpen && screenWidth < 700}" v-else>
+		<!--	手机端菜单	-->
+		<div class="head" :class="{'blur-style': dialogIsOpen && screenWidth < 700}" v-if="screenWidth<700">
 			<div class="menu-ui" @mousedown="openMenu" ref="menuUi"
 				 :style="{border: `${menuIsOpen ? '3px solid #45CDC6' : '3px solid white'}`}"></div>
-			<div class="login-ui">
+			<div class="login-ui" v-if="!isLogin">
 				<div class="login" @mousedown="login">登录</div>
 				<div class="login" @mousedown="register">注册</div>
 			</div>
+
+			<!--	手机端的左连接	-->
 			<div class="menu-cont" ref="menu" :style="{transform: `translateX(${menuIsOpen ? 0 : -50}vw)`}">
-				<router-link :to="item.url" tag="div" v-for="(item, i) in headList" :key="i"
+				<div class="menuHead" v-if="isLogin">
+					<div class="mobile-logined" ref="menuUiRight">
+						<div class="avatar"></div>
+					</div>
+					<p>{{ username }}</p>
+				</div>
+
+				<router-link :to="item.url" tag="a" v-for="(item, i) in headList" :key="i"
 							 class="menu-leap"
 							 @mousedown.native="routerChange(i, true)"
-							 :style="{backgroundColor: location === i ? '#a2c1cd' : '#6f6f6f', borderBottom: location === i ? 'none' : '2px solid #4a4a4a', borderLeft: location === i ? 'none' : '2px solid #4a4a4a', color: location === i ? '#403c48': '#d8d8d8'}">
+							 :style="{backgroundColor: location === i ? '#a2c1cd' : '#6f6f6f', borderBottom: location === i ? 'none' : '2px solid #4a4a4a', borderLeft: location === i ? 'none' : '2px solid #4a4a4a', color: location === i ? '#403c48': '#dddddd'}">
 					{{ item.cont }}
 				</router-link>
+				<a tag="a" class="menu-leap" v-for="(item, i) in loginedHeadList" :key="item.cont"
+				   @mousedown="goSpace(i + 5, item.url)"
+				   :style="{backgroundColor: location === i + 5 ? '#a2c1cd' : '#6f6f6f', borderBottom: location === i + 5 ? 'none' : '2px solid #4a4a4a', borderLeft: location === i + 5 ? 'none' : '2px solid #4a4a4a', color: location === i + 5 ? '#403c48': '#dddddd'}"
+				   v-if="isLogin">
+					{{item.cont}}
+				</a>
+				<template v-if="isLogin" >
+					<el-popconfirm title="确定要退出吗？" @onConfirm="logOutMobile">
+						<a class="menu-leap" slot="reference">退出登录</a>
+					</el-popconfirm>
+				</template>
 			</div>
 		</div>
 
+		<!-- 登陆成功显示 -->
 		<div class="head-menu-admin" :class="[menuFlag ? '' : 'trans']" v-if="topMenuIsOpen && isLogin" ref="menu"
-			 @mouseleave="leaveAvatar" @mouseenter="onAvatar" >
+			 @mouseleave="leaveAvatar" @mouseenter="onAvatar">
 			<p>欢迎回来！<em>{{ username }}</em></p>
-			<router-link :to="{ name:'Space', params: {id: userId} }" class="menu-cont">
-				<i class="icon info"></i>
-				<p>个人资料</p>
-			</router-link>
-			<router-link to="/space" class="menu-cont">
-				<i class="icon blog"></i>
-				<p>我的文章</p>
-			</router-link>
-			<button class="menu-cont" @click="logout">
+			<a v-for="(item, i) in loginedHeadList" :key="item.cont" class="menu-cont"
+			   @click="goSpace(i + 5, item.url)">
+				<i class="icon" :class="[item.className]"></i>
+				<p>{{ item.cont }}</p>
+			</a>
+			<a class="menu-cont" @click="logout">
 				<i class="icon exit"></i>
 				<p>退出登录</p>
-			</button>
+			</a>
 		</div>
-		<!--						<el-menu-->
-		<!--							:default-active="activeIndex"-->
-		<!--							class="el-menu-demo main"-->
-		<!--							mode="horizontal"-->
-		<!--							style="position: fixed; z-index: 10">-->
-		<!--					&lt;!&ndash;		<el-menu-item index="5">资源项目</el-menu-item>&ndash;&gt;-->
-		<!--					&lt;!&ndash;		<el-menu-item index="6">智能题库</el-menu-item>&ndash;&gt;-->
-		<!--					<el-menu-item index="Recruit">-->
-		<!--						<router-link :to="{ name:'Recruit' }">-->
-		<!--							招贤纳士-->
-		<!--						</router-link>-->
-		<!--					</el-menu-item>-->
-		<!--		&lt;!&ndash;			<el-menu-item index="Shop">&ndash;&gt;-->
-		<!--		&lt;!&ndash;				<router-link :to="{ name:'Shop' }">&ndash;&gt;-->
-		<!--		&lt;!&ndash;					Matrix小店&ndash;&gt;-->
-		<!--		&lt;!&ndash;				</router-link>&ndash;&gt;-->
-		<!--		&lt;!&ndash;			</el-menu-item>&ndash;&gt;-->
-		<!--					<el-menu-item-->
-		<!--						index="Register"-->
-		<!--						style="float: right"-->
-		<!--						v-if="!$store.state.user.token">-->
-		<!--					</el-menu-item>-->
-		<!--					<el-submenu index="8" style="float: right" v-else>-->
-		<!--						<template slot="title">-->
-		<!--							{{ userInfo.username }}-->
-		<!--						</template>-->
-		<!--						<el-menu-item index="8-1">公告</el-menu-item>-->
-		<!--						<el-menu-item index="8-2">个人中心</el-menu-item>-->
-		<!--						<el-menu-item index="8-3" @click="logout()">退出登录</el-menu-item>-->
-		<!--					</el-submenu>-->
-		<!--				</el-menu>-->
+		<div class="" v-if="isLogin">
+
+		</div>
+
+		<!--	电脑端登录	-->
 		<el-dialog
 			title="登录"
 			:close-on-click-modal="false"
@@ -122,6 +116,8 @@
 				<el-button type="primary" @click="loginConfirm">确 定</el-button>
 			  </span>
 		</el-dialog>
+
+		<!--	电脑端注册	-->
 		<el-dialog
 			title="注册"
 			:close-on-click-modal="false"
@@ -169,8 +165,8 @@
 				<el-button type="primary" @click="registerConfirm">确 定</el-button>
 			  </span>
 		</el-dialog>
-		<!--		移动端登录 -->
-		<!--		<div class="block" v-if="dialogIsOpen && screenWidth<700"></div>-->
+
+		<!--	移动端登录注册 -->
 
 		<div class="login-mobile" v-if="screenWidth<700 && dialogLoginVisible">
 			<h1>登录</h1>
@@ -228,9 +224,8 @@
 </template>
 
 <script>
-    import { Message } from 'element-ui'
     import { mapGetters } from 'vuex'
-    import userApi from '../../api/user'
+    import blackList from '../../utils/blackList'
 
     export default {
         name: 'Header',
@@ -291,8 +286,8 @@
                     checked: false,
                 },
                 loginRules: {
-                    username: [{ validator: checkUserName, trigger: 'change' }],
-                    password: [{ validator: checkPassword, trigger: 'change' }],
+                    username: [{ validator: checkUserName, trigger: 'blur' }],
+                    password: [{ validator: checkPassword, trigger: 'blur' }],
                 },
                 formRegister: {
                     username: '',
@@ -305,9 +300,6 @@
                     email: [{ validator: checkEmail, trigger: 'blur' }],
                     password: [{ validator: checkPassword, trigger: 'blur' }],
                     checkPassword: [{ validator: checkPasswordAgain, trigger: 'blur' }]
-                },
-                user: {
-                    username: 'Alex',
                 },
                 headList: [
                     {
@@ -334,7 +326,23 @@
                         url: '/recruit',
                         cont: '招贤纳士',
                         color: '#788187'
-                    }
+                    },
+                ],
+                loginedHeadList: [
+                    {
+                        url: {
+                            name: 'Info',
+                        },
+                        cont: '个人主页',
+                        className: 'info'
+                    },
+                    {
+                        url: {
+                            name: 'MyBlog',
+                        },
+                        cont: '我的博客',
+                        className: 'blog'
+                    },
                 ],
                 bubblesAttr: {
                     height: '40',
@@ -345,8 +353,11 @@
                 timer2: null,
                 timer3: [null, null, null, null],	// 给手机端登录特效添加的计时器
                 timer4: null, 						// 给头像进度条的
-                location: null,
-                nowLocation: null,
+                timer5: null,
+                timer6: null,
+                timer7: null,
+                location: -1,
+                nowLocation: -1,
                 wordColor: '',
                 colorList: ['#60AEF4', '#F45A35', '#a69d26', '#F4A642', '#DD8CFF'],
                 width: 1500, // 监控屏幕宽度
@@ -380,17 +391,35 @@
                 warningCont: ['', '', '', '', '', ''],	// 输入信息非法的提示信息
                 errPlace: null,		// 定位到发生错误的地方
                 mouseOnAvatar: 0,		// 进度百分比
-                topMenuIsOpen: false,
-                menuFlag: false
+                topMenuIsOpen: false,	// 顶部左菜单
+                selfMenuIsOpen: false,	// 顶部右菜单
+                menuFlag: false,
             }
         },
+
+        // TODO: 进来就修改location
+
         created() {
+            // console.log(window.location.pathname)
             for (let i = 0; i < this.headList.length; i++) {
                 if (window.location.pathname === this.headList[i].url) {
                     this.location = i
                     this.trans(i)
                 }
             }
+
+            if (this.isLogin) {
+                if (window.location.pathname.includes('info')) {
+                    this.location = 5
+                    this.trans(5)
+                }
+                if (window.location.pathname.includes('myblog')) {
+                    this.location = 6
+                    this.trans(6)
+                }
+            }
+            // console.log(this.location)
+
             if (localStorage.getItem('username') || localStorage.getItem('userId')) {
                 this.$store.commit('user/SET_USERNAME', localStorage.getItem('username'))
                 this.$store.commit('user/SET_USERID', localStorage.getItem('userId'))
@@ -404,9 +433,9 @@
                 this.width = document.body.clientWidth
             }
             // 贼麻烦
-			if (this.$refs.progress) {
-			    this.$refs.progress.$el.childNodes[0].childNodes[0].childNodes[1].style.transition = '0s'
-			}
+            if (this.$refs.progress) {
+                this.$refs.progress.$el.childNodes[0].childNodes[0].childNodes[1].style.transition = '0s'
+            }
         },
 
         watch: {
@@ -419,24 +448,32 @@
                 if (this.timer2) {
                     clearTimeout(this.timer2)
                 }
-                this.$refs.menu.style.transition = '0.4s'
+                try {
+                    this.$refs.menu.style.transition = '0.4s'
+                } catch (e) {
+
+                }
                 this.timer2 = setTimeout(() => {
                     this.$refs.menu.style.transition = '0s'
                 }, 400)
             },
+
             dialogLoginVisible(val) {
                 this.$store.commit('app/SET_DIALOGISOPEN', val)
+                this.errPlace = null
                 if (!val) {
+                    this.clearWarning()
                     this.loginAttrs[0].transform = 'rotate3d(1, 1, 0, 90deg)'
                     this.loginAttrs[1].transform = 'rotate3d(1, 1, 0, 90deg)'
                     this.recover(0, 1)
                 }
-
             },
 
             dialogRegisterVisible(val) {
                 this.$store.commit('app/SET_DIALOGISOPEN', val)
+                this.errPlace = null
                 if (!val) {
+                    this.clearWarning()
                     for (let i = 0; i < 4; i++) {
                         this.loginAttrs[i + 2].transform = 'rotate3d(1, 1, 0, 90deg)'
                     }
@@ -450,18 +487,37 @@
                 },
                 immediate: true
             },
-            
-            'this.$refs.progress': {
+
+            screenWidth(val) {
+                if (this.$refs.progress) {
+                    this.$refs.progress.$el.childNodes[0].childNodes[0].childNodes[1].style.transition = '0s'
+                }
+            },
+
+            '$refs.progress': {
                 handler(val) {
-                    console.log(val);
-				},
-			}
+                    console.log(val)
+                },
+                deep: true
+            },
         },
         methods: {
             getColor(i) {
                 setTimeout(() => {
                     return this.nowLocation === i ? 'white' : '#788187'
                 }, 200)
+            },
+
+            goSpace(i, url) {
+                if (this.location !== i) {
+                    this.location = this.nowLocation = i
+                    for (let j = 0; j < this.headList.length; j++) {
+                        this.headList[j].color = '#788187'
+                    }
+
+                    this.$router.push({ name: url.name, params: { id: this.userId } })
+                }
+                this.menuIsOpen = false
             },
 
             outClickEvent(e) {
@@ -475,6 +531,7 @@
             },
 
             routerChange(i, flag) {
+                this.leaveAvatar()
                 this.location = this.nowLocation = i
                 if (flag) {
                     this.menuIsOpen = false
@@ -493,6 +550,10 @@
                 }
             },
             trans(i, flag) {
+                if (i === -1) {
+                    this.location = this.nowLocation = -1
+                    return
+                }
                 if (i !== this.nowLocation) {
                     let oldLocation = this.nowLocation
                     this.exeBubble(oldLocation, i)
@@ -526,7 +587,11 @@
 
             reFreshColor(i) {
                 this.timer2 = setTimeout(() => {
-                    this.headList[i].color = 'white'
+                    try {
+                        this.headList[i].color = 'white'
+                    } catch (e) {
+
+                    }
                 }, 200)
             },
 
@@ -591,27 +656,48 @@
              * 用户登录确认
              */
             loginConfirm() {
-                let loginInfo = this.formLogin
-                let formData = {
-                    username: loginInfo.username,
-                    password: loginInfo.password,
-                }
-                this.$refs['formLogin'].validate(valid => {
-                    if (valid) {
-                        this.$store.dispatch('user/Login', formData).then(() => {
-							this.$refs.progress.$el.childNodes[0].childNodes[0].childNodes[1].style.transition = '0s'
-                        }).catch(err => {
-                            console.log(err)
-                        })
-                    } else {
-                        return false
+                if (this.clickStatus) {
+                    this.$store.commit('app/SET_CLICKSTATUS', false)
+                    let loginInfo = this.formLogin
+                    let formData = {
+                        username: loginInfo.username,
+                        password: loginInfo.password,
                     }
-                })
+                    this.$refs['formLogin'].validate(valid => {
+                        if (valid) {
+                            this.$store.dispatch('user/Login', formData).then(() => {
+                                setTimeout(() => {
+                                    this.$store.commit('app/SET_CLICKSTATUS', true)
+                                    for (let i in this.formLogin) {
+                                        if (this.formLogin.hasOwnProperty(i)) {
+                                            this.formLogin[i] = ''
+                                        }
+                                    }
+                                }, 500)
+                                this.$refs.progress.$el.childNodes[0].childNodes[0].childNodes[1].style.transition = '0s'
+                                setTimeout(() => {
+                                    this.$store.commit('app/SET_CLICKSTATUS', true)
+                                }, 1000)
+                                this.dialogLoginVisible = false
+                            }).catch(() => {
+                                setTimeout(() => {
+                                    this.$store.commit('app/SET_CLICKSTATUS', true)
+                                }, 2000)
+                            })
+                        } else {
+                            setTimeout(() => {
+                                this.$store.commit('app/SET_CLICKSTATUS', true)
+                            }, 2000)
+                            return false
+                        }
+                    })
+                }
             },
 
             // 手机端的登录验证
             loginMobile() {
                 if (this.clickStatus) {
+                    console.log('ok')
                     this.$store.commit('app/SET_CLICKSTATUS', false)
                     if (!this.formLogin.username) {
                         this.clearWarning()
@@ -640,20 +726,19 @@
                             password: this.formLogin.password
                         }
                         this.$store.dispatch('user/Login', formData).then(() => {
-
+                            setTimeout(() => {
+                                this.$store.commit('app/SET_CLICKSTATUS', true)
+                                for (let i in this.formLogin) {
+                                    if (this.formLogin.hasOwnProperty(i)) {
+                                        this.formLogin[i] = ''
+                                    }
+                                }
+                            }, 500)
+                            this.$store.commit('app/SET_DIALOGISOPEN', true)
+                            this.dialogLoginVisible = false
                         }).catch(err => {
                             console.log(err)
                         })
-                        // userApi.login(formData).then(res => {
-                        //     console.log(res)
-                        // }).catch(err => {
-                        //     console.log(err)
-                        // })
-
-                        setTimeout(() => {
-                            this.$store.commit('app/SET_CLICKSTATUS', true)
-                        }, 600)
-
                         return true
                     }
                 }
@@ -726,19 +811,23 @@
                         }, 600)
                         return false
                     } else {
-                        userApi.register({
+                        let formData = {
                             username: this.formRegister.username,
                             password: this.formRegister.password
-                        }).then(res => {
+                        }
+                        this.$store.dispatch('user/Register', formData).then(() => {
+                            setTimeout(() => {
+                                this.$store.commit('app/SET_CLICKSTATUS', true)
+                                for (let i in this.formRegister) {
+                                    if (this.formRegister.hasOwnProperty(i)) {
+                                        this.formRegister[i] = ''
+                                    }
+                                }
+                            }, 500)
+                            this.dialogRegisterVisible = false
+                        }).catch(() => {
 
-                            console.log('ok')
-                        }).catch(err => {
-                            console.log(err)
                         })
-                        console.log('ok')
-                        setTimeout(() => {
-                            this.$store.commit('app/SET_CLICKSTATUS', true)
-                        }, 600)
                         return true
                     }
                 }
@@ -760,52 +849,63 @@
 
             /**
              * 用户注册确认
+             * TODO:测试
              */
             registerConfirm() {
-                let registerInfo = this.formRegister
-                let formData = {
-                    username: registerInfo.username,
-                    email: registerInfo.email,
-                    password1: registerInfo.password,
-                    password2: registerInfo.checkPassword,
-                }
-                this.$refs['formRegister'].validate(valid => {
-                    if (valid) {
-                        let formData = {
-                            username: this.formRegister.username,
-                            password: this.formRegister.password
+                if (this.clickStatus) {
+                    this.$store.commit('app/SET_CLICKSTATUS', false)
+                    this.$refs['formRegister'].validate(valid => {
+                        if (valid) {
+                            let formData = {
+                                username: this.formRegister.username,
+                                password: this.formRegister.password
+                            }
+                            console.log(formData)
+                            this.$store.dispatch('user/Register', formData).then(() => {
+                                setTimeout(() => {
+                                    this.$store.commit('app/SET_CLICKSTATUS', true)
+                                    for (let i in this.formRegister) {
+                                        if (this.formRegister.hasOwnProperty(i)) {
+                                            this.formRegister[i] = ''
+                                        }
+                                    }
+                                }, 500)
+                                this.dialogRegisterVisible = false
+                            }).catch(() => {
+                                setTimeout(() => {
+                                    this.$store.commit('app/SET_CLICKSTATUS', true)
+                                }, 2300)
+                            })
+                        } else {
+                            this.$message({
+                                type: 'error',
+                                message: '表单信息非法，请过目！',
+                                duration: 2000
+                            })
+                            setTimeout(() => {
+                                this.$store.commit('app/SET_CLICKSTATUS', true)
+                            }, 2000)
+                            return false
                         }
-                        console.log(formData)
-                        userApi.register({
-                            username: this.formRegister.username,
-                            password: this.formRegister.password
-                        }).then(res => {
-                            console.log(res)
-                        }).catch(err => {
-                            console.log(err)
-                        })
-                        console.log('ok')
-                    } else {
-                        return false
-                    }
-                })
+                    })
+                }
             },
 
             onAvatar() {
-                if (this.timer) {
-                    clearTimeout(this.timer)
+                if (this.timer5) {
+                    clearTimeout(this.timer5)
                 }
-                if (this.timer2) {
-                    clearTimeout(this.timer2)
+                if (this.timer6) {
+                    clearTimeout(this.timer6)
                 }
-                if (this.timer4) {
-                    clearInterval(this.timer4)
+                if (this.timer7) {
+                    clearInterval(this.timer7)
                 }
-                this.timer4 = setInterval(() => {
+                this.timer7 = setInterval(() => {
                     if (this.mouseOnAvatar < 100) {
                         this.mouseOnAvatar += 0.5
                     } else {
-                        clearInterval(this.timer4)
+                        clearInterval(this.timer7)
                     }
                 }, 4)
 
@@ -816,32 +916,50 @@
             },
 
             leaveAvatar() {
-                this.timer = setTimeout(() => {
-                    if (this.timer4) {
-                        clearInterval(this.timer4)
+                this.timer5 = setTimeout(() => {
+                    if (this.timer7) {
+                        clearInterval(this.timer7)
                     }
 
-                    this.timer4 = setInterval(() => {
+                    this.timer7 = setInterval(() => {
                         if (this.mouseOnAvatar > 0) {
                             this.mouseOnAvatar -= 0.5
                         } else {
-                            clearInterval(this.timer4)
+                            clearInterval(this.timer7)
                         }
                     }, 20)
                     this.menuFlag = false
-                    this.timer2 = setTimeout(() => {
+                    this.timer6 = setTimeout(() => {
                         this.topMenuIsOpen = false
                     }, 600)
                 }, 500)
+            },
 
+            goMainPage() {
+                for (let i = 0; i < blackList.blacklist.length; i++) {
+                    if (this.$route.path.includes(blackList.blacklist[i])) {
+                        this.$router.push('/')
+                    }
+                }
             },
 
             /**
              * 用户退出登录
              */
             logout() {
-                this.$store.dispatch('user/Logout')
+                console.log(this.$route.path)
+                this.$confirm('确定退出吗？').then(() => {
+                    this.$store.dispatch('user/Logout')
+                    this.goMainPage()
+                }).catch(() => {
+
+                })
             },
+
+            logOutMobile() {
+                this.$store.dispatch('user/Logout')
+                this.goMainPage()
+            }
         },
 
         // 关闭监控事件
@@ -856,7 +974,7 @@
 
 </style>
 
-<style lang="less" scoped>
+<style lang="less" type="text/less" scoped>
 
 
 	.main {
@@ -890,15 +1008,41 @@
 		display: flex;
 		justify-content: space-between;
 
+		.mobile-logined {
+			margin: 0 25px 10px 0;
+			width: 46px;
+			height: 46px;
+			box-sizing: border-box;
+			border: 3px solid #b7b4bb;
+			border-radius: 30px;
+			overflow: hidden;
+			cursor: pointer;
+			transition: 0.4s;
+			display: flex;
+			justify-content: left;
+
+			.avatar {
+				width: 40px;
+				height: 40px;
+				background-image: url("../../assets/logo.png");
+				background-size: 40px 40px;
+			}
+
+			p {
+				color: white;
+			}
+		}
+
 		.login-ui {
 			display: flex;
 			justify-content: right;
 
 			.login {
+				text-align: center;
 				font-size: 14px;
 				border-radius: 10px;
 				box-sizing: border-box;
-				padding: 7px 21px;
+				padding: 7px 0;
 				border: 2px solid #1a1a1a;
 				margin: auto 10px;
 				width: 75px;
@@ -938,27 +1082,48 @@
 			top: 60px;
 			left: 0;
 			width: 50vw;
-			height: 100vh;
+			height: calc(100vh - 60px);
 			max-width: 400px;
 			background-color: #6f6f6f;
 			box-sizing: border-box;
 			padding: 20px 20px 0 10px;
 			transform: translateX(-50vw);
-			/*min-width: 150px;*/
+			overflow-y: auto;
 
-			.menu-leap {
-				margin: 3px 0;
-				cursor: pointer;
-				border-radius: 15px;
+			.menuHead {
 				width: 100%;
-				box-sizing: border-box;
-				padding: 14px 10px;
-				height: 50px;
-				color: #d8d8d8;
-				font-size: 1em;
-				border-bottom: 3px solid #4a4a4a;
-				border-left: 3px solid #4a4a4a;
+
+				.mobile-logined {
+				}
+
+				p {
+					color: #dfdfdf;
+					margin-bottom: 10px;
+					width: 100%;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+				}
 			}
+
+		}
+
+		.menu-leap {
+			display: block;
+			margin: 3px 0;
+			cursor: pointer;
+			border-radius: 15px;
+			width: 100%;
+			box-sizing: border-box;
+			padding: 14px 10px;
+			height: 50px;
+			color: #d8d8d8;
+			font-size: 1em;
+			border-bottom: 3px solid #4a4a4a;
+			border-left: 3px solid #4a4a4a;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
 		}
 
 		.head-left {
@@ -1009,15 +1174,12 @@
 			height: auto;
 			margin: auto 30px auto 10px;
 
-
 			img {
 				border-radius: 35px;
 				cursor: pointer;
 				margin-top: 9px;
 				margin-left: -2px;
 			}
-
-
 		}
 	}
 
@@ -1078,7 +1240,6 @@
 				height: auto;
 				font-size: 3vw;
 				box-sizing: border-box;
-				/*border: 3px solid #6b95ea;*/
 				padding: 2vw 3vw;
 				border-radius: 2.5vw;
 				width: 50vw;
@@ -1095,8 +1256,6 @@
 				color: white;
 			}
 		}
-
-
 	}
 
 	.blur-style {
@@ -1146,10 +1305,6 @@
 
 		button:hover {
 			border: none;
-		}
-
-		button:focus {
-			outline: 2px solid #6b95ea;
 		}
 
 		.menu-cont {

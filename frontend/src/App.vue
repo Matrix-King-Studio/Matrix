@@ -60,7 +60,7 @@
                         window.removeEventListener('scroll', this.handleScroll, true)
                     }
 
-                    this.headerIsShow = !val.includes('/introduction') && !val.includes('space');
+                    this.headerIsShow = !val.includes('/introduction')
                 },
                 immediate: true
             },
@@ -76,6 +76,7 @@
             window.onresize = () => {
                 this.screenWidth = document.body.clientWidth
 				this.screenHeight = document.documentElement.clientHeight
+
             }
 
             let top = Math.floor(this.$refs.app.scrollTop)
@@ -88,6 +89,7 @@
 
         beforeMount() {
             this.$store.commit('app/SET_DIALOGISOPEN', false)
+			this.$store.commit('app/SET_CLICKSTATUS', true)
         },
 
         methods: {
