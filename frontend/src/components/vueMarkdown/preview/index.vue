@@ -131,8 +131,8 @@
     };
 </script>
 
-<style scoped lang="less">
-    @import "../../../assets/font/iconfont.css";
+<style scoped lang="less" type="text/less">
+    @import "../../../assets/font/mdIcon/iconfont.css";
     @import "../../../assets/css/theme";
     @import "../../../assets/css/index";
     @import "../../../assets/css/light";

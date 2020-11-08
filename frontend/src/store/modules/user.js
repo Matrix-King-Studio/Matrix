@@ -10,6 +10,8 @@ const state = {
     isLogin: false,
 }
 
+let remindMessage = null
+
 const mutations = {
     SetToken: (state, token) => {
         state.token = token
@@ -35,7 +37,13 @@ const mutations = {
 const actions = {
     Login({ commit }, data) {
         return new Promise((resolve, reject) => {
+            remindMessage = Message({
+                message: '发送请求中，请稍后.',
+                duration: 0
+            })
             userApi.login(data).then(res => {
+                remindMessage.close()
+                // console.log(res.data)
                 if (res.data.msg === '用户不存在') {
                     Message({
                         message: '用户名不存在，请重试！',
@@ -43,7 +51,7 @@ const actions = {
                         duration: 3000
                     })
                     reject(res.data.msg)
-                } else if (!res.data.data.userid) {
+                } else if (!res.data.data.userId) {
                     Message({
                         message: '密码错误，请再次确认！',
                         type: 'error',
@@ -51,29 +59,31 @@ const actions = {
                     })
                     reject('密码错误，请再次确认！')
                 } else {
-                    console.log(res.data.data)
-                    console.log('ok登陆成功')
+                    // console.log(res.data.data)
+                    // console.log('ok登陆成功')
                     // 成功处理
                     Message({
                         type: 'success',
                         duration: 2000,
                         message: '登录成功'
                     })
-                    commit('SET_USERNAME', res.data.data.username)
-                    commit('SET_USERID', res.data.data.userid)
-                    commit('SET_ISLOGIN', true)
-                    // 测试尝鲜版
-                    localStorage.setItem('username', res.data.data.username)
-                    localStorage.setItem('userId', res.data.data.userid)
-                    resolve()
+                    setTimeout(() => {
+                        commit('SET_USERNAME', res.data.data.username)
+                        commit('SET_USERID', res.data.data.userId)
+                        commit('SET_ISLOGIN', true)
+                        // 测试尝鲜版
+                        localStorage.setItem('username', res.data.data.username)
+                        localStorage.setItem('userId', res.data.data.userId)
+                        resolve()
+                    }, 2400)
                 }
             }).catch(err => {
-                // console.log(err)
-                // Message({
-                //     message: '用户名或密码错误！',
-                //     type: 'error',
-                //     duration: 3000
-                // })
+                remindMessage.close()
+                Message({
+                    message: '网络出错，请再次确认！',
+                    type: 'error',
+                    duration: 2000
+                })
                 reject(err)
             })
         })
@@ -81,30 +91,41 @@ const actions = {
 
     Register({ commit }, data) {
         return new Promise((resolve, reject) => {
+            remindMessage = Message({
+                message: '发送请求中，请稍后.',
+                duration: 0
+            })
             userApi.register(data).then(res => {
-                if (res.data.error) {
-                    Object.keys(res.data.error).forEach(item => {
-                        res.data.error[item].forEach(value => {
-                            Message({
-                                message: value,
-                                type: 'error',
-                                duration: 2000
-                            })
-                        })
-                        reject(res.data.error[item])
+                console.log(res)
+                remindMessage.close()
+                if (res.data.msg === '用户已经存在') {
+                    Message({
+                        type: 'error',
+                        message: '用户名已存在，请重新修改！',
+                        duration: 1000
                     })
+                    reject()
                 } else {
-                    commit('SetToken', res.data.key)
-                    store.dispatch('user/UserInfo')
-                    resolve()
+                    Message({
+                        type: 'success',
+                        message: '注册成功',
+                        duration: 1000
+                    })
                 }
+
+                setTimeout(() => {
+                    resolve()
+                }, 1000)
+                // this.dialogRegisterVisible = false
             }).catch(err => {
+                remindMessage.close()
                 Message({
-                    message: '注册出错：' + err.data,
                     type: 'error',
-                    duration: 3000
+                    message: '注册失败，请检查网络环境',
+                    duration: 2000
                 })
-                reject(err)
+
+                console.log(err)
             })
         })
     },
@@ -132,25 +153,6 @@ const actions = {
             localStorage.removeItem('userId')
             commit('SET_ISLOGIN', false)
         })
-        // return new Promise((resolve, reject) => {
-        //     userApi.logout().then(res => {
-        //         commit('SetToken', null)
-        //         Message({
-        //             message: '退出成功！',
-        //             type: 'success',
-        //             duration: 3000
-        //         })
-        //         resolve()
-        //     }).catch(err => {
-        //         console.log(err)
-        //         Message({
-        //             message: '退出失败！',
-        //             type: 'error',
-        //             duration: 3000
-        //         })
-        //         reject(err)
-        //     })
-        // })
     }
 }
 

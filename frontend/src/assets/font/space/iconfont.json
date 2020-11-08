@@ -1,0 +1,37 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "4949580",
+      "name": "个人资料",
+      "font_class": "gerenziliao",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "8712976",
+      "name": "删 除",
+      "font_class": "shanchu",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "16454648",
+      "name": "修改",
+      "font_class": "xiugai",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
+      "icon_id": "16713657",
+      "name": "文章 文本",
+      "font_class": "wenzhangwenben",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    }
+  ]
+}

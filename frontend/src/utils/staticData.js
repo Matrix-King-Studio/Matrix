@@ -105,6 +105,7 @@ export default {
             cont: '学习进度慢到窒息，慢到放弃'
         },
     ],
+
     homepageSolveProblemsList: [
         {
             url: '/static/images/study@2x_1567483310.8556564.png',
@@ -285,20 +286,51 @@ export default {
                     {
                         day: 30,
                         title: 'Python 基础',
-                        target: '目标：掌握基础Python语法和变量类型。',
+                        target: '目标：掌握基础Python语法和变量类型以及基本的数据结构。',
                         link: [{
                             name: '视频：Python入门课程',
                             website: 'http://alpha.luffycity.com:3000/free-course/124/detail'
-                        }]
+                        },
+                            {
+                                name: '官网：Python教程',
+                                website: 'https://docs.python.org/zh-cn/3.7/tutorial/index.html'
+                            }]
                     },
                     {
-                        day: 7,
+                        day: 10,
+                        title: '面向对象编程',
+                        target: '目标：掌握什么是类、对象、继承、封装、多态等特性，学会用面向对象的思想开发程序。',
+                        link: [{
+                            name: '视频：面向对象编程',
+                            website: 'http://alpha.luffycity.com:3000/free-course/126/detail '
+                        },
+                            {
+                                name: '博客：Python基础面试题',
+                                website: 'https://blog.csdn.net/weixin_43336281/article/details/106227647'
+                            }]
+                    },
+                    {
+                        day: 20,
                         title: '爬虫入门',
                         target: '目标：掌握Python模块request的使用。',
                         link: [{
-                            name: '视频：爬虫开发入门',
-                            website: 'http://alpha.luffycity.com:3000/free-course/128/detail'
-                        }]
+                            name: '教程：pip换源',
+                            website: 'https://zhuanlan.zhihu.com/p/164930777'
+                        },
+                            {
+                                name: '视频：爬虫开发入门',
+                                website: 'http://alpha.luffycity.com:3000/free-course/128/detail'
+                            }, {
+                                name: '教程：正则表达式',
+                                website: 'https://www.runoob.com/regexp/regexp-tutorial.html'
+                            },
+                            {
+                                name: '官网：requests模块教程',
+                                website: 'https://requests.readthedocs.io/en/master/'
+                            }, {
+                                name: '工具：在线正则表达式测试',
+                                website: 'https://tool.oschina.net/regex/'
+                            }]
                     },
                     {
                         day: 30,
@@ -307,6 +339,49 @@ export default {
                         link: [{
                             name: '文档：新手指南',
                             website: 'https://ai.baidu.com/ai-doc/REFERENCE/Ck3dwjgn3'
+                        }, {
+                            name: '文档：语音识别',
+                            website: 'https://ai.baidu.com/ai-doc/SPEECH/Ek39uxgre'
+                        }, {
+                            name: '文档：语音合成',
+                            website: 'https://ai.baidu.com/ai-doc/SPEECH/yk38y8h3j'
+                        }, {
+                            name: '文档：语音唤醒',
+                            website: 'https://ai.baidu.com/ai-doc/SPEECH/Vk38lyr75'
+                        }, {
+                            name: '文档：文字识别',
+                            website: 'https://ai.baidu.com/ai-doc/OCR/Ek3h7xypm'
+                        }, {
+                            name: '文档：人脸识别',
+                            website: 'https://ai.baidu.com/ai-doc/FACE/xk37c1jn6'
+                        }, {
+                            name: '文档：智能创作',
+                            website: 'https://ai.baidu.com/ai-doc/NLP/ik3hbjj0v'
+                        }, {
+                            name: '文档：图像识别',
+                            website: 'https://ai.baidu.com/ai-doc/IMAGERECOGNITION/8k3e7f69o'
+                        }, {
+                            name: '文档：图像增强与特效',
+                            website: 'https://ai.baidu.com/ai-doc/IMAGEPROCESS/nk3bcloer'
+                        }]
+                    },
+                    {
+                        day: 10,
+                        title: '项目实战：从零开始搭建一个智能语音助手',
+                        target: '目标：用百度语音识别的API和图灵机器人的API可以做一个实时语音对话的机器人。',
+                        isProject: true,
+                        link: [{
+                            name: '博客：Python3从零开始搭建一个语音对话机器人',
+                            website: 'https://blog.csdn.net/NIeson2012/article/details/96476878'
+                        }]
+                    },
+                    {
+                        day: 10,
+                        title: 'Jupyter Notebook入门',
+                        target: 'Jupyter Notebook 是一个 Web 应用程序，便于创建和共享文学化程序文档，支持实时代码、数学方程、可视化和 Markdown，其用途包括数据清理和转换、数值模拟、统计建模、机器学习等等。目前，数据挖掘领域中最热门的比赛 Kaggle 里的资料都是 Jupyter 格式。对于机器学习新手来说，学会使用 Jupyter Notebook 非常重要。',
+                        link: [{
+                            name: '博客：机器学习新手必看：Jupyter Notebook入门指南',
+                            website: 'https://blog.csdn.net/guleileo/article/details/80490921'
                         }]
                     },
                     {
@@ -316,7 +391,15 @@ export default {
                         link: [{
                             name: '视频：Numpy & Pandas 把玩你的数据',
                             website: 'https://mofanpy.com/tutorials/data-manipulation/np-pd/'
-                        }]
+                        },
+                            {
+                                name: '官网：NumPy 用户指南',
+                                website: 'https://www.numpy.org.cn/user/'
+                            },
+                            {
+                                name: '官网：Pandas: 强大的 Python 数据分析支持库',
+                                website: 'https://www.pypandas.cn/docs/'
+                            }]
                     },
                     {
                         day: 30,
@@ -325,7 +408,11 @@ export default {
                         link: [{
                             name: '视频：Matplotlib 数据可视化',
                             website: 'https://mofanpy.com/tutorials/data-manipulation/plt/'
-                        }]
+                        },
+                            {
+                                name: '官网：Matplotlib 深入指南',
+                                website: 'https://www.matplotlib.org.cn/tutorials/'
+                            }]
                     },
                     {
                         day: 90,
@@ -341,11 +428,41 @@ export default {
                     },
                     {
                         day: 30,
+                        title: 'Scikit-Learn 机器学习工具',
+                        target: '目标：Scikit Learn 也简称 sklearn, 是机器学习领域当中最知名的 python 模块之一。',
+                        link: [{
+                            name: '视频：Scikit-Learn 轻松使用机器学习',
+                            website: 'https://mofanpy.com/tutorials/machine-learning/sklearn/'
+                        }, {
+                            name: '文档：sklearn 中文文档',
+                            website: 'http://www.scikitlearn.com.cn/'
+                        }]
+                    },
+                    {
+                        day: 10,
+                        title: 'Kaggle入门',
+                        target: 'Kaggle是一个进行数据发掘和预测竞赛的在线平台。从公司的角度来讲，可以提供一些数据，进而提出一个实际需要解决的问题；从参赛者的角度来讲，他们将组队参与项目，针对其中一个问题提出解决方案，最终由公司选出的最佳方案可以获得5K-10K美金的奖金。',
+                        link: [{
+                            name: '博客：从0到1走进 Kaggle',
+                            website: 'https://blog.csdn.net/jdbc/article/details/72353798'
+                        }]
+                    },
+                    {
+                        day: 30,
                         title: '机器学习进阶',
                         target: '目标：掌握基本的机器学习算法推导和实现。',
                         link: [{
                             name: '视频：吴恩达机器学习',
                             website: 'https://www.bilibili.com/video/BV1iK411W7p9'
+                        }]
+                    },
+                    {
+                        day: 45,
+                        title: '人工智能入门教程西瓜书机器学习',
+                        target: '目标：周志华所著的机器学习入门教材《机器学习》，俗称“西瓜书”，已经成为人工智能入门必读物。',
+                        link: [{
+                            name: '书籍：《机器学习》',
+                            website: 'https://detail.tmall.com/item.htm?id=572095489448'
                         }]
                     },
                     {
@@ -356,6 +473,23 @@ export default {
                             name: '视频：吴恩达深度学习',
                             website: 'https://www.bilibili.com/video/BV1FT4y1E74V'
                         }]
+                    },
+                    {
+                        day: 60,
+                        title: 'PyTorch 基本使用',
+                        target: 'PyTorch 是一个 Torch7 团队开源的 Python 优先的深度学习框架，强大的 GPU 加速 Tensor 计算，构建基于 tape 的自动升级系统上的深度神经网络。',
+                        link: [{
+                            name: '官网：PyTorch',
+                            website: 'https://pytorch.org/'
+                        },
+                            {
+                                name: '博客：PyTorch换源安装',
+                                website: 'https://blog.csdn.net/weixin_43336281/article/details/108753980'
+                            },
+                            {
+                                name: '文档：PyTorch 官网教程',
+                                website: 'https://pytorch.org/tutorials/'
+                            }]
                     },
                 ]
             },

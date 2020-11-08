@@ -128,11 +128,11 @@
 	}
 
 	button:focus {
-		outline: none;
+		/*outline: none;*/
 	}
 </style>
 
-<style lang="less" scoped>
+<style lang="less" type="text/less" scoped>
 
 
 	.block {

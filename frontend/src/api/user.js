@@ -14,17 +14,6 @@ export default {
         })
     },
     /**
-     * 用户信息
-     * @param data
-     * @returns {AxiosPromise}
-     */
-    user() {
-        return request({
-            url: '/auth/rest-auth/user',
-            method: 'GET',
-        })
-    },
-    /**
      * 用户注册
      * @param data
      * @returns {AxiosPromise}
@@ -41,46 +30,28 @@ export default {
      * @param data
      * @returns {AxiosPromise}
      */
-    logout() {
+
+    getSelfInfo(data) {
         return request({
-            url: '/auth/rest-auth/logout/',
-            method: 'post',
+            url: '/UserInfo/selectId',
+            method: 'get',
+            params: data
         })
     },
-    /**
-     * 用户修改密码
-     * @param data
-     * @returns {AxiosPromise}
-     */
-    passwordChange(data) {
+
+    setSelfInfo(data) {
         return request({
-            url: '/auth/rest-auth/password/change',
-            method: 'post',
-            data
+            url: '/UserInfo/updateUser',
+            method: 'get',
+            params: data
         })
     },
-    /**
-     * 用户重置密码
-     * @param data
-     * @returns {AxiosPromise}
-     */
-    passwordReset(data) {
+
+    changePassword(data) {
         return request({
-            url: '/auth/rest-auth/password/reset',
+            url: '',
             method: 'post',
             data
         })
-    },
-    /**
-     * 用户确认重置密码
-     * @param data
-     * @returns {AxiosPromise}
-     */
-    passwordResetConfirm(data) {
-        return request({
-            url: '/auth/rest-auth/password/reset/confirm',
-            method: 'post',
-            data
-        })
-    },
+    }
 }
