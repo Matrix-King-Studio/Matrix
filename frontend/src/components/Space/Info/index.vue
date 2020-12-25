@@ -421,7 +421,7 @@
 				border: none;
 				transition: 0.2s;
 				border-radius: 7px;
-				padding: 5px 7px;
+				padding: 9px 9px;
 				margin: auto 0;
 				width: calc(100% - 100px);
 			}
