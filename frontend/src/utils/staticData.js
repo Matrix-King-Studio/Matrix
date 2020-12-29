@@ -689,144 +689,162 @@ export default {
         name: '后端组',
         type: 'info',
         route: [
-          {
-            day: '30',
-            title: '语言基础',
-            target: '适合Java 0基础，Java初学入门。聊聊Java这条路该如何走，如何能够系统的学习这门编程语言!',
-            link: [{
-              name: '视频：Java零基础学习',
-              website: 'https://www.bilibili.com/video/BV12J41137hu'
-            }]
-          },
-          {
-            day: '30',
-            title: 'GUI编程',
-            target: '什么是GUI编程，AWT 和 Swing怎么学？什么是事件监听？什么是定时器？ 如何使用Java编写游戏客户端？从入门到游戏实战，一步步带你走进Java世界',
-            link: [{
-              name: '视频：GUI编程入门到游戏实战',
-              website: 'https://www.bilibili.com/video/BV1DJ411B75F'
-            }]
-          },
-          {
-            day: '3',
-            title: '开发贪吃蛇游戏',
-            target: '很多人说Java入门很难，学了很久都做不出来东西，那么给大家带来一个快速上手的小项目《一小时开发贪吃蛇游戏》',
-            link: [{
-              name: '视频：一小时开发贪吃蛇游戏',
-              website: 'https://www.bilibili.com/video/BV1HE41127CV'
-            }]
-          },
-          {
-            day: '60',
-            title: '网络编程',
-            target: '什么是网络？何为网络协议？IP和端口是干嘛的？TCP和UDP协议、URL能干嘛？ 如何通过Java实现这一切，如何通过Java写聊天程序，如何下载网络资源',
-            link: [{
-              name: '视频：网络编程实战讲解',
-              website: 'https://www.bilibili.com/video/BV1LJ411z7vY'
-            }]
-          },
-          {
-            day: '3',
-            title: '多线程详解',
-            target: '课程主线：线程简介->线程创建->线程实现->并发问题->死锁,生产者消费者等高级问题',
-            link: [{
-              name: '视频：多线程详解',
-              website: 'https://www.bilibili.com/video/BV1V4411p7EF'
-            }]
-          },
-          {
-            day: '10',
-            title: '注解和反射',
-            target: '课程主线：注解->自定义注解->Class类->类加载机制->反射的实际应用',
-            link: [{
-              name: '视频：注解和反射',
-              website: 'https://www.bilibili.com/video/BV1p4411P7V3'
-            }]
-          },
-          {
-            day: '30',
-            title: 'JVM快速入门篇',
-            target: '什么是jvm？类加载器？栈、堆区别、jdk1.8干了什么？新生代，老年代，干嘛的？ From 和 to 区什么东西？ 如何排错OOM。垃圾回收的算法是什么样子的？JMM等等问题都会在这里面解答',
-            link: [{
-              name: '视频：JVM快速入门篇',
-              website: 'https://www.bilibili.com/video/BV1iJ411d7jS'
-            }]
-          },
-          {
-            day: 20,
-            title: 'MySQL最新教程通俗易懂',
-            target: 'SQL基础语法、函数、索引、sql编程、事务、事务原则、备份恢复，权限 数据库设计、三大范式、JDBC、SQL注入、数据库连接池。等所有知识都在这里了',
-            link: [{
-              name: '视频：MySQL最新教程通俗易懂',
-              website: 'https://www.bilibili.com/video/BV1NJ411J79W'
-            }]
-          },
-          {
-            day: 25,
-            title: 'JavaWeb入门到实战',
-            target: '从生活到代码，从简单到深入。 源码级别讲解，风趣幽默,通俗易懂。',
-            link: [{
-              name: '视频：JavaWeb入门到实战',
-              website: 'https://www.bilibili.com/video/BV12J411M7Sj'
-            }]
-          },
-          {
-            day: 15,
-            title: 'Mybatis最新完整教程',
-            target: '从生活到代码，从简单到深入。 源码级别讲解，风趣幽默,通俗易懂。',
-            link: [{
-              name: '视频：Mybatis最新完整教程',
-              website: 'https://www.bilibili.com/video/BV1NE411Q7Nx'
-            }]
-          },
-          {
-            day: 20,
-            title: 'Spring5最新完整教程',
-            target: '从生活到代码，从简单到深入。 源码级别讲解，风趣幽默,通俗易懂。',
-            link: [{
-              name: '视频：Spring5最新完整教程',
-              website: 'https://www.bilibili.com/video/BV1WE411d7Dv'
-            }]
-          },
-          {
-            day: 20,
-            title: 'SpringMVC最新教程',
-            target: '从生活到代码，从简单到深入。 源码级别讲解，风趣幽默,通俗易懂。',
-            link: [{
-              name: '视频：SpringMVC最新教程',
-              website: 'https://www.bilibili.com/video/BV1aE41167Tu'
-            }]
-          },
-          {
-            day: 20,
-            title: 'SSM框架最新整合教学',
-            target: '从生活到代码，从简单到深入。 源码级别讲解，风趣幽默,通俗易懂。',
-            link: [{
-              name: '视频：SSM框架最新整合教学',
-              website: 'https://www.bilibili.com/video/BV1RE41127rv'
-            }]
-          },
-          {
-            day: 5,
-            title: '云服务器使用',
-            target: '目标：熟悉阿里云服务器的基本使用，为Web项目部署做铺垫。',
-            link: [{
-              name: '文档：阿里云文档',
-              website: 'https://help.aliyun.com/product/25365.html'
-            }]
-          },
-          {
-            day: '??',
-            title: '项目实战：工作室官网',
-            target: '目标：独立开发完成Matrix工作室官网后端服务。',
-            isProject: true,
-            link: [{
-              name: '代码：Matrix Backend',
-              website: 'https://github.com/Matrix-King-Studio/Matrix/tree/master/backend'
-            }]
-          },
+            {
+                day: '30',
+                title: '语言基础',
+                target: '适合Java 0基础，Java初学入门。聊聊Java这条路该如何走，如何能够系统的学习这门编程语言!',
+                link: [{
+                    name: '视频：Java零基础学习',
+                    website: 'https://www.bilibili.com/video/BV12J41137hu'
+                }]
+            },
+            {
+                day: '60',
+                title: '网络编程',
+                target: '什么是网络？何为网络协议？IP和端口是干嘛的？TCP和UDP协议、URL能干嘛？ 如何通过Java实现这一切，如何通过Java写聊天程序，如何下载网络资源',
+                link: [{
+                    name: '视频：网络编程实战讲解',
+                    website: 'https://www.bilibili.com/video/BV1LJ411z7vY'
+                }]
+            },
+            {
+                day: '3',
+                title: '多线程详解',
+                target: '课程主线：线程简介->线程创建->线程实现->并发问题->死锁,生产者消费者等高级问题',
+                link: [{
+                    name: '视频：多线程详解',
+                    website: 'https://www.bilibili.com/video/BV1V4411p7EF'
+                }]
+            },
+            {
+                day: '10',
+                title: '注解和反射',
+                target: '课程主线：注解->自定义注解->Class类->类加载机制->反射的实际应用',
+                link: [{
+                    name: '视频：注解和反射',
+                    website: 'https://www.bilibili.com/video/BV1p4411P7V3'
+                }]
+            },
+            {
+                day: '30',
+                title: 'JVM快速入门篇',
+                target: '什么是jvm？类加载器？栈、堆区别、jdk1.8干了什么？新生代，老年代，干嘛的？ From 和 to 区什么东西？ 如何排错OOM。垃圾回收的算法是什么样子的？JMM等等问题都会在这里面解答',
+                link: [{
+                    name: '视频：JVM快速入门篇',
+                    website: 'https://www.bilibili.com/video/BV1iJ411d7jS'
+                }]
+            },
+            {
+                day: 20,
+                title: 'MySQL最新教程通俗易懂',
+                target: 'SQL基础语法、函数、索引、sql编程、事务、事务原则、备份恢复，权限 数据库设计、三大范式、JDBC、SQL注入、数据库连接池。等所有知识都在这里了',
+                link: [{
+                    name: '视频：MySQL最新教程通俗易懂',
+                    website: 'https://www.bilibili.com/video/BV1NJ411J79W'
+                }]
+            },
+            {
+                day: 25,
+                title: 'JavaWeb入门到实战',
+                target: '从生活到代码，从简单到深入。 源码级别讲解，风趣幽默,通俗易懂。',
+                link: [{
+                    name: '视频：JavaWeb入门到实战',
+                    website: 'https://www.bilibili.com/video/BV12J411M7Sj'
+                }]
+            },
+            {
+                day: 15,
+                title: 'Mybatis最新完整教程',
+                target: '从生活到代码，从简单到深入。 源码级别讲解，风趣幽默,通俗易懂。',
+                link: [{
+                    name: '视频：Mybatis最新完整教程',
+                    website: 'https://www.bilibili.com/video/BV1NE411Q7Nx'
+                }]
+            },
+            {
+                day: 5,
+                title: 'MyBatisPlus最新完整教程',
+                target: '深入浅出的讲解了MyBatisPlus使用的全流程以及实战教学！',
+                link: [{
+                    name: '视频：MyBatisPlus最新完整教程',
+                    website: 'https://www.bilibili.com/video/BV17E411N7KN'
+                }]
+            },
+            {
+                day: 20,
+                title: 'Spring5最新完整教程',
+                target: '从生活到代码，从简单到深入。 源码级别讲解，风趣幽默,通俗易懂。',
+                link: [{
+                    name: '视频：Spring5最新完整教程',
+                    website: 'https://www.bilibili.com/video/BV1WE411d7Dv'
+                }]
+            },
+            {
+                day: 20,
+                title: 'SpringMVC最新教程',
+                target: '从生活到代码，从简单到深入。 源码级别讲解，风趣幽默,通俗易懂。',
+                link: [{
+                    name: '视频：SpringMVC最新教程',
+                    website: 'https://www.bilibili.com/video/BV1aE41167Tu'
+                }]
+            },
+            {
+                day: 20,
+                title: 'SSM框架最新整合教学',
+                target: '从生活到代码，从简单到深入。 源码级别讲解，风趣幽默,通俗易懂。',
+                link: [{
+                    name: '视频：SSM框架最新整合教学',
+                    website: 'https://www.bilibili.com/video/BV1RE41127rv'
+                }]
+            },
+            {
+                day: 20,
+                title: 'SpringBoot最新教程',
+                target: '目标：从初识SpringBoot，然后进入web开发，原理探究，再到数据库连接，然后集成一些常用的框架，由易到难，层层递进',
+                link: [{
+                    name: '视频：SpringBoot最新教程IDEA版通俗易懂',
+                    website: 'https://www.bilibili.com/video/BV1PE411i7CV'
+                }]
+            },
+            {
+                day: 25,
+                title: '云服务器的使用和基本Git命令Linux命令学习',
+                target: '目标：快速购买服务器并搭建自己的应用环境,深入浅出的讲解了GIT使用的全流程以及实战教学,从历史，基本命令，项目实战发布上线，全面快速的讲解了Linux的常用知识',
+                link: [{
+                    name: '视频：服务器购买及宝塔部署环境说明',
+                    website: 'https://www.bilibili.com/video/BV177411K7bH'
+                },
+                {
+                    name: '视频：Git最新教程通俗易懂',
+                    website: 'https://www.bilibili.com/video/BV1FE411P7B3'
+                },
+                {
+                    name: '视频：Linux最通俗易懂的教程阿里云真实环境学习',
+                    website: 'https://www.bilibili.com/video/BV187411y7hF'
+                },
+            ]
+            },
+            {
+                day: 2,
+                title: '分析开源项目',
+                target: '目标：观察开源项目、下载及运行开源项目，前后端分离项目固定套路，如何找到一个好的开源项目',
+                link: [{
+                    name: '视频：教你如何分析开源项目',
+                    website: 'https://www.bilibili.com/video/BV1T7411L74W'
+                }]
+            },
+            {
+                day: '??',
+                title: '项目实战：工作室官网',
+                target: '目标：独立开发完成Matrix工作室官网后端服务。',
+                isProject: true,
+                link: [{
+                    name: '代码：Matrix Backend',
+                    website: 'https://github.com/Matrix-King-Studio/Matrix/tree/master/backend'
+                }]
+            },
         ]
-      },
+    },
       {
         name: '算法组',
         type: 'warning',
@@ -991,7 +1009,22 @@ export default {
             }]
           },
         ]
-      }
+      },
+      {
+        name: '资源链接',
+        type: 'danger',
+        route: [
+            {
+                day: '??',
+                title: '学会Git玩转Github',
+                target: '目标：学习优秀的开源项目，关注行业前辈了解最新的行业动态，借助GitHub托管项目代码',
+                link: [{
+                    name: '视频：学会Git玩转Github',
+                    website: 'https://www.bilibili.com/video/BV1Xx411m7kn?from=search&seid=1806069761956020570'
+                }]
+            },
+        ]
+    },
     ]
   }
 }
