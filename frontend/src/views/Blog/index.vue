@@ -86,7 +86,6 @@
     import Aside from '../../components/Generic/Aside'
     import BlogAside from '../../components/Blog/BlogAside/index'
     import blogApi from '../../api/blog'
-    import { Message } from 'element-ui'
 	import staticData from '../../utils/staticData'
 
     export default {
@@ -141,11 +140,6 @@
                     console.log(this.articles)
                 }).catch(err => {
                     console.log(err)
-                    Message({
-                        message: '获取博客文章列表出错！',
-                        type: 'error',
-                        duration: 1500
-                    })
                 })
             },
 
