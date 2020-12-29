@@ -11,8 +11,8 @@
 			</el-header>
 			<el-container class="cont">
 				<div class="group"
-					 :style="{width: screenWidth > 1400 ? '20vw' : screenWidth <= 1400 && screenWidth >= 1000 ? '26vw' : screenWidth < 1000 && screenWidth > 700 ? '40vw' : '70vw'}"
-					 style="margin: 10px 15px" v-for="(item, i) in learnAllInfo.group" :key="i">
+					 :style="{width: screenWidth > 1400 ? '16vw' : screenWidth <= 1400 && screenWidth >= 1000 ? '26vw' : screenWidth < 1000 && screenWidth > 700 ? '40vw' : '70vw'}"
+					 style="margin: 10px 16px" v-for="(item, i) in learnAllInfo.group" :key="i">
 					<el-button
 						:type="item.type"
 						plain
