@@ -40,7 +40,6 @@
 
 <script>
     import blogApi from '../../../api/blog'
-    import { Message } from 'element-ui'
     import marked from 'marked'
 
     export default {
@@ -69,11 +68,6 @@
                     console.log(this.article)
                 }).catch(err => {
                     console.log(err)
-                    Message({
-                        message: '获取博客文章详情出错！',
-                        type: 'error',
-                        duration: 1000
-                    })
                 })
             }
         }
