@@ -16,7 +16,7 @@
         "es6-promise": "^4.2.8",
         "js-cookie": "^2.2.1",
         "loadsh": "0.0.4",
-        "marked": "^1.2.0",
+        "marked": "^2.0.0",
         "qs": "^6.9.4",
         "vue": "^2.5.2",
         "vue-markdown": "^2.2.4",
