@@ -289,7 +289,7 @@ export default {
             target: '目标：掌握基础Python语法和变量类型以及基本的数据结构。',
             link: [{
               name: '视频：Python入门课程',
-              website: 'http://alpha.luffycity.com:3000/free-course/124/detail'
+              website: 'https://www.luffycity.com/free-course/124/detail'
             },
               {
                 name: '官网：Python教程',
@@ -302,10 +302,10 @@ export default {
             target: '目标：掌握什么是类、对象、继承、封装、多态等特性，学会用面向对象的思想开发程序。',
             link: [{
               name: '视频：面向对象编程',
-              website: 'http://alpha.luffycity.com:3000/free-course/126/detail '
+              website: 'https://www.luffycity.com/free-course/126/detail '
             },
               {
-                name: '博客：Python基础面试题',
+                name: 'Blog：Python基础面试题',
                 website: 'https://blog.csdn.net/weixin_43336281/article/details/106227647'
               }]
           },
@@ -319,7 +319,7 @@ export default {
             },
               {
                 name: '视频：爬虫开发入门',
-                website: 'http://alpha.luffycity.com:3000/free-course/128/detail'
+                website: 'https://www.luffycity.com/free-course/128/detail'
               }, {
                 name: '教程：正则表达式',
                 website: 'https://www.runoob.com/regexp/regexp-tutorial.html'
@@ -369,9 +369,9 @@ export default {
             day: 10,
             title: '项目实战：从零开始搭建一个智能语音助手',
             target: '目标：用百度语音识别的API和图灵机器人的API可以做一个实时语音对话的机器人。',
-            isProject: true,
+            type: "project",
             link: [{
-              name: '博客：Python3从零开始搭建一个语音对话机器人',
+              name: 'Blog：Python3从零开始搭建一个语音对话机器人',
               website: 'https://blog.csdn.net/NIeson2012/article/details/96476878'
             }]
           },
@@ -380,7 +380,7 @@ export default {
             title: 'Jupyter Notebook入门',
             target: 'Jupyter Notebook 是一个 Web 应用程序，便于创建和共享文学化程序文档，支持实时代码、数学方程、可视化和 Markdown，其用途包括数据清理和转换、数值模拟、统计建模、机器学习等等。目前，数据挖掘领域中最热门的比赛 Kaggle 里的资料都是 Jupyter 格式。对于机器学习新手来说，学会使用 Jupyter Notebook 非常重要。',
             link: [{
-              name: '博客：机器学习新手必看：Jupyter Notebook入门指南',
+              name: 'Blog：机器学习新手必看：Jupyter Notebook入门指南',
               website: 'https://blog.csdn.net/guleileo/article/details/80490921'
             }]
           },
@@ -428,6 +428,7 @@ export default {
           },
           {
             day: 30,
+            type: "advanced",
             title: 'Scikit-Learn 机器学习工具',
             target: '目标：Scikit Learn 也简称 sklearn, 是机器学习领域当中最知名的 python 模块之一。',
             link: [{
@@ -443,12 +444,13 @@ export default {
             title: 'Kaggle入门',
             target: 'Kaggle是一个进行数据发掘和预测竞赛的在线平台。从公司的角度来讲，可以提供一些数据，进而提出一个实际需要解决的问题；从参赛者的角度来讲，他们将组队参与项目，针对其中一个问题提出解决方案，最终由公司选出的最佳方案可以获得5K-10K美金的奖金。',
             link: [{
-              name: '博客：从0到1走进 Kaggle',
+              name: 'Blog：从0到1走进 Kaggle',
               website: 'https://blog.csdn.net/jdbc/article/details/72353798'
-            }]
+            },]
           },
           {
             day: 30,
+            type: "advanced",
             title: '机器学习进阶',
             target: '目标：掌握基本的机器学习算法推导和实现。',
             link: [{
@@ -458,6 +460,7 @@ export default {
           },
           {
             day: 45,
+            type: "advanced",
             title: '人工智能入门教程西瓜书机器学习',
             target: '目标：周志华所著的机器学习入门教材《机器学习》，俗称“西瓜书”，已经成为人工智能入门必读物。',
             link: [{
@@ -467,6 +470,7 @@ export default {
           },
           {
             day: 60,
+            type: "advanced",
             title: '深度学习基础',
             target: '目标：掌握基本的深度学习算法理念和实现。',
             link: [{
@@ -476,6 +480,7 @@ export default {
           },
           {
             day: 60,
+            type: "advanced",
             title: 'PyTorch 基本使用',
             target: 'PyTorch 是一个 Torch7 团队开源的 Python 优先的深度学习框架，强大的 GPU 加速 Tensor 计算，构建基于 tape 的自动升级系统上的深度神经网络。',
             link: [{
@@ -483,7 +488,7 @@ export default {
               website: 'https://pytorch.org/'
             },
               {
-                name: '博客：PyTorch换源安装',
+                name: 'Blog：PyTorch换源安装',
                 website: 'https://blog.csdn.net/weixin_43336281/article/details/108753980'
               },
               {
@@ -491,13 +496,56 @@ export default {
                 website: 'https://www.youtube.com/playlist?list=PLqnslRFeH2UrcDBWF5mfPGpqQDSta6VK4'
               },
               {
-                name: 'Code：PyTorch Tutorials',
-                website: 'https://github.com/python-engineer/pytorchTutorial'
-              },
-              {
                 name: '文档：PyTorch 官网教程',
                 website: 'https://pytorch.org/tutorials/'
               }]
+          },
+          {
+            day: 1,
+            title: 'GPU白嫖指南',
+            target: '玩深度学习没有 GPU/TPU 怎么能行，但是又不想买显卡，没关系，Alex 带你白嫖带你飞。',
+            link: [{
+              name: 'Blog：巧用Kaggle进行模型训练',
+              website: 'https://cloud.tencent.com/developer/article/1530996'
+            }, {
+              name: 'Blog：Google Colab Free GPU Tutorial（科学上网）',
+              website: 'https://medium.com/deep-learning-turkey/google-colab-free-gpu-tutorial-e113627b9f5d'
+            }, {
+              name: 'Blog：免费用GPU跑深度学习模型 —— 如何白嫖Google的4万元显卡',
+              website: 'https://zhuanlan.zhihu.com/p/45769856'
+            },]
+          },
+          {
+            day: 10,
+            title: '项目实战：基于 PyTorch 完成 Yolo-V3 复现',
+            target: '目标：能够从头开始通过 PyTorch 复现 Yolo-V3 目标检测算法。',
+            type: "project",
+            link: [{
+              name: 'Blog：How to implement a YOLO (v3) object detector from scratch in PyTorch: Part 1',
+              website: 'https://blog.paperspace.com/how-to-implement-a-yolo-object-detector-in-pytorch/'
+            }, {
+              name: 'Blog：How to implement a YOLO (v3) object detector from scratch in PyTorch: Part 2',
+              website: 'https://blog.paperspace.com/how-to-implement-a-yolo-v3-object-detector-from-scratch-in-pytorch-part-2/'
+            }, {
+              name: 'Blog：How to implement a YOLO (v3) object detector from scratch in PyTorch: Part 3',
+              website: 'https://blog.paperspace.com/how-to-implement-a-yolo-v3-object-detector-from-scratch-in-pytorch-part-3/'
+            }, {
+              name: 'Blog：How to implement a YOLO (v3) object detector from scratch in PyTorch: Part 4',
+              website: 'https://blog.paperspace.com/how-to-implement-a-yolo-v3-object-detector-from-scratch-in-pytorch-part-4/'
+            }, {
+              name: 'Blog：How to implement a YOLO (v3) object detector from scratch in PyTorch: Part 5',
+              website: 'https://blog.paperspace.com/how-to-implement-a-yolo-v3-object-detector-from-scratch-in-pytorch-part-5/'
+            },]
+          },
+          {
+            day: 60,
+            title: '自然语言处理',
+            target: '计算机读懂语言，在如今已经不是什么新鲜的事情了，不过你有没有想过计算机是如何读懂人类语言的呢？',
+            type: "expand",
+            link: [{
+              name: '导学教程：自然语言处理 NLP',
+              website: 'https://mofanpy.com/tutorials/machine-learning/nlp/'
+            },]
           },
         ]
       },
@@ -511,7 +559,7 @@ export default {
             target: '目标：记住常用的head配置，理解HTML书写规范,记住主要常用标签 --- div img a p span i h1 h2 h3 h4 h5 h6 ui li table tr td input button body em',
             link: [{
               name: '视频：Web开发之HTML篇（路飞学城）',
-              website: 'http://alpha.luffycity.com:3000/free-course/143/detail'
+              website: 'https://www.luffycity.com/free-course/143/detail'
             }, {
               name: '视频：HTML教程',
               website: 'https://www.bilibili.com/video/BV14J4114768'
@@ -526,7 +574,7 @@ export default {
               website: 'https://www.bilibili.com/video/BV14J4114768?p=62'
             }, {
               name: '视频：Web开发之CSS篇（路飞学城）',
-              website: 'http://alpha.luffycity.com:3000/free-course/133/detail'
+              website: 'https://www.luffycity.com/free-course/133/detail'
             }, {
               name: '辅助：配色网站',
               website: 'https://www.sojson.com/web/panel.html'
@@ -677,7 +725,7 @@ export default {
             day: '??',
             title: '项目实战：工作室官网',
             target: '目标：独立开发完成Matrix工作室官网前端页面。',
-            isProject: true,
+            type: "project",
             link: [{
               name: '代码：Matrix Frontend',
               website: 'https://github.com/Matrix-King-Studio/Matrix/tree/master/frontend'
@@ -689,162 +737,162 @@ export default {
         name: '后端组',
         type: 'info',
         route: [
-            {
-                day: '30',
-                title: '语言基础',
-                target: '适合Java 0基础，Java初学入门。聊聊Java这条路该如何走，如何能够系统的学习这门编程语言!',
-                link: [{
-                    name: '视频：Java零基础学习',
-                    website: 'https://www.bilibili.com/video/BV12J41137hu'
-                }]
+          {
+            day: '30',
+            title: '语言基础',
+            target: '适合Java 0基础，Java初学入门。聊聊Java这条路该如何走，如何能够系统的学习这门编程语言!',
+            link: [{
+              name: '视频：Java零基础学习',
+              website: 'https://www.bilibili.com/video/BV12J41137hu'
+            }]
+          },
+          {
+            day: '60',
+            title: '网络编程',
+            target: '什么是网络？何为网络协议？IP和端口是干嘛的？TCP和UDP协议、URL能干嘛？ 如何通过Java实现这一切，如何通过Java写聊天程序，如何下载网络资源',
+            link: [{
+              name: '视频：网络编程实战讲解',
+              website: 'https://www.bilibili.com/video/BV1LJ411z7vY'
+            }]
+          },
+          {
+            day: '3',
+            title: '多线程详解',
+            target: '课程主线：线程简介->线程创建->线程实现->并发问题->死锁,生产者消费者等高级问题',
+            link: [{
+              name: '视频：多线程详解',
+              website: 'https://www.bilibili.com/video/BV1V4411p7EF'
+            }]
+          },
+          {
+            day: '10',
+            title: '注解和反射',
+            target: '课程主线：注解->自定义注解->Class类->类加载机制->反射的实际应用',
+            link: [{
+              name: '视频：注解和反射',
+              website: 'https://www.bilibili.com/video/BV1p4411P7V3'
+            }]
+          },
+          {
+            day: '30',
+            title: 'JVM快速入门篇',
+            target: '什么是jvm？类加载器？栈、堆区别、jdk1.8干了什么？新生代，老年代，干嘛的？ From 和 to 区什么东西？ 如何排错OOM。垃圾回收的算法是什么样子的？JMM等等问题都会在这里面解答',
+            link: [{
+              name: '视频：JVM快速入门篇',
+              website: 'https://www.bilibili.com/video/BV1iJ411d7jS'
+            }]
+          },
+          {
+            day: 20,
+            title: 'MySQL最新教程通俗易懂',
+            target: 'SQL基础语法、函数、索引、sql编程、事务、事务原则、备份恢复，权限 数据库设计、三大范式、JDBC、SQL注入、数据库连接池。等所有知识都在这里了',
+            link: [{
+              name: '视频：MySQL最新教程通俗易懂',
+              website: 'https://www.bilibili.com/video/BV1NJ411J79W'
+            }]
+          },
+          {
+            day: 25,
+            title: 'JavaWeb入门到实战',
+            target: '从生活到代码，从简单到深入。 源码级别讲解，风趣幽默,通俗易懂。',
+            link: [{
+              name: '视频：JavaWeb入门到实战',
+              website: 'https://www.bilibili.com/video/BV12J411M7Sj'
+            }]
+          },
+          {
+            day: 15,
+            title: 'Mybatis最新完整教程',
+            target: '从生活到代码，从简单到深入。 源码级别讲解，风趣幽默,通俗易懂。',
+            link: [{
+              name: '视频：Mybatis最新完整教程',
+              website: 'https://www.bilibili.com/video/BV1NE411Q7Nx'
+            }]
+          },
+          {
+            day: 5,
+            title: 'MyBatisPlus最新完整教程',
+            target: '深入浅出的讲解了MyBatisPlus使用的全流程以及实战教学！',
+            link: [{
+              name: '视频：MyBatisPlus最新完整教程',
+              website: 'https://www.bilibili.com/video/BV17E411N7KN'
+            }]
+          },
+          {
+            day: 20,
+            title: 'Spring5最新完整教程',
+            target: '从生活到代码，从简单到深入。 源码级别讲解，风趣幽默,通俗易懂。',
+            link: [{
+              name: '视频：Spring5最新完整教程',
+              website: 'https://www.bilibili.com/video/BV1WE411d7Dv'
+            }]
+          },
+          {
+            day: 20,
+            title: 'SpringMVC最新教程',
+            target: '从生活到代码，从简单到深入。 源码级别讲解，风趣幽默,通俗易懂。',
+            link: [{
+              name: '视频：SpringMVC最新教程',
+              website: 'https://www.bilibili.com/video/BV1aE41167Tu'
+            }]
+          },
+          {
+            day: 20,
+            title: 'SSM框架最新整合教学',
+            target: '从生活到代码，从简单到深入。 源码级别讲解，风趣幽默,通俗易懂。',
+            link: [{
+              name: '视频：SSM框架最新整合教学',
+              website: 'https://www.bilibili.com/video/BV1RE41127rv'
+            }]
+          },
+          {
+            day: 20,
+            title: 'SpringBoot最新教程',
+            target: '目标：从初识SpringBoot，然后进入web开发，原理探究，再到数据库连接，然后集成一些常用的框架，由易到难，层层递进',
+            link: [{
+              name: '视频：SpringBoot最新教程IDEA版通俗易懂',
+              website: 'https://www.bilibili.com/video/BV1PE411i7CV'
+            }]
+          },
+          {
+            day: 25,
+            title: '云服务器的使用和基本Git命令Linux命令学习',
+            target: '目标：快速购买服务器并搭建自己的应用环境,深入浅出的讲解了GIT使用的全流程以及实战教学,从历史，基本命令，项目实战发布上线，全面快速的讲解了Linux的常用知识',
+            link: [{
+              name: '视频：服务器购买及宝塔部署环境说明',
+              website: 'https://www.bilibili.com/video/BV177411K7bH'
             },
-            {
-                day: '60',
-                title: '网络编程',
-                target: '什么是网络？何为网络协议？IP和端口是干嘛的？TCP和UDP协议、URL能干嘛？ 如何通过Java实现这一切，如何通过Java写聊天程序，如何下载网络资源',
-                link: [{
-                    name: '视频：网络编程实战讲解',
-                    website: 'https://www.bilibili.com/video/BV1LJ411z7vY'
-                }]
-            },
-            {
-                day: '3',
-                title: '多线程详解',
-                target: '课程主线：线程简介->线程创建->线程实现->并发问题->死锁,生产者消费者等高级问题',
-                link: [{
-                    name: '视频：多线程详解',
-                    website: 'https://www.bilibili.com/video/BV1V4411p7EF'
-                }]
-            },
-            {
-                day: '10',
-                title: '注解和反射',
-                target: '课程主线：注解->自定义注解->Class类->类加载机制->反射的实际应用',
-                link: [{
-                    name: '视频：注解和反射',
-                    website: 'https://www.bilibili.com/video/BV1p4411P7V3'
-                }]
-            },
-            {
-                day: '30',
-                title: 'JVM快速入门篇',
-                target: '什么是jvm？类加载器？栈、堆区别、jdk1.8干了什么？新生代，老年代，干嘛的？ From 和 to 区什么东西？ 如何排错OOM。垃圾回收的算法是什么样子的？JMM等等问题都会在这里面解答',
-                link: [{
-                    name: '视频：JVM快速入门篇',
-                    website: 'https://www.bilibili.com/video/BV1iJ411d7jS'
-                }]
-            },
-            {
-                day: 20,
-                title: 'MySQL最新教程通俗易懂',
-                target: 'SQL基础语法、函数、索引、sql编程、事务、事务原则、备份恢复，权限 数据库设计、三大范式、JDBC、SQL注入、数据库连接池。等所有知识都在这里了',
-                link: [{
-                    name: '视频：MySQL最新教程通俗易懂',
-                    website: 'https://www.bilibili.com/video/BV1NJ411J79W'
-                }]
-            },
-            {
-                day: 25,
-                title: 'JavaWeb入门到实战',
-                target: '从生活到代码，从简单到深入。 源码级别讲解，风趣幽默,通俗易懂。',
-                link: [{
-                    name: '视频：JavaWeb入门到实战',
-                    website: 'https://www.bilibili.com/video/BV12J411M7Sj'
-                }]
-            },
-            {
-                day: 15,
-                title: 'Mybatis最新完整教程',
-                target: '从生活到代码，从简单到深入。 源码级别讲解，风趣幽默,通俗易懂。',
-                link: [{
-                    name: '视频：Mybatis最新完整教程',
-                    website: 'https://www.bilibili.com/video/BV1NE411Q7Nx'
-                }]
-            },
-            {
-                day: 5,
-                title: 'MyBatisPlus最新完整教程',
-                target: '深入浅出的讲解了MyBatisPlus使用的全流程以及实战教学！',
-                link: [{
-                    name: '视频：MyBatisPlus最新完整教程',
-                    website: 'https://www.bilibili.com/video/BV17E411N7KN'
-                }]
-            },
-            {
-                day: 20,
-                title: 'Spring5最新完整教程',
-                target: '从生活到代码，从简单到深入。 源码级别讲解，风趣幽默,通俗易懂。',
-                link: [{
-                    name: '视频：Spring5最新完整教程',
-                    website: 'https://www.bilibili.com/video/BV1WE411d7Dv'
-                }]
-            },
-            {
-                day: 20,
-                title: 'SpringMVC最新教程',
-                target: '从生活到代码，从简单到深入。 源码级别讲解，风趣幽默,通俗易懂。',
-                link: [{
-                    name: '视频：SpringMVC最新教程',
-                    website: 'https://www.bilibili.com/video/BV1aE41167Tu'
-                }]
-            },
-            {
-                day: 20,
-                title: 'SSM框架最新整合教学',
-                target: '从生活到代码，从简单到深入。 源码级别讲解，风趣幽默,通俗易懂。',
-                link: [{
-                    name: '视频：SSM框架最新整合教学',
-                    website: 'https://www.bilibili.com/video/BV1RE41127rv'
-                }]
-            },
-            {
-                day: 20,
-                title: 'SpringBoot最新教程',
-                target: '目标：从初识SpringBoot，然后进入web开发，原理探究，再到数据库连接，然后集成一些常用的框架，由易到难，层层递进',
-                link: [{
-                    name: '视频：SpringBoot最新教程IDEA版通俗易懂',
-                    website: 'https://www.bilibili.com/video/BV1PE411i7CV'
-                }]
-            },
-            {
-                day: 25,
-                title: '云服务器的使用和基本Git命令Linux命令学习',
-                target: '目标：快速购买服务器并搭建自己的应用环境,深入浅出的讲解了GIT使用的全流程以及实战教学,从历史，基本命令，项目实战发布上线，全面快速的讲解了Linux的常用知识',
-                link: [{
-                    name: '视频：服务器购买及宝塔部署环境说明',
-                    website: 'https://www.bilibili.com/video/BV177411K7bH'
-                },
-                {
-                    name: '视频：Git最新教程通俗易懂',
-                    website: 'https://www.bilibili.com/video/BV1FE411P7B3'
-                },
-                {
-                    name: '视频：Linux最通俗易懂的教程阿里云真实环境学习',
-                    website: 'https://www.bilibili.com/video/BV187411y7hF'
-                },
+              {
+                name: '视频：Git最新教程通俗易懂',
+                website: 'https://www.bilibili.com/video/BV1FE411P7B3'
+              },
+              {
+                name: '视频：Linux最通俗易懂的教程阿里云真实环境学习',
+                website: 'https://www.bilibili.com/video/BV187411y7hF'
+              },
             ]
-            },
-            {
-                day: 2,
-                title: '分析开源项目',
-                target: '目标：观察开源项目、下载及运行开源项目，前后端分离项目固定套路，如何找到一个好的开源项目',
-                link: [{
-                    name: '视频：教你如何分析开源项目',
-                    website: 'https://www.bilibili.com/video/BV1T7411L74W'
-                }]
-            },
-            {
-                day: '??',
-                title: '项目实战：工作室官网',
-                target: '目标：独立开发完成Matrix工作室官网后端服务。',
-                isProject: true,
-                link: [{
-                    name: '代码：Matrix Backend',
-                    website: 'https://github.com/Matrix-King-Studio/Matrix/tree/master/backend'
-                }]
-            },
+          },
+          {
+            day: 2,
+            title: '分析开源项目',
+            target: '目标：观察开源项目、下载及运行开源项目，前后端分离项目固定套路，如何找到一个好的开源项目',
+            link: [{
+              name: '视频：教你如何分析开源项目',
+              website: 'https://www.bilibili.com/video/BV1T7411L74W'
+            }]
+          },
+          {
+            day: '??',
+            title: '项目实战：工作室官网',
+            target: '目标：独立开发完成Matrix工作室官网后端服务。',
+            type: "project",
+            link: [{
+              name: '代码：Matrix Backend',
+              website: 'https://github.com/Matrix-King-Studio/Matrix/tree/master/backend'
+            }]
+          },
         ]
-    },
+      },
       {
         name: '算法组',
         type: 'warning',
@@ -880,107 +928,299 @@ export default {
             }]
           },
           {
-            day: 60,
-            title: '算法与数据结构学习知识点',
-            target: '目标：掌握各种算法与数据结构知识点',
+            day: 7,
+            title: '链表',
+            target: '',
             link: [{
-              name: '栈',
+              name: '',
               website: ''
-            }, {
-              name: '堆',
+            }]
+          },
+          {
+            day: 7,
+            title: '双指针',
+            target: '',
+            link: [{
+              name: '',
               website: ''
-            }, {
-              name: '贪心',
+            }]
+          },
+          {
+            day: 7,
+            title: '栈',
+            target: '',
+            link: [{
+              name: 'Blog：栈（Stack）',
+              website: 'https://www.yuque.com/huoxiangshouxiangwanghuo/ndi0dn/ga5z53'
+            }]
+          },
+          {
+            day: 7,
+            title: '队列',
+            target: '',
+            link: [{
+              name: '',
               website: ''
-            }, {
-              name: '排序',
+            }]
+          },
+          {
+            day: 7,
+            title: '堆',
+            target: '',
+            link: [{
+              name: '',
               website: ''
-            }, {
+            }]
+          },
+          {
+            day: 7,
+            title: '递归',
+            target: '',
+            link: [{
+              name: '',
+              website: ''
+            }]
+          },
+          {
+            day: 7,
+            title: '贪心',
+            target: '',
+            link: [{
+              name: '',
+              website: ''
+            }]
+          },
+          {
+            day: 7,
+            title: '排序',
+            target: '',
+            link: [{
+              name: '',
+              website: ''
+            }]
+          },
+          {
+            day: 7,
+            title: '位运算',
+            target: '',
+            link: [{
               name: '位运算',
+              website: 'https://oi-wiki.org/math/bit/'
+            }]
+          },
+          {
+            day: 7,
+            title: '树',
+            target: '',
+            link: [{
+              name: '',
               website: ''
-            }, {
-              name: '树',
+            }]
+          },
+          {
+            day: 7,
+            title: '深度优先搜索',
+            target: '',
+            link: [{
+              name: '',
               website: ''
-            }, {
-              name: '深度优先搜索',
+            }]
+          },
+          {
+            day: 7,
+            title: '广度优先搜索',
+            target: '',
+            link: [{
+              name: '',
               website: ''
-            }, {
-              name: '广度优先搜索',
+            }]
+          },
+          {
+            day: 7,
+            title: '并查集',
+            target: '',
+            link: [{
+              name: '',
               website: ''
-            }, {
-              name: '并查集',
+            }]
+          },
+          {
+            day: 7,
+            title: '图',
+            target: '',
+            link: [{
+              name: '最短路径-Dijkstra和Floyd算法动画演示',
+              website: 'https://www.bilibili.com/video/av54668527/'
+            },{
+              name: '',
               website: ''
-            }, {
-              name: '图',
+            },]
+          },
+          {
+            day: 7,
+            title: '设计',
+            target: '',
+            link: [{
+              name: '',
               website: ''
-            }, {
-              name: '设计',
+            }]
+          },
+          {
+            day: 7,
+            title: '拓扑排序',
+            target: '',
+            link: [{
+              name: '',
               website: ''
-            }, {
-              name: '拓扑排序',
+            }]
+          },
+          {
+            day: 7,
+            title: '字典树',
+            target: '',
+            link: [{
+              name: '',
               website: ''
-            }, {
-              name: '字典树',
+            }]
+          },
+          {
+            day: 7,
+            title: '树状数组',
+            target: '',
+            link: [{
+              name: '',
               website: ''
-            }, {
-              name: '树状数组',
+            }]
+          },
+          {
+            day: 7,
+            title: '线段树',
+            target: '',
+            link: [{
+              name: '',
               website: ''
-            }, {
-              name: '线段树',
+            }]
+          },
+          {
+            day: 7,
+            title: '二叉搜索树',
+            target: '',
+            link: [{
+              name: '',
               website: ''
-            }, {
-              name: '二叉搜索树',
+            }]
+          },
+          {
+            day: 7,
+            title: '记忆化',
+            target: '',
+            link: [{
+              name: '',
               website: ''
-            }, {
-              name: '递归',
+            }]
+          },
+          {
+            day: 7,
+            title: '几何',
+            target: '',
+            link: [{
+              name: '',
               website: ''
-            }, {
-              name: '脑筋急转弯',
+            }]
+          },
+          {
+            day: 7,
+            title: 'Map',
+            target: '',
+            link: [{
+              name: '',
               website: ''
-            }, {
-              name: '记忆化',
+            }]
+          },
+          {
+            day: 7,
+            title: '哈希表',
+            target: '',
+            link: [{
+              name: '',
               website: ''
+            }]
+          },
+          {
+            day: 7,
+            title: '数学',
+            target: '',
+            link: [{
+              name: '快速幂',
+              website: 'https://oi-wiki.org/math/quick-pow/'
+            }]
+          },
+          {
+            day: 7,
+            title: '数论',
+            target: '',
+            link: [{
+              name: '素数',
+              website: 'https://oi-wiki.org/math/prime/'
             }, {
-              name: '队列',
-              website: ''
+              name: '最大公约数',
+              website: 'https://oi-wiki.org/math/gcd/'
             }, {
-              name: '极小化极大',
-              website: ''
+              name: '欧拉函数',
+              website: 'https://oi-wiki.org/math/euler/'
             }, {
-              name: '蓄水池抽样',
-              website: ''
+              name: '筛法',
+              website: 'https://oi-wiki.org/math/sieve/'
             }, {
-              name: '几何',
-              website: ''
+              name: '欧拉定理&费马小定理',
+              website: 'https://oi-wiki.org/math/fermat/'
             }, {
-              name: 'Map',
-              website: ''
+              name: '类欧几里得算法',
+              website: 'https://oi-wiki.org/math/euclidean/'
             }, {
-              name: '数组',
-              website: ''
+              name: '裴蜀定理',
+              website: 'https://oi-wiki.org/math/bezouts/'
             }, {
-              name: '哈希表',
-              website: ''
+              name: '乘法逆元',
+              website: 'https://oi-wiki.org/math/inverse/'
             }, {
-              name: '链表',
-              website: ''
+              name: '线性同余方程',
+              website: 'https://oi-wiki.org/math/linear-equation/'
             }, {
-              name: '数学',
-              website: ''
+              name: '中国剩余定理',
+              website: 'https://oi-wiki.org/math/crt/'
             }, {
-              name: '双指针',
-              website: ''
+              name: '二次剩余',
+              website: 'https://oi-wiki.org/math/quad-residue/'
             }, {
-              name: '字符串',
-              website: ''
+              name: 'BSGS',
+              website: 'https://oi-wiki.org/math/bsgs/'
             }, {
-              name: '二分查找',
-              website: ''
+              name: '原根',
+              website: 'https://oi-wiki.org/math/primitive-root/'
             }, {
-              name: '动态规划',
-              website: ''
+              name: '卢卡斯定理',
+              website: 'https://oi-wiki.org/math/lucas/'
             }, {
-              name: '回溯算法',
+              name: '莫比乌斯反演',
+              website: 'https://oi-wiki.org/math/mobius/'
+            }, {
+              name: '杜教筛',
+              website: 'https://oi-wiki.org/math/du/'
+            }, {
+              name: 'Min_25 筛',
+              website: 'https://oi-wiki.org/math/min-25/'
+            }, {
+              name: '分解质因数',
+              website: 'https://oi-wiki.org/math/pollard-rho/'
+            },]
+          },
+          {
+            day: 7,
+            title: '动态规划',
+            target: '',
+            link: [{
+              name: '',
               website: ''
             }]
           },
@@ -1014,17 +1254,30 @@ export default {
         name: '资源链接',
         type: 'danger',
         route: [
-            {
-                day: '??',
-                title: '学会Git玩转Github',
-                target: '目标：学习优秀的开源项目，关注行业前辈了解最新的行业动态，借助GitHub托管项目代码',
-                link: [{
-                    name: '视频：学会Git玩转Github',
-                    website: 'https://www.bilibili.com/video/BV1Xx411m7kn?from=search&seid=1806069761956020570'
-                }]
-            },
+          {
+            day: '10',
+            title: '科学上网',
+            target: '目标：学计算机，你能说不会科学上网？',
+            link: [{
+              name: '文档：Clash for Windows',
+              website: 'https://docs.cfw.lbyczf.com/'
+            }, {
+              name: '网站：熊猫公益',
+              website: 'https://www.panda.mba/'
+            },]
+          },
+          {
+            day: '10',
+            title: '学会Git玩转Github',
+            target: '目标：学习优秀的开源项目，关注行业前辈了解最新的行业动态，借助GitHub托管项目代码',
+            link: [{
+              name: '视频：学会Git玩转Github',
+              website: 'https://www.bilibili.com/video/BV1Xx411m7kn?from=search&seid=1806069761956020570'
+            }]
+          },
+
         ]
-    },
+      },
     ]
   }
 }
